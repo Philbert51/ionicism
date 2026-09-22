@@ -1,18 +1,15 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Daftar Produk</ion-title>
+    <ion-title>order</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Daftar Produk</ion-title>
+      <ion-title size="large">order</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  <ion-button routerLink="/order">Tambah Produk</ion-button>
-  
   <ion-card *ngFor="let product of products">
     <ion-grid>
       <ion-row>
@@ -20,11 +17,15 @@
           <img [src]="product.imageUrl" alt="{{ product.name }}" />
         </ion-col>
         <ion-col size="8">
-          <h2>{{ product.name }}</h2>
-          <p>{{ product.description }}</p>
-          <p>Harga: {{ product.price | currency:'IDR' }}</p>
+          <h2>{{product.name}}</h2>
+          <p>{{product.description}}</p>
+          <p>Harga: {{product.sellingPrice}}</p>
+          <ion-button>
+            <ion-icon slot="start" name="cart"></ion-icon>
+            Tambah ke Keranjang</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>
+  <ion-button color="success">KONFIRMASI TRANSAKSI</ion-button>
 </ion-content>
