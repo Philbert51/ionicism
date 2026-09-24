@@ -27,6 +27,14 @@ export class ProductService {
         sellingPrice: 599.99,
         purchasePrice: 399.99,
         imageUrl: 'https://kkomputer.com/7074/intel-core-i9-13900k-58-ghz-24c32t-lga-1700-rl.jpg'
+    }, {
+        id: 4,
+        name: 'Makanan Kecil',
+        description: 'Makanan kecil untuk camilan.',
+        stock: 50,
+        sellingPrice: 2.99,
+        purchasePrice: 1.99,
+        imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6g1k7J3X8Z5j2v4x5y5z5z5z5z5z5z5z5z5z5z5z5z5&s=10'
     }
     ]
 
