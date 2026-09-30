@@ -35,3 +35,29 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+h2, h3, h4, h5, h6, label, p, ion-icon, ion-label {
+  color: var(--ion-color-primary);
+}
+
+ion-toolbar > label, ion-toolbar > p, ion-toolbar > ion-title {
+  color: var(--ion-color-primary-contrast);
+}
+
+ion-card p, ion-card ion-label, ion-card label, ion-card h1, ion-card h2, ion-card h3, ion-card h4 {
+  color: var(--ion-color-primary-contrast);
+}
+
+
+ion-tab-button > ion-icon, ion-tab-button > ion-label {
+  color: var(--ion-color-primary-contrast);
+}
+
+
+
+
+
+a {
+    text-decoration : underline;
+    color : var(--ion-color-secondary);
+}
