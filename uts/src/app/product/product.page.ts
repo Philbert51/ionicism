@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -13,7 +14,7 @@ export class ProductPage implements OnInit {
 
   searchQuery: string = '';
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private router: Router) {}
 
   ngOnInit() {
     this.products = this.productService.product;
@@ -34,5 +35,9 @@ export class ProductPage implements OnInit {
       this.products = this.productService.product;
       this.originalProductList = this.productService.product;
     }
+  }
+  
+  displayDetail(id: number){
+    alert("meow")
   }
 }
