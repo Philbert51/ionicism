@@ -8,12 +8,31 @@ import { ProductService } from '../product-service';
   standalone: false,
 })
 export class ProductPage implements OnInit {
+  products: any[] = [];
+  originalProductList: any[] = [];
 
-  products:any[] = [];
-  constructor(private productService: ProductService) { }
+  searchQuery: string = '';
+
+  constructor(private productService: ProductService) {}
 
   ngOnInit() {
     this.products = this.productService.product;
+    this.originalProductList = this.productService.product;
   }
 
+  searchProduct() {
+    if (!this.searchQuery || this.searchQuery.trim() == '') {
+      this.products = this.originalProductList;
+    } else {
+      this.products = this.productService.searchProduct(this.searchQuery);
+    }
+  }
+
+  deleteProduct(id: number){
+    if(confirm('Apakah Anda Yakin Ingin Menghapus Data Tersebut?')){
+      this.productService.deleteProduct(id);
+      this.products = this.productService.product;
+      this.originalProductList = this.productService.product;
+    }
+  }
 }

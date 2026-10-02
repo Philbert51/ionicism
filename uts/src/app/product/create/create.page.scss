@@ -1,0 +1,12 @@
+.preview-img{
+    // Tampilkan agar gambarnya kotak
+    width: 70%;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #ffffff;
+    max-width: 300px;
+}
