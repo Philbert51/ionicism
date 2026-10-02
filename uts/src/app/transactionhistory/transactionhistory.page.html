@@ -1,0 +1,52 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Riwayat Transaksi</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Riwayat Transaksi</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-segment [(ngModel)]="jenisTampilan">
+    <ion-segment-button value="hariini">
+      <ion-label>Hari Ini</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="bulanini">
+      <ion-label>Bulan Ini</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="filterperiode">
+      <ion-label>Filter Periode</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-list *ngIf="jenisTampilan=='filterperiode'">
+    <ion-item>
+      <ion-label class="right-margin"><b>Periode:</b></ion-label>
+      <ion-select labelPlacement="stacked" placeholder="Pilih Bulan" [(ngModel)]="filterBulan" class="right-margin">
+        <ion-select-option *ngFor="let bulan of arrBulan; let i = index" [value]="i+1">{{ bulan }}</ion-select-option>
+      </ion-select>
+      <ion-button size="small" (click)="yearBefore()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+      <ion-input type="number" [(ngModel)]="filterTahun" class="input-width text-center"></ion-input>
+      <ion-button size="small" (click)="yearAfter()">
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <!-- <ion-card *ngFor="let transaction of transactions" routerLink="/transactionhistory/detail/{{ transaction.id }}"> -->
+  <ion-card routerLink="/transactionhistory/detail/1">
+    <ion-card-header>
+      <ion-card-title>[tanggal & waktu transaksi]</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-text><b>Total:</b> Rp [total harga]</ion-text><br>
+      <ion-text><b>Jumlah Item:</b> [total jumlah produk yg dibeli]</ion-text>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

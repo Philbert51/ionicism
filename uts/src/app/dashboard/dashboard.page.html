@@ -15,29 +15,29 @@
       <h1>Hello, username</h1>
     </ion-item>
   </ion-list>
-
+  
   <ion-list>
       <ion-list-header>
         <h3>Penjualan Hari ini</h3>
       </ion-list-header>
       <ion-item>
-        <ion-icon name="wallet-outline" class="iconmargin"></ion-icon>
+        <ion-icon name="wallet-outline" class="icon-margin"></ion-icon>
         <ion-label>Pendapatan: [total pendapatan hr ini]</ion-label>
       </ion-item>
       <ion-item>
-        <ion-icon name="receipt-outline" class="iconmargin"></ion-icon>
+        <ion-icon name="receipt-outline" class="icon-margin"></ion-icon>
         <ion-label>Jumlah Transaksi: [total transaksi hr ini]</ion-label>
       </ion-item>
       <ion-item>
-        <ion-icon name="trophy-outline" class="iconmargin"></ion-icon>
+        <ion-icon name="trophy-outline" class="icon-margin"></ion-icon>
         <ion-label>Produk Terlaris:</ion-label>
       </ion-item>
       <ion-item>
-        <ion-card>
-          <ion-img src="dummy.jpg"></ion-img>
-          <ion-card-header>[nama produk terlaris hr ini]</ion-card-header>
-          <ion-card-content>Jumlah terjual: [jumlah]</ion-card-content>
-        </ion-card>
+        <div>
+          <ion-label>[nama produk terlaris hr ini]</ion-label>
+          <ion-label>Jumlah terjual: [jumlah]</ion-label>
+        </div>
+        <ion-img slot="end" src="https://ubaya.cloud/no_image.jpg" class="img-box"></ion-img>
       </ion-item>
     </ion-list>
 
@@ -46,19 +46,19 @@
         <h3>Ringkasan Produk</h3>
       </ion-list-header>
       <ion-item>
-        <ion-icon name="file-tray-outline" class="iconmargin"></ion-icon>
+        <ion-icon name="file-tray-outline" class="icon-margin"></ion-icon>
         <ion-label>Jumlah Produk di Toko: [jumlah produk yg ada saat ini]</ion-label>
       </ion-item>
       <ion-item>
-        <ion-icon name="trending-up-outline" class="iconmargin"></ion-icon>
+        <ion-icon name="trending-up-outline" class="icon-margin"></ion-icon>
         <ion-label>Produk Terlaris All Time:</ion-label>
       </ion-item>
       <ion-item>
-        <ion-card>
-          <ion-img src="dummy.jpg"></ion-img>
-          <ion-card-header>[nama produk terlaris all time]</ion-card-header>
-          <ion-card-content>Jumlah terjual: [jumlah]</ion-card-content>
-        </ion-card>
+        <div>
+          <ion-label>[nama produk terlaris all time]</ion-label>
+          <ion-label>Jumlah terjual: [jumlah]</ion-label>
+        </div>
+        <ion-img slot="end" src="https://ubaya.cloud/no_image.jpg" class="img-box"></ion-img>
       </ion-item>
     </ion-list>
 </ion-content>

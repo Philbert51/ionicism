@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/transactionhistory"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Transaction Detail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Transaction Detail</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list>
+    <ion-item>
+      <h3>[tanggal & waktu transaksi]</h3>
+    </ion-item>
+    <ion-item>
+      <ion-label><b>Daftar Produk:</b></ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-card>
+    <ion-item>
+      <ion-img src="https://ubaya.cloud/no_image.jpg" class="img-box"></ion-img>
+      <div>
+        <ion-label><b>[Nama Produk]</b></ion-label>
+        <ion-label>Quantity: [qty]</ion-label>
+        <ion-label>Subtotal: [subtotal]</ion-label>
+      </div>
+    </ion-item>
+  </ion-card>
+
+  <ion-list>
+    <ion-item>
+      <ion-label><b>Total [total item] Item:</b> [total harga]</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

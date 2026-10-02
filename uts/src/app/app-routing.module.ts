@@ -18,7 +18,11 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },  {
+    path: 'transactionhistory',
+    loadChildren: () => import('./transactionhistory/transactionhistory.module').then( m => m.TransactionhistoryPageModule)
   },
+
 
 ];
 
