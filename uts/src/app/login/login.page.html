@@ -1,0 +1,40 @@
+<ion-content [fullscreen]="true" class="ion-padding custom-background">
+  <div class="login-container">
+    <div class="header-section">
+      <!-- Using a placeholder logo -->
+      <img src="https://ionicframework.com/docs/icons/logo-react-icon.png" alt="Logo" class="logo">
+      <h1>Selamat Datang</h1>
+      <p>Masuk Untuk Melanjutkan</p>
+    </div>
+
+    <ion-card class="login-card">
+      <ion-card-content>
+        <div class="input-group">
+          <ion-item lines="none" class="custom-input">
+            <ion-icon name="person-outline" slot="start"></ion-icon>
+            <ion-input type="text" placeholder="Username" [(ngModel)]="username"></ion-input>
+          </ion-item>
+        </div>
+
+        <div class="input-group">
+          <ion-item lines="none" class="custom-input">
+            <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+            <ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
+          </ion-item>
+        </div>
+
+        <ion-button expand="block" shape="round" class="login-btn" (click)="login()">
+          Masuk
+        </ion-button>
+
+        <div class="forgot-password">
+          <a>Lupa Password?</a>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <div class="signup-prompt">
+      Belum punya akun? <a>Daftar</a>
+    </div>
+  </div>
+</ion-content>
