@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product-service';
 import { producerNotifyConsumers } from '@angular/core/primitives/signals';
+import { TransactionService } from '../transaction-service';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.page.html',
@@ -9,10 +10,15 @@ import { producerNotifyConsumers } from '@angular/core/primitives/signals';
 })
 export class CartPage implements OnInit {
   products: any[]=[];
-  constructor(private productService: ProductService) { }
+  detailTransaction: any[] = [];
+  transactions: any[] = [];
+  constructor(private productService: ProductService,
+    private transactionService: TransactionService
+  ) { }
 
   ngOnInit() {
     this.products = this.productService.product;
+    this.transactions = this.transactionService.transactions;
   }
-
+  
 }
