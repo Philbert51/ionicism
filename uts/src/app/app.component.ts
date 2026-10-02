@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Theme } from "./theme";
+import { Theme } from './theme';
 
 @Component({
   selector: 'app-root',
@@ -8,146 +8,157 @@ import { Theme } from "./theme";
   standalone: false,
 })
 export class AppComponent {
-  constructor(public theme : Theme) {}
-  lightTheme = { 
-  '--ion-background-color': '#ffffff',
-  '--ion-text-color': 'black',
-  '--ion-card-background' : '#03AC0E',
-  '--ion-toolbar-background' : '#03AC0E',
-  "--ion-tab-bar-background" : "#03AC0E",
+  constructor(public theme: Theme) {}
+  lightTheme = {
+    // --- Latar Belakang & Teks Netral (Bersih & Terang) ---
+    '--ion-background-color': '#f9fafb', // Abu-abu sangat muda agar tidak terlalu silau
+    '--ion-text-color': '#111827', // Abu-abu sangat gelap (lebih lembut dari hitam pekat)
+    '--ion-card-background': '#ffffff', // Putih bersih untuk menonjolkan elemen
+    '--ion-toolbar-background': '#ffffff',
+    '--ion-tab-bar-background': '#ffffff',
 
-  '--ion-color-primary': '#c8d41c',
-  '--ion-color-primary-rgb': '200,212,28',
-  '--ion-color-primary-contrast': '#000000',
-  '--ion-color-primary-contrast-rgb': '0,0,0',
-  '--ion-color-primary-shade': '#b0bb19',
-  '--ion-color-primary-tint': '#ced833',
+    // --- Warna Utama: Oranye Modern ---
+    '--ion-color-primary': '#f97316',
+    '--ion-color-primary-rgb': '249,115,22',
+    '--ion-color-primary-contrast': '#ffffff',
+    '--ion-color-primary-contrast-rgb': '255,255,255',
+    '--ion-color-primary-shade': '#db6513',
+    '--ion-color-primary-tint': '#fa812d',
 
-  '--ion-color-secondary': '#00ff11',
-  '--ion-color-secondary-rgb': '0,255,17',
-  '--ion-color-secondary-contrast': '#000000',
-  '--ion-color-secondary-contrast-rgb': '0,0,0',
-  '--ion-color-secondary-shade': '#00e00f',
-  '--ion-color-secondary-tint': '#1aff29',
+    // --- Warna Sekunder: Biru Profesional (Cocok dengan Oranye) ---
+    '--ion-color-secondary': '#3b82f6',
+    '--ion-color-secondary-rgb': '59,130,246',
+    '--ion-color-secondary-contrast': '#ffffff',
+    '--ion-color-secondary-contrast-rgb': '255,255,255',
+    '--ion-color-secondary-shade': '#3472d8',
+    '--ion-color-secondary-tint': '#4f8ff7',
 
-  '--ion-color-tertiary': '#6030ff',
-  '--ion-color-tertiary-rgb': '96,48,255',
-  '--ion-color-tertiary-contrast': '#ffffff',
-  '--ion-color-tertiary-contrast-rgb': '255,255,255',
-  '--ion-color-tertiary-shade': '#542ae0',
-  '--ion-color-tertiary-tint': '#7045ff',
+    // --- Warna Tersier: Teal / Hijau Kebiruan ---
+    '--ion-color-tertiary': '#14b8a6',
+    '--ion-color-tertiary-rgb': '20,184,166',
+    '--ion-color-tertiary-contrast': '#ffffff',
+    '--ion-color-tertiary-contrast-rgb': '255,255,255',
+    '--ion-color-tertiary-shade': '#12a292',
+    '--ion-color-tertiary-tint': '#2cbfaf',
 
-  '--ion-color-success': '#2dd55b',
-  '--ion-color-success-rgb': '45,213,91',
-  '--ion-color-success-contrast': '#000000',
-  '--ion-color-success-contrast-rgb': '0,0,0',
-  '--ion-color-success-shade': '#28bb50',
-  '--ion-color-success-tint': '#42d96b',
+    // --- Warna Status: Terang & Ramah Mata ---
+    '--ion-color-success': '#10b981',
+    '--ion-color-success-rgb': '16,185,129',
+    '--ion-color-success-contrast': '#ffffff',
+    '--ion-color-success-contrast-rgb': '255,255,255',
+    '--ion-color-success-shade': '#0ea371',
+    '--ion-color-success-tint': '#28c08e',
 
-  '--ion-color-warning': '#ffc409',
-  '--ion-color-warning-rgb': '255,196,9',
-  '--ion-color-warning-contrast': '#000000',
-  '--ion-color-warning-contrast-rgb': '0,0,0',
-  '--ion-color-warning-shade': '#e0ac08',
-  '--ion-color-warning-tint': '#ffca22',
+    '--ion-color-warning': '#f59e0b',
+    '--ion-color-warning-rgb': '245,158,11',
+    '--ion-color-warning-contrast': '#000000',
+    '--ion-color-warning-contrast-rgb': '0,0,0',
+    '--ion-color-warning-shade': '#d88b0a',
+    '--ion-color-warning-tint': '#f6a823',
 
-  '--ion-color-danger': '#c5000f',
-  '--ion-color-danger-rgb': '197,0,15',
-  '--ion-color-danger-contrast': '#ffffff',
-  '--ion-color-danger-contrast-rgb': '255,255,255',
-  '--ion-color-danger-shade': '#ad000d',
-  '--ion-color-danger-tint': '#cb1a27',
+    '--ion-color-danger': '#ef4444',
+    '--ion-color-danger-rgb': '239,68,68',
+    '--ion-color-danger-contrast': '#ffffff',
+    '--ion-color-danger-contrast-rgb': '255,255,255',
+    '--ion-color-danger-shade': '#d23c3c',
+    '--ion-color-danger-tint': '#f15757',
 
-  '--ion-color-light': '#fff700',
-  '--ion-color-light-rgb': '255,247,0',
-  '--ion-color-light-contrast': '#000000',
-  '--ion-color-light-contrast-rgb': '0,0,0',
-  '--ion-color-light-shade': '#e0d900',
-  '--ion-color-light-tint': '#fff81a',
+    // --- Warna Monokrom (Abu-abu) ---
+    '--ion-color-light': '#f3f4f6',
+    '--ion-color-light-rgb': '243,244,246',
+    '--ion-color-light-contrast': '#000000',
+    '--ion-color-light-contrast-rgb': '0,0,0',
+    '--ion-color-light-shade': '#d6d7d8',
+    '--ion-color-light-tint': '#f4f5f7',
 
-  '--ion-color-medium': '#8f8a00',
-  '--ion-color-medium-rgb': '143,138,0',
-  '--ion-color-medium-contrast': '#000000',
-  '--ion-color-medium-contrast-rgb': '0,0,0',
-  '--ion-color-medium-shade': '#7e7900',
-  '--ion-color-medium-tint': '#9a961a',
+    '--ion-color-medium': '#9ca3af',
+    '--ion-color-medium-rgb': '156,163,175',
+    '--ion-color-medium-contrast': '#000000',
+    '--ion-color-medium-contrast-rgb': '0,0,0',
+    '--ion-color-medium-shade': '#898f9a',
+    '--ion-color-medium-tint': '#a6acb7',
 
-  '--ion-color-dark': '#0e7500',
-  '--ion-color-dark-rgb': '14,117,0',
-  '--ion-color-dark-contrast': '#ffffff',
-  '--ion-color-dark-contrast-rgb': '255,255,255',
-  '--ion-color-dark-shade': '#0c6700',
-  '--ion-color-dark-tint': '#26831a',
-};
+    '--ion-color-dark': '#1f2937',
+    '--ion-color-dark-rgb': '31,41,55',
+    '--ion-color-dark-contrast': '#ffffff',
+    '--ion-color-dark-contrast-rgb': '255,255,255',
+    '--ion-color-dark-shade': '#1b2430',
+    '--ion-color-dark-tint': '#353e4b',
+  };
 
   darkTheme = {
-  '--ion-background-color': 'black',
-  '--ion-text-color': '#b0bb19',
-  '--ion-card-background' : '#03AC0E',
-  '--ion-toolbar-background' : '#03AC0E',
-  "--ion-tab-bar-background" : "#03AC0E",
+    // --- Latar Belakang & Teks Netral (Elegan & Nyaman di Mata) ---
+    '--ion-background-color': '#121212', // Standar Dark Mode Material Design
+    '--ion-text-color': '#f9fafb', // Putih keabu-abuan agar tidak silau
+    '--ion-card-background': '#1e1e1e', // Sedikit lebih terang dari background agar elemen menonjol
+    '--ion-toolbar-background': '#1e1e1e',
+    '--ion-tab-bar-background': '#1e1e1e',
 
-  "--ion-color-primary": "#FFC409",
-  "--ion-color-primary-rgb": "255,196,9",
-  "--ion-color-primary-contrast": "#000000",
-  "--ion-color-primary-contrast-rgb": "0,0,0",
-  "--ion-color-primary-shade": "#e0ac08",
-  "--ion-color-primary-tint": "#ffca22",
+    // --- Warna Utama: Oranye Modern (Sama dengan Light Mode agar konsisten) ---
+    '--ion-color-primary': '#f97316',
+    '--ion-color-primary-rgb': '249,115,22',
+    '--ion-color-primary-contrast': '#ffffff',
+    '--ion-color-primary-contrast-rgb': '255,255,255',
+    '--ion-color-primary-shade': '#db6513',
+    '--ion-color-primary-tint': '#fa812d',
 
-  '--ion-color-secondary': '#00ff11',
-  '--ion-color-secondary-rgb': '0,255,17',
-  '--ion-color-secondary-contrast': '#000000',
-  '--ion-color-secondary-contrast-rgb': '0,0,0',
-  '--ion-color-secondary-shade': '#00e00f',
-  '--ion-color-secondary-tint': '#1aff29',
+    // --- Warna Sekunder & Tersier ---
+    '--ion-color-secondary': '#3b82f6',
+    '--ion-color-secondary-rgb': '59,130,246',
+    '--ion-color-secondary-contrast': '#ffffff',
+    '--ion-color-secondary-contrast-rgb': '255,255,255',
+    '--ion-color-secondary-shade': '#3472d8',
+    '--ion-color-secondary-tint': '#4f8ff7',
 
-  '--ion-color-tertiary': '#6030ff',
-  '--ion-color-tertiary-rgb': '96,48,255',
-  '--ion-color-tertiary-contrast': '#ffffff',
-  '--ion-color-tertiary-contrast-rgb': '255,255,255',
-  '--ion-color-tertiary-shade': '#542ae0',
-  '--ion-color-tertiary-tint': '#7045ff',
+    '--ion-color-tertiary': '#14b8a6',
+    '--ion-color-tertiary-rgb': '20,184,166',
+    '--ion-color-tertiary-contrast': '#ffffff',
+    '--ion-color-tertiary-contrast-rgb': '255,255,255',
+    '--ion-color-tertiary-shade': '#12a292',
+    '--ion-color-tertiary-tint': '#2cbfaf',
 
-  '--ion-color-success': '#2dd55b',
-  '--ion-color-success-rgb': '45,213,91',
-  '--ion-color-success-contrast': '#000000',
-  '--ion-color-success-contrast-rgb': '0,0,0',
-  '--ion-color-success-shade': '#28bb50',
-  '--ion-color-success-tint': '#42d96b',
+    // --- Warna Status ---
+    '--ion-color-success': '#10b981',
+    '--ion-color-success-rgb': '16,185,129',
+    '--ion-color-success-contrast': '#ffffff',
+    '--ion-color-success-contrast-rgb': '255,255,255',
+    '--ion-color-success-shade': '#0ea371',
+    '--ion-color-success-tint': '#28c08e',
 
-  '--ion-color-warning': '#ffc409',
-  '--ion-color-warning-rgb': '255,196,9',
-  '--ion-color-warning-contrast': '#000000',
-  '--ion-color-warning-contrast-rgb': '0,0,0',
-  '--ion-color-warning-shade': '#e0ac08',
-  '--ion-color-warning-tint': '#ffca22',
+    '--ion-color-warning': '#f59e0b',
+    '--ion-color-warning-rgb': '245,158,11',
+    '--ion-color-warning-contrast': '#000000',
+    '--ion-color-warning-contrast-rgb': '0,0,0',
+    '--ion-color-warning-shade': '#d88b0a',
+    '--ion-color-warning-tint': '#f6a823',
 
-  '--ion-color-danger': '#c5000f',
-  '--ion-color-danger-rgb': '197,0,15',
-  '--ion-color-danger-contrast': '#ffffff',
-  '--ion-color-danger-contrast-rgb': '255,255,255',
-  '--ion-color-danger-shade': '#ad000d',
-  '--ion-color-danger-tint': '#cb1a27',
+    '--ion-color-danger': '#ef4444',
+    '--ion-color-danger-rgb': '239,68,68',
+    '--ion-color-danger-contrast': '#ffffff',
+    '--ion-color-danger-contrast-rgb': '255,255,255',
+    '--ion-color-danger-shade': '#d23c3c',
+    '--ion-color-danger-tint': '#f15757',
 
-  '--ion-color-light': '#fff700',
-  '--ion-color-light-rgb': '255,247,0',
-  '--ion-color-light-contrast': '#000000',
-  '--ion-color-light-contrast-rgb': '0,0,0',
-  '--ion-color-light-shade': '#e0d900',
-  '--ion-color-light-tint': '#fff81a',
+    // --- Warna Monokrom (Disesuaikan untuk Dark Mode) ---
+    '--ion-color-light': '#1f2937', // Dibalik: light menjadi gelap di dark mode
+    '--ion-color-light-rgb': '31,41,55',
+    '--ion-color-light-contrast': '#ffffff',
+    '--ion-color-light-contrast-rgb': '255,255,255',
+    '--ion-color-light-shade': '#1b2430',
+    '--ion-color-light-tint': '#353e4b',
 
-  '--ion-color-medium': '#8f8a00',
-  '--ion-color-medium-rgb': '143,138,0',
-  '--ion-color-medium-contrast': '#000000',
-  '--ion-color-medium-contrast-rgb': '0,0,0',
-  '--ion-color-medium-shade': '#7e7900',
-  '--ion-color-medium-tint': '#9a961a',
+    '--ion-color-medium': '#9ca3af',
+    '--ion-color-medium-rgb': '156,163,175',
+    '--ion-color-medium-contrast': '#000000',
+    '--ion-color-medium-contrast-rgb': '0,0,0',
+    '--ion-color-medium-shade': '#898f9a',
+    '--ion-color-medium-tint': '#a6acb7',
 
-  '--ion-color-dark': '#0e7500',
-  '--ion-color-dark-rgb': '14,117,0',
-  '--ion-color-dark-contrast': '#ffffff',
-  '--ion-color-dark-contrast-rgb': '255,255,255',
-  '--ion-color-dark-shade': '#0c6700',
-  '--ion-color-dark-tint': '#26831a',
-};
+    '--ion-color-dark': '#f3f4f6', // Dibalik: dark menjadi terang di dark mode
+    '--ion-color-dark-rgb': '243,244,246',
+    '--ion-color-dark-contrast': '#000000',
+    '--ion-color-dark-contrast-rgb': '0,0,0',
+    '--ion-color-dark-shade': '#d6d7d8',
+    '--ion-color-dark-tint': '#f4f5f7',
+  };
 }
