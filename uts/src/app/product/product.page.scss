@@ -1,6 +1,6 @@
 .img-kotak {
   /* 1. Tentukan lebarnya (bisa % untuk responsif, atau px tetap seperti 100px) */
-  width: 100%;
+  // width: 100%;
   // height: 100%;
 
   /* 2. Paksa bentuk container menjadi persegi (1:1) */
@@ -12,7 +12,12 @@
   /* 4. Pastikan fokus potongan gambar berada tepat di tengah */
   object-position: center;
 
-  background-color: #ffffff; /* Optional: warna latar belakang saat gambar belum dimuat */
+  background-color: #ffffff;
+  /* Optional: warna latar belakang saat gambar belum dimuat */
+
+  // Buat agar saat ukuran layar membesar, ukuran gambarnya tetap
+  max-height: 150px;
+  max-width: 150px;
 }
 
 h1,
@@ -34,4 +39,16 @@ h5 {
 
 h6 {
   font-size: 1rem;
+}
+
+.info-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.info-container h1 {
+  font-size: 1.5rem;
+  font-weight: 500;
 }
