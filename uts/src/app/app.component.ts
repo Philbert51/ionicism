@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Theme } from './theme';
+import { AccountService } from './account-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +10,7 @@ import { Theme } from './theme';
   standalone: false,
 })
 export class AppComponent {
-  constructor(public theme: Theme) {}
+  constructor(public theme: Theme, private accountService : AccountService, private router: Router) {}
   lightTheme = {
     // --- Latar Belakang & Teks Netral (Bersih & Terang) ---
     '--ion-background-color': '#f9fafb', // Abu-abu sangat muda agar tidak terlalu silau
@@ -252,4 +254,12 @@ export class AppComponent {
     '--ion-background-color-step-900': '#e2e3e4',
     '--ion-background-color-step-950': '#edeeef',
   };
+
+  ngOnInit(){
+  }
+  
+  logout(){
+    this.accountService.logout();
+    this.router.navigate(['/login']);
+  }
 }

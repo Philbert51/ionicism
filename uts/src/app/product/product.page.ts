@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product-service';
 import { Router } from '@angular/router';
+import { AccountService } from '../account-service';
 
 @Component({
   selector: 'app-product',
@@ -14,11 +15,24 @@ export class ProductPage implements OnInit {
 
   searchQuery: string = '';
 
-  constructor(private productService: ProductService, private router: Router) {}
+  constructor(
+    private productService: ProductService,
+    private router: Router,
+    private accountService: AccountService,
+  ) {}
 
   ngOnInit() {
+    if (this.accountService.isLogin == false) {
+      this.router.navigate(['/login']);
+    }
     this.products = this.productService.product;
     this.originalProductList = this.productService.product;
+  }
+
+  ionViewDidEnter() {
+    if (this.accountService.isLogin == false) {
+      this.router.navigate(['/login']);
+    }
   }
 
   searchProduct() {
@@ -29,15 +43,15 @@ export class ProductPage implements OnInit {
     }
   }
 
-  deleteProduct(id: number){
-    if(confirm('Apakah Anda Yakin Ingin Menghapus Data Tersebut?')){
+  deleteProduct(id: number) {
+    if (confirm('Apakah Anda Yakin Ingin Menghapus ' + this.productService.getProductById(id)?.name + "?")) {
       this.productService.deleteProduct(id);
       this.products = this.productService.product;
       this.originalProductList = this.productService.product;
     }
   }
-  
-  displayDetail(id: number){
-    alert("meow")
+
+  displayDetail(id: number) {
+    alert('meow');
   }
 }

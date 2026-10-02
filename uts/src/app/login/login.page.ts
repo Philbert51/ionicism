@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AccountService } from '../account-service';
 
 @Component({
   selector: 'app-login',
@@ -11,14 +12,13 @@ export class LoginPage implements OnInit {
   username = '';
   password = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private accountService: AccountService) {}
 
   ngOnInit() {
   }
 
   login() {
-    if (this.username === 'admin' && this.password === 'admin123') {
-      alert('Login successful!');
+    if (this.accountService.checkLogin(this.username, this.password)) {
       this.router.navigate(['/home']);
     } else {
       alert('Invalid username or password');
