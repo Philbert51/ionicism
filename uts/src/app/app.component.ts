@@ -13,9 +13,17 @@ export class AppComponent {
     // --- Latar Belakang & Teks Netral (Bersih & Terang) ---
     '--ion-background-color': '#f9fafb', // Abu-abu sangat muda agar tidak terlalu silau
     '--ion-text-color': '#111827', // Abu-abu sangat gelap (lebih lembut dari hitam pekat)
+    '--ion-text-color-rgb': '17,24,39',
+
     '--ion-card-background': '#ffffff', // Putih bersih untuk menonjolkan elemen
     '--ion-toolbar-background': '#ffffff',
     '--ion-tab-bar-background': '#ffffff',
+
+    '--ion-list-background': '#ededed',
+    '--ion-item-background': '#ededed',
+    '--ion-header-background': '#ededed',
+
+    '--ion-card-color': '--ion-color-medium',
 
     // --- Warna Utama: Oranye Modern ---
     '--ion-color-primary': '#f97316',
@@ -64,7 +72,7 @@ export class AppComponent {
     '--ion-color-danger-tint': '#f15757',
 
     // --- Warna Monokrom (Abu-abu) ---
-    '--ion-color-light': '#f3f4f6',
+    '--ion-color-light': '#ebedf0',
     '--ion-color-light-rgb': '243,244,246',
     '--ion-color-light-contrast': '#000000',
     '--ion-color-light-contrast-rgb': '0,0,0',
@@ -84,13 +92,56 @@ export class AppComponent {
     '--ion-color-dark-contrast-rgb': '255,255,255',
     '--ion-color-dark-shade': '#1b2430',
     '--ion-color-dark-tint': '#353e4b',
+
+    // Color Step
+    '--ion-text-color-step-50': '#1d2332',
+    '--ion-text-color-step-100': '#282f3c',
+    '--ion-text-color-step-150': '#343a47',
+    '--ion-text-color-step-200': '#3f4551',
+    '--ion-text-color-step-250': '#4b515c',
+    '--ion-text-color-step-300': '#575c67',
+    '--ion-text-color-step-350': '#626771',
+    '--ion-text-color-step-400': '#6e727c',
+    '--ion-text-color-step-450': '#797e86',
+    '--ion-text-color-step-500': '#858991',
+    '--ion-text-color-step-550': '#91949c',
+    '--ion-text-color-step-600': '#9ca0a6',
+    '--ion-text-color-step-650': '#a8abb1',
+    '--ion-text-color-step-700': '#b3b6bb',
+    '--ion-text-color-step-750': '#bfc2c6',
+    '--ion-text-color-step-800': '#cbcdd1',
+    '--ion-text-color-step-850': '#d6d8db',
+    '--ion-text-color-step-900': '#e2e3e6',
+    '--ion-text-color-step-950': '#edeff0',
+
+    '--ion-background-color-step-50': '#edeff0',
+    '--ion-background-color-step-100': '#e2e3e6',
+    '--ion-background-color-step-150': '#d6d8db',
+    '--ion-background-color-step-200': '#cbcdd1',
+    '--ion-background-color-step-250': '#bfc2c6',
+    '--ion-background-color-step-300': '#b3b6bb',
+    '--ion-background-color-step-350': '#a8abb1',
+    '--ion-background-color-step-400': '#9ca0a6',
+    '--ion-background-color-step-450': '#91949c',
+    '--ion-background-color-step-500': '#858991',
+    '--ion-background-color-step-550': '#797e86',
+    '--ion-background-color-step-600': '#6e727c',
+    '--ion-background-color-step-650': '#626771',
+    '--ion-background-color-step-700': '#575c67',
+    '--ion-background-color-step-750': '#4b515c',
+    '--ion-background-color-step-800': '#3f4551',
+    '--ion-background-color-step-850': '#343a47',
+    '--ion-background-color-step-900': '#282f3c',
+    '--ion-background-color-step-950': '#1d2332',
   };
 
   darkTheme = {
     // --- Latar Belakang & Teks Netral (Elegan & Nyaman di Mata) ---
     '--ion-background-color': '#121212', // Standar Dark Mode Material Design
     '--ion-text-color': '#f9fafb', // Putih keabu-abuan agar tidak silau
+    '--ion-text-color-rgb': '249,250,251',
     '--ion-card-background': '#1e1e1e', // Sedikit lebih terang dari background agar elemen menonjol
+    '--ion-background-color-rgb': '18,18,18',
     '--ion-toolbar-background': '#1e1e1e',
     '--ion-tab-bar-background': '#1e1e1e',
 
@@ -140,7 +191,7 @@ export class AppComponent {
     '--ion-color-danger-tint': '#f15757',
 
     // --- Warna Monokrom (Disesuaikan untuk Dark Mode) ---
-    '--ion-color-light': '#1f2937', // Dibalik: light menjadi gelap di dark mode
+    '--ion-color-light': '#686d75', // Dibalik: light menjadi gelap di dark mode
     '--ion-color-light-rgb': '31,41,55',
     '--ion-color-light-contrast': '#ffffff',
     '--ion-color-light-contrast-rgb': '255,255,255',
@@ -160,5 +211,45 @@ export class AppComponent {
     '--ion-color-dark-contrast-rgb': '0,0,0',
     '--ion-color-dark-shade': '#d6d7d8',
     '--ion-color-dark-tint': '#f4f5f7',
+
+    '--ion-text-color-step-50': '#edeeef',
+    '--ion-text-color-step-100': '#e2e3e4',
+    '--ion-text-color-step-150': '#d6d7d8',
+    '--ion-text-color-step-200': '#cbcccc',
+    '--ion-text-color-step-250': '#bfc0c1',
+    '--ion-text-color-step-300': '#b4b4b5',
+    '--ion-text-color-step-350': '#a8a9a9',
+    '--ion-text-color-step-400': '#9d9d9e',
+    '--ion-text-color-step-450': '#919292',
+    '--ion-text-color-step-500': '#868687',
+    '--ion-text-color-step-550': '#7a7a7b',
+    '--ion-text-color-step-600': '#6e6f6f',
+    '--ion-text-color-step-650': '#636364',
+    '--ion-text-color-step-700': '#575858',
+    '--ion-text-color-step-750': '#4c4c4c',
+    '--ion-text-color-step-800': '#404041',
+    '--ion-text-color-step-850': '#353535',
+    '--ion-text-color-step-900': '#292929',
+    '--ion-text-color-step-950': '#1e1e1e',
+
+    '--ion-background-color-step-50': '#1e1e1e',
+    '--ion-background-color-step-100': '#292929',
+    '--ion-background-color-step-150': '#353535',
+    '--ion-background-color-step-200': '#404041',
+    '--ion-background-color-step-250': '#4c4c4c',
+    '--ion-background-color-step-300': '#575858',
+    '--ion-background-color-step-350': '#636364',
+    '--ion-background-color-step-400': '#6e6f6f',
+    '--ion-background-color-step-450': '#7a7a7b',
+    '--ion-background-color-step-500': '#868687',
+    '--ion-background-color-step-550': '#919292',
+    '--ion-background-color-step-600': '#9d9d9e',
+    '--ion-background-color-step-650': '#a8a9a9',
+    '--ion-background-color-step-700': '#b4b4b5',
+    '--ion-background-color-step-750': '#bfc0c1',
+    '--ion-background-color-step-800': '#cbcccc',
+    '--ion-background-color-step-850': '#d6d7d8',
+    '--ion-background-color-step-900': '#e2e3e4',
+    '--ion-background-color-step-950': '#edeeef',
   };
 }
