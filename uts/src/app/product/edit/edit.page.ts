@@ -23,8 +23,13 @@ export class EditPage implements OnInit {
   imageUrl: string = '';
   deskripsi: string = '';
 
+  selectedKategori: number = -1;
+
+  kategoriList: any[] = [];
+
   isFirstNamaProduk: boolean = true;
   isFirstDeskripsi: boolean = true;
+  isFirstKategori: boolean = true;
 
   setIsFirstNamaProduk() {
     this.isFirstNamaProduk = false;
@@ -34,7 +39,12 @@ export class EditPage implements OnInit {
     this.isFirstDeskripsi = false;
   }
 
+  setIsFirstKategori() {
+    this.isFirstKategori = false;
+  }
+
   ngOnInit() {
+    this.kategoriList = this.productService.kategori;
     this.route.params.subscribe((params) => {
       this.editId = params['id'];
 
@@ -47,6 +57,7 @@ export class EditPage implements OnInit {
         this.hargaJual = product.sellingPrice;
         this.stock = product.stock;
         this.imageUrl = product.imageUrl || '';
+        this.selectedKategori = product.kategori || -1;
       }
     });
   }
@@ -71,6 +82,7 @@ export class EditPage implements OnInit {
         this.hargaJual,
         this.stock,
         this.imageUrl,
+        this.selectedKategori
       );
 
       this.router.navigate(['/product']);

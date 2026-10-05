@@ -14,10 +14,10 @@
     </ion-toolbar>
   </ion-header>
 
-  <div *ngIf="imageUrl == ''">
+  <div *ngIf="imageUrl == '' || checkProductLink(imageUrl) == false">
     <ion-img src="https://ubaya.cloud/no_image.jpg" alt="Preview Gambar" class="ion-margin preview-img"></ion-img>
   </div>
-  <div *ngIf="imageUrl != ''">
+  <div *ngIf="imageUrl != '' && checkProductLink(imageUrl) == true">
     <ion-img [src]="imageUrl" alt="Preview Gambar" class="ion-margin preview-img"></ion-img>
   </div>
 
@@ -35,9 +35,24 @@
     <ion-item>
       <ion-label class="ion-no-margin">
         <ion-textarea label="Deskripsi" labelPlacement="stacked" placeholder="Masukkan deskripsi..." type="text"
-          [(ngModel)]="deskripsi" required="true" #deskription="ngModel" [autoGrow]="true" [rows]="1" (ionBlur)="setIsFirstDeskripsi()"></ion-textarea>
-        <ion-label class="ion-margin-bottom" color="danger"
-          *ngIf="!isFirstDeskripsi && deskripsi == ''">Deskripsi tidak boleh
+          [(ngModel)]="deskripsi" required="true" #deskription="ngModel" [autoGrow]="true" [rows]="1"
+          (ionBlur)="setIsFirstDeskripsi()"></ion-textarea>
+        <ion-label class="ion-margin-bottom" color="danger" *ngIf="!isFirstDeskripsi && deskripsi == ''">Deskripsi tidak
+          boleh
+          kosong!</ion-label>
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-no-margin">
+        <ion-select label="Kategori" labelPlacement="stacked" placeholder="Pilih kategori..."
+          [(ngModel)]="selectedKategori" required="true" (ionDismiss)="setIsFirstKategori()">
+          <ion-select-option *ngFor="let kategori of kategoriList" [value]="kategori.id">
+            {{ kategori.name }}
+          </ion-select-option>
+        </ion-select>
+        <ion-label class="ion-margin-bottom" color="danger" *ngIf="((selectedKategori == -1 || selectedKategori == null) && !isFirstKategori)">Kategori
+          tidak boleh
           kosong!</ion-label>
       </ion-label>
     </ion-item>

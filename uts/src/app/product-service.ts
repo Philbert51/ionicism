@@ -2,6 +2,35 @@ import { Service } from '@angular/core';
 
 @Service()
 export class ProductService {
+  // Update: coba implementasi kategori
+
+  kategori = [
+    {
+      id: 1,
+      name: 'Makanan'
+    },
+    {
+      id: 2,
+      name: 'Minuman'
+    },
+    {
+      id: 3,
+      name: 'Elektronik'
+    },
+    {
+      id: 4,
+      name: 'Perabotan'
+    },
+    {
+      id: 5,
+      name: 'Alat Tulis'
+    },
+    {
+      id: 6,
+      name: 'Obat-obatan'
+    }
+
+  ];
   product = [
     {
       id: 1,
@@ -12,6 +41,7 @@ export class ProductService {
       purchasePrice: 499.99,
       imageUrl:
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs0J8EDGsqxeAME7LxeldTY9ZRKbXOnRdcgyC_YwKRsw&s=10',
+      kategori: 3,
     },
     {
       id: 2,
@@ -22,6 +52,7 @@ export class ProductService {
       purchasePrice: 599.99,
       imageUrl:
         'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/110/MTA-167369951/br-m036969-00220_vga-asus-amd-radeon-rx-7900-xtx-tuf-gaming-oc-24gb-gddr6_full05-8616462f.jpg',
+      kategori: 3,
     },
     {
       id: 3,
@@ -32,6 +63,7 @@ export class ProductService {
       purchasePrice: 399.99,
       imageUrl:
         'https://kkomputer.com/7074/intel-core-i9-13900k-58-ghz-24c32t-lga-1700-rl.jpg',
+      kategori: 3,
     },
     {
       id: 4,
@@ -41,69 +73,77 @@ export class ProductService {
       sellingPrice: 2.99,
       purchasePrice: 1.99,
       imageUrl: '',
+      kategori: 1,
     },
     {
       id: 5,
-      name: 'Makanan Kecil',
+      name: 'Makanan Kecil 2',
       description: 'Makanan kecil untuk camilan.',
       stock: 50,
       sellingPrice: 2.99,
       purchasePrice: 1.99,
       imageUrl: '',
+      kategori: 1,
     },
     {
       id: 6,
-      name: 'Makanan Kecil',
+      name: 'Makanan Kecil 3',
       description: 'Makanan kecil untuk camilan.',
       stock: 50,
       sellingPrice: 2.99,
       purchasePrice: 1.99,
       imageUrl: '',
+      kategori: 1,
     },
     {
       id: 7,
-      name: 'Makanan Kecil',
+      name: 'Makanan Kecil 4',
       description: 'Makanan kecil untuk camilan.',
       stock: 50,
       sellingPrice: 2.99,
       purchasePrice: 1.99,
       imageUrl: '',
+      kategori: 1,
     },
     {
       id: 8,
-      name: 'Makanan Kecil',
+      name: 'Makanan Kecil 5',
       description: 'Makanan kecil untuk camilan.',
       stock: 50,
       sellingPrice: 2.99,
       purchasePrice: 1.99,
       imageUrl: '',
+      kategori: 1,
     },
     {
       id: 9,
-      name: 'Makanan Kecil',
+      name: 'Makanan Kecil 6',
       description: 'Makanan kecil untuk camilan.',
       stock: 50,
       sellingPrice: 2.99,
       purchasePrice: 1.99,
       imageUrl: '',
+      kategori: 1,
     },
     {
       id: 10,
-      name: 'Makanan Kecil',
+      name: 'Makanan Kecil 7',
       description: 'Makanan kecil untuk camilan.',
       stock: 50,
       sellingPrice: 2.99,
       purchasePrice: 1.99,
       imageUrl: '',
+      kategori: 1,
     },
     {
       id: 11,
-      name: 'Makanan Kecil',
+      name: 'Makanan Kecil 8',
       description: 'Makanan kecil untuk camilan.',
       stock: 50,
       sellingPrice: 2.99,
       purchasePrice: 1.99,
       imageUrl: '',
+      kategori: 1,
     },
   ];
 
@@ -114,6 +154,7 @@ export class ProductService {
     p_sellingPrice: number,
     p_purchasePrice: number,
     p_imageUrl: string,
+    p_kategori: number
   ) {
     this.product.push({
       id: this.product.length + 1,
@@ -123,6 +164,7 @@ export class ProductService {
       sellingPrice: p_sellingPrice,
       purchasePrice: p_purchasePrice,
       imageUrl: p_imageUrl,
+      kategori: p_kategori,
     });
     alert('Data Berhasil Disimpan!');
   }
@@ -144,6 +186,7 @@ export class ProductService {
     p_sellingPrice: number,
     p_purchasePrice: number,
     p_imageUrl: string,
+    p_kategori: number
   ) {
     for (let i = 0; i < this.product.length; i++) {
       if (this.product[i].id == id) {
@@ -153,6 +196,7 @@ export class ProductService {
         this.product[i].sellingPrice = p_sellingPrice;
         this.product[i].purchasePrice = p_purchasePrice;
         this.product[i].imageUrl = p_imageUrl;
+        this.product[i].kategori = p_kategori;
         break;
       }
     }
@@ -170,7 +214,7 @@ export class ProductService {
     return tempProducts;
   }
 
-  deleteProduct(id: number){
+  deleteProduct(id: number) {
     for (let i = 0; i < this.product.length; i++) {
       if (this.product[i].id == id) {
         this.product.splice(i, 1);
