@@ -9,7 +9,8 @@ export class ProductService {
         stock: 10,
         sellingPrice: 699.99,
         purchasePrice: 499.99,
-        imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs0J8EDGsqxeAME7LxeldTY9ZRKbXOnRdcgyC_YwKRsw&s=10'
+        imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs0J8EDGsqxeAME7LxeldTY9ZRKbXOnRdcgyC_YwKRsw&s=10',
+        quantity: 1
     },
     {
         id: 2,
@@ -18,7 +19,8 @@ export class ProductService {
         stock: 15,
         sellingPrice: 799.99,
         purchasePrice: 599.99,
-        imageUrl: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/110/MTA-167369951/br-m036969-00220_vga-asus-amd-radeon-rx-7900-xtx-tuf-gaming-oc-24gb-gddr6_full05-8616462f.jpg'
+        imageUrl: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/110/MTA-167369951/br-m036969-00220_vga-asus-amd-radeon-rx-7900-xtx-tuf-gaming-oc-24gb-gddr6_full05-8616462f.jpg',
+        quantity: 1
     }, {
         id: 3,
         name: 'Intel Core i9-13900K',
@@ -26,7 +28,8 @@ export class ProductService {
         stock: 20,
         sellingPrice: 599.99,
         purchasePrice: 399.99,
-        imageUrl: 'https://kkomputer.com/7074/intel-core-i9-13900k-58-ghz-24c32t-lga-1700-rl.jpg'
+        imageUrl: 'https://kkomputer.com/7074/intel-core-i9-13900k-58-ghz-24c32t-lga-1700-rl.jpg',
+        quantity: 1
     }
     ]
 
@@ -38,7 +41,8 @@ export class ProductService {
             stock: p_stock,
             sellingPrice: p_sellingPrice,
             purchasePrice: p_purchasePrice,
-            imageUrl: p_imageUrl
+            imageUrl: p_imageUrl,
+            quantity: 1
         });
     }
 }

@@ -10,8 +10,10 @@
       <ion-title size="large">cart</ion-title>
     </ion-toolbar>
   </ion-header>
-  <div *ngFor="let transaction of transactions">
-    <ion-label>transaction.id</ion-label>
+  <div *ngFor="let item of cart">
+    <ion-label>{{item.productId}}</ion-label>
+    <ion-label>{{item.quantity}}</ion-label>
+    <ion-label>{{item.subtotal}}</ion-label>
   </div>
   <ion-button color="success">KONFIRMASI TRANSAKSI</ion-button>
 </ion-content>

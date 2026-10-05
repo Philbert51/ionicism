@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product-service';
 import { TransactionService } from '../transaction-service';
+import { CartService } from '../cart-service';
 
 @Component({
   selector: 'app-order',
@@ -11,34 +12,51 @@ import { TransactionService } from '../transaction-service';
 export class OrderPage implements OnInit {
 
   constructor(private productService: ProductService, 
-    private transactionService: TransactionService) { }
+    private transactionService: TransactionService,
+  private cartService: CartService) { }
 
-  quantity: number = 0;
+ 
   products:any[] = [];
   transactions:any[]=[];
+  cart:any[]=[];
 
   ngOnInit( ) {
     this.products = this.productService.product;
     this.transactions = this.transactionService.transactions;
+    this.cart = this.cartService.cart;
   }
-  TambahKeKeranjang(p_transactionId: number, p_productId: number, 
+  quantity(index:number): number{
+    let jumlah = this.products[index].quantity;;
+    return jumlah;
+  }
+  TambahKeKeranjang( p_productId: number, 
      p_productPrice: number){
-    this.transactions.push({transactionId:1 + p_transactionId,
-      productId: p_productId,
-      quantity: this.quantity,
-      subtotal: p_productPrice * this.quantity
-    });
-      
+      let subtotal: number = p_productPrice * this.products[p_productId - 1].quantity;
+    this.cartService.AddToCart(p_productId,
+      this.products[p_productId -1].quantity,
+      subtotal
+    );
+   
   }
-  TambahQty(){
-    this.quantity++;
-  }
-  KurangQty(){
-    if(this.quantity > 0){
-      this.quantity--;
+  TambahQty(index: number){
+    let produk = this.products[index];
+    let qty = produk.quantity;
+
+    if(qty < produk.stock){
+      produk.quantity++;
     }
     else{
-      this.quantity = 0;
+      
+    }
+  }
+  KurangQty(index: number){
+    let produk = this.products[index];
+    let qty = produk.quantity;
+    if(qty > 0){
+      produk.quantity--;
+    }
+    else{
+      qty = qty;
     }
   }
 }

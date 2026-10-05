@@ -18,15 +18,15 @@
           <img [src]="product.imageUrl" alt="{{ product.name }}" />
         </ion-col>
         <ion-col size="8">
-          <ion-item routerLink="/detail-product/{{product.id}}">
+          <ion-item routerLink="/detail-product/{{product.id - 1}}">
             <h2>{{product.name}}</h2>
           </ion-item>
             <p>{{product.description}}</p>
           <p>Harga: {{product.sellingPrice}}</p>
-          <ion-button (click)="KurangQty()"><ion-icon name="remove-outline"></ion-icon> </ion-button>
-          <ion-label> {{quantity}} </ion-label>
-          <ion-button (click)="TambahQty()"><ion-icon name="add-outline"></ion-icon> </ion-button>
-          <ion-button (click)="TambahKeKeranjang(transactions.length, product.id, product.sellingPrice)">
+          <ion-button (click)="KurangQty(product.id - 1)"><ion-icon name="remove-outline"></ion-icon> </ion-button>
+          <ion-label> {{quantity(product.id-1)}} </ion-label>
+          <ion-button (click)="TambahQty(product.id - 1)"><ion-icon name="add-outline"></ion-icon> </ion-button>
+          <ion-button (click)="TambahKeKeranjang(product.id, product.sellingPrice)">
             <ion-icon slot="start" name="cart"></ion-icon>
             Tambah ke Keranjang</ion-button>
         </ion-col>
