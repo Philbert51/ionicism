@@ -61,6 +61,8 @@ export class CreatePage implements OnInit {
       alert('Harga Jual Tidak Boleh Negatif');
     } else if (this.stock < 0) {
       alert('Stok Tidak Boleh Negatif');
+    } else if (this.selectedKategori == -1 || this.selectedKategori == null) {
+      alert('Kategori Harus Dipilih');
     } else {
       this.productService.addProduct(
         this.namaProduk,

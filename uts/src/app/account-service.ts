@@ -10,7 +10,8 @@ export class AccountService {
       'https://images.alodokter.com/dk0z4ums3/image/upload/v1661753020/attached_image/inilah-cara-merawat-anak-kucing-yang-tepat.jpg',
   };
 
-  isLogin = false;
+  // BYPASS LOGIN UNTUK MEMUDAHKAN TESTING
+  isLogin = true;
 
   checkLogin(user_: string, pass_: string): boolean {
     if (user_ == this.user.username && pass_ == this.user.password) {
