@@ -16,6 +16,17 @@ export class CreatePage implements OnInit {
   imageUrl: string = '';
   deskripsi: string = '';
 
+  isFirstNamaProduk: boolean = true;
+  isFirstDeskripsi: boolean = true;
+
+  setIsFirstNamaProduk() {
+    this.isFirstNamaProduk = false;
+  }
+
+  setIsFirstDeskripsi() {
+    this.isFirstDeskripsi = false;
+  }
+
   constructor(
     private productService: ProductService,
     private router: Router,

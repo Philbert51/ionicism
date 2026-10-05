@@ -23,6 +23,17 @@ export class EditPage implements OnInit {
   imageUrl: string = '';
   deskripsi: string = '';
 
+  isFirstNamaProduk: boolean = true;
+  isFirstDeskripsi: boolean = true;
+
+  setIsFirstNamaProduk() {
+    this.isFirstNamaProduk = false;
+  }
+
+  setIsFirstDeskripsi() {
+    this.isFirstDeskripsi = false;
+  }
+
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.editId = params['id'];
