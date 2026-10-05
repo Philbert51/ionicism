@@ -21,6 +21,7 @@ export class CreatePage implements OnInit {
 
   isFirstNamaProduk: boolean = true;
   isFirstDeskripsi: boolean = true;
+  isFirstKategori: boolean = true;
 
   setIsFirstNamaProduk() {
     this.isFirstNamaProduk = false;
@@ -28,6 +29,10 @@ export class CreatePage implements OnInit {
 
   setIsFirstDeskripsi() {
     this.isFirstDeskripsi = false;
+  }
+
+  setIsFirstKategori() {
+    this.isFirstKategori = false;
   }
 
   constructor(

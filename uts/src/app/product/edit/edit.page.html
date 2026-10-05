@@ -46,12 +46,12 @@
     <ion-item>
       <ion-label class="ion-no-margin">
         <ion-select label="Kategori" labelPlacement="stacked" placeholder="Pilih kategori..."
-          [(ngModel)]="selectedKategori" required="true" #kategoriSelect="ngModel">
+          [(ngModel)]="selectedKategori" required="true" (ionDismiss)="setIsFirstKategori()">
           <ion-select-option *ngFor="let kategori of kategoriList" [value]="kategori.id">{{ kategori.name
             }}</ion-select-option>
         </ion-select>
         <ion-label class="ion-margin-bottom" color="danger"
-          *ngIf="kategoriSelect.invalid && (kategoriSelect.touched || kategoriSelect.dirty)">Kategori tidak boleh
+          *ngIf="((selectedKategori == -1 || selectedKategori == null) && !isFirstKategori)">Kategori tidak boleh
           kosong!</ion-label>
       </ion-label>
     </ion-item>
