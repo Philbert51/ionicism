@@ -28,6 +28,7 @@
       </ion-card-header>
       <ion-card-content>
         <p>{{ product.description }}</p>
+        <p>Kategori: {{ getProductCategoryName(product.kategori) }}</p>
         <div class="ion-margin-top">
           <h2>Stok: {{ product.stock }}</h2>
         </div>

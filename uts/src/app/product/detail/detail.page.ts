@@ -21,4 +21,8 @@ export class DetailPage implements OnInit {
     });
     this.product = this.productService.getProductById(this.productId);
   }
+
+  getProductCategoryName(kategoriId: number): string {
+    return this.productService.getCategoryNameById(kategoriId);
+  }
 }

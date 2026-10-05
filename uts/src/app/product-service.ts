@@ -223,4 +223,13 @@ export class ProductService {
     }
     alert('Data Berhasil Dihapus!');
   }
+
+  getCategoryNameById(id: number): string {
+    for (let i = 0; i < this.kategori.length; i++) {
+      if (this.kategori[i].id == id) {
+        return this.kategori[i].name;
+      }
+    }
+    return '';
+  }
 }
