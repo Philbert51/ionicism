@@ -1,0 +1,54 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/transactionhistory"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Transaction Detail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Transaction Detail</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-text *ngIf="!adaData" class="all-margin">Data tidak ditemukan.</ion-text>
+
+  <div *ngIf="adaData">
+    <ion-list>
+      <ion-item>
+        <h3>{{ formatDate(transaction.tanggal) }}</h3>
+      </ion-item>
+      <ion-item>
+        <ion-label><b>{{ transaction.produk.length }} Produk:</b></ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-card *ngFor="let item of transaction.produk; let i = index">
+      <ion-item>
+        <ion-img [src]="productDetail[i].imageUrl" class="img-box"></ion-img>
+        <div>
+          <ion-label><b>{{ productDetail[i].name }}</b></ion-label>
+          <ion-label>Harga Beli: Rp {{ item.purchasePrice }}</ion-label>
+          <ion-label>Harga Jual: Rp {{ item.sellingPrice }}</ion-label>
+          <ion-label>Quantity: {{ item.quantity }}</ion-label>
+          <ion-label>Subtotal: Rp {{ item.subtotal }}</ion-label>
+        </div>
+      </ion-item>
+    </ion-card>
+
+    <ion-list>
+      <ion-item>
+        <ion-label><b>Jumlah Item:</b> {{ countItemsQtyTotal() }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label><b>Total Transaksi:</b> Rp {{ transaction.totalTransaksi }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label><b>Total Keuntungan:</b> Rp {{ countTotalProfit() }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

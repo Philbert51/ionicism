@@ -169,8 +169,9 @@ export class ProductService {
     alert('Data Berhasil Disimpan!');
   }
 
+  // Andrea add method get product berdasarkan id
   getProductById(id: number) {
-    for (let i = 0; i < this.product.length; i++) {
+    for (let i in this.product) {
       if (this.product[i].id == id) {
         return this.product[i];
       }
