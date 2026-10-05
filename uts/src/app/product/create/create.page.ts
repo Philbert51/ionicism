@@ -19,6 +19,17 @@ export class CreatePage implements OnInit {
 
   kategoriList: any[] = [];
 
+  isFirstNamaProduk: boolean = true;
+  isFirstDeskripsi: boolean = true;
+
+  setIsFirstNamaProduk() {
+    this.isFirstNamaProduk = false;
+  }
+
+  setIsFirstDeskripsi() {
+    this.isFirstDeskripsi = false;
+  }
+
   constructor(
     private productService: ProductService,
     private router: Router,

@@ -27,6 +27,17 @@ export class EditPage implements OnInit {
 
   kategoriList: any[] = [];
 
+  isFirstNamaProduk: boolean = true;
+  isFirstDeskripsi: boolean = true;
+
+  setIsFirstNamaProduk() {
+    this.isFirstNamaProduk = false;
+  }
+
+  setIsFirstDeskripsi() {
+    this.isFirstDeskripsi = false;
+  }
+
   ngOnInit() {
     this.kategoriList = this.productService.kategori;
     this.route.params.subscribe((params) => {
