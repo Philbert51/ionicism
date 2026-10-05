@@ -10,6 +10,7 @@ import { ProductService } from '../product-service';
 })
 export class DashboardPage implements OnInit {
   todaysRevenue:number = 0;
+  todaysProfit:number = 0;
   todaysTransactionNumber:number = 0;
   todaysBestSellerProduct:any;
   todaysBestSellerQty:number = 0;
@@ -21,6 +22,7 @@ export class DashboardPage implements OnInit {
 
   ngOnInit() {   
     this.todaysRevenue = this.transactionservice.countRevenue(true);
+    this.todaysProfit = this.transactionservice.countProfit(true);
     this.todaysTransactionNumber = this.transactionservice.countNumberOfTransactions(true);
     let bestSeller = this.transactionservice.getBestSellingProduct(false); // berisi object literal yang isinya productId dan totalQty
     this.todaysBestSellerProduct = this.productservice.getProductById(bestSeller.productId);

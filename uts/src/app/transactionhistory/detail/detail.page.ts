@@ -54,4 +54,13 @@ export class DetailPage implements OnInit {
     }
     return total;
   }
+
+  countTotalProfit():number{
+    let profit = 0;
+    for (let i in this.transaction.produk){
+      let item = this.transaction.produk[i];
+      profit += (item.sellingPrice - item.purchasePrice) * item.quantity;
+    }
+    return profit;
+  }
 }

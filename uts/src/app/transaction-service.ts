@@ -18,6 +18,8 @@ interface Transactions{
 // Andrea edit
 interface Product{
     id: number,
+    purchasePrice: number,
+    sellingPrice:number,
     quantity: number,
     subtotal: number,
 }
@@ -33,11 +35,15 @@ export class TransactionService {
             produk:[
                 {
                     id: 1,
+                    purchasePrice: 499.99,
+                    sellingPrice: 699.99,
                     quantity: 2,
                     subtotal: 1399.98,
                 },
                 {
                     id: 3,
+                    purchasePrice: 399.99,
+                    sellingPrice: 599.99,
                     quantity: 1,
                     subtotal: 599.99,     
                 }
@@ -50,6 +56,8 @@ export class TransactionService {
             produk:[
                 {
                     id: 2,
+                    purchasePrice: 599.99,
+                    sellingPrice: 799.99,
                     quantity: 2,
                     subtotal: 1599.98,
                 }
@@ -62,11 +70,15 @@ export class TransactionService {
             produk:[
                 {
                     id: 2,
+                    purchasePrice: 599.99,
+                    sellingPrice: 799.99,
                     quantity: 1,
                     subtotal: 799.99,
                 },
                 {
                     id: 3,
+                    purchasePrice: 399.99,
+                    sellingPrice: 599.99,
                     quantity: 2,
                     subtotal: 1199.98,               
                 }
@@ -107,7 +119,7 @@ export class TransactionService {
     }
 
     // Andrea add method utk hitung pendapatan, jumlah transaksi, keuntungan di hari ini atau periode tertentu
-    countRevenue(forToday:boolean, filterMonth:number = 0, filterYear:number = 0):number{
+    countRevenue(forToday:boolean, filterMonth:number = -1, filterYear:number = -1):number{
         let total = 0;
         if (forToday){
             const today = new Date();
@@ -128,7 +140,7 @@ export class TransactionService {
         }
         return total;
     }
-    countNumberOfTransactions(forToday:boolean, filterMonth:number = 0, filterYear:number = 0):number{
+    countNumberOfTransactions(forToday:boolean, filterMonth:number = -1, filterYear:number = -1):number{
         let count = 0;
         if (forToday){
             const today = new Date();
@@ -148,6 +160,33 @@ export class TransactionService {
             }
         }
         return count;
+    }
+    countProfit(forToday:boolean, filterMonth:number = -1, filterYear:number = -1){
+        let profit = 0;
+        if (forToday){
+            const today = new Date();
+            for (let i in this.transactions){
+                let date = this.transactions[i].tanggal;
+                if (date.getDate() == today.getDate() && date.getMonth() == today.getMonth() && date.getFullYear() == today.getFullYear()){
+                    for (let j in this.transactions[i].produk){
+                        let product = this.transactions[i].produk[j];
+                        profit += (product.sellingPrice - product.purchasePrice) * product.quantity;
+                    }
+                }
+            }
+        }
+        else{
+            for (let i in this.transactions){
+                let date = this.transactions[i].tanggal;
+                if (date.getMonth() == filterMonth && date.getFullYear() == filterYear){
+                    for (let j in this.transactions[i].produk){
+                        let product = this.transactions[i].produk[j];
+                        profit += (product.sellingPrice - product.purchasePrice) * product.quantity;
+                    }
+                }
+            }
+        }
+        return profit;
     }
 
     // Andrea add method utk ambil produk terlaris hr ini dan all time

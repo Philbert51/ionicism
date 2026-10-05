@@ -45,6 +45,9 @@
       <ion-item>
         <ion-label><b>Total Pendapatan:</b> Rp {{ totalRevenue }}</ion-label>
       </ion-item>
+      <ion-item>
+        <ion-label><b>Total Keuntungan:</b> Rp {{ totalProfit }}</ion-label>
+      </ion-item>
     </ion-list>
     <ion-card *ngFor="let transaction of transactions" routerLink="/transactionhistory/detail/{{ transaction.id }}">
       <ion-card-header>

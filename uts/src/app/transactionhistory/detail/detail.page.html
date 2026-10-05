@@ -31,6 +31,8 @@
         <ion-img [src]="productDetail[i].imageUrl" class="img-box"></ion-img>
         <div>
           <ion-label><b>{{ productDetail[i].name }}</b></ion-label>
+          <ion-label>Harga Beli: Rp {{ item.purchasePrice }}</ion-label>
+          <ion-label>Harga Jual: Rp {{ item.sellingPrice }}</ion-label>
           <ion-label>Quantity: {{ item.quantity }}</ion-label>
           <ion-label>Subtotal: Rp {{ item.subtotal }}</ion-label>
         </div>
@@ -43,6 +45,9 @@
       </ion-item>
       <ion-item>
         <ion-label><b>Total Transaksi:</b> Rp {{ transaction.totalTransaksi }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label><b>Total Keuntungan:</b> Rp {{ countTotalProfit() }}</ion-label>
       </ion-item>
     </ion-list>
   </div>
