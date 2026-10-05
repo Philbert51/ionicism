@@ -8,20 +8,24 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'home',
-        loadChildren: () => import('../home/home.module').then( m => m.HomePageModule)
+        path: 'dashboard',
+        loadChildren: () => import('../dashboard/dashboard.module').then(m => m.DashboardPageModule)
+      },
+      {
+        path: 'transactionhistory',
+        loadChildren: () => import('../transactionhistory/transactionhistory.module').then(m => m.TransactionhistoryPageModule)
       },
       {
         path: 'product',
-        loadChildren: () => import('../product/product.module').then( m => m.ProductPageModule)
+        loadChildren: () => import('../product/product.module').then(m => m.ProductPageModule)
       },
       {
         path: 'settings',
-        loadChildren: () => import('../settings/settings.module').then( m => m.SettingsPageModule)
+        loadChildren: () => import('../settings/settings.module').then(m => m.SettingsPageModule)
       },
       {
         path: '',
-        redirectTo: '/tabs/home',
+        redirectTo: '/tabs/dashboard',
         pathMatch: 'full'
       }
     ]
@@ -32,4 +36,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class TabsPageRoutingModule {}
+export class TabsPageRoutingModule { }

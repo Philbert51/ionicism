@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TransactionService } from '../transaction-service';
 import { ProductService } from '../product-service';
+import { Router } from '@angular/router';
+import { AccountService } from '../account-service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,18 +11,25 @@ import { ProductService } from '../product-service';
   standalone: false,
 })
 export class DashboardPage implements OnInit {
-  todaysRevenue:number = 0;
-  todaysProfit:number = 0;
-  todaysTransactionNumber:number = 0;
-  todaysBestSellerProduct:any;
-  todaysBestSellerQty:number = 0;
-  numOfProducts:number = 0;
-  bestSellerProduct:any;
-  bestSellerQty:number = 0;
-  
-  constructor(private transactionservice:TransactionService, private productservice:ProductService) { }
+  todaysRevenue: number = 0;
+  todaysProfit: number = 0;
+  todaysTransactionNumber: number = 0;
+  todaysBestSellerProduct: any;
+  todaysBestSellerQty: number = 0;
+  numOfProducts: number = 0;
+  bestSellerProduct: any;
+  bestSellerQty: number = 0;
 
-  ngOnInit() {   
+  username: string = '';
+
+  constructor(private transactionservice: TransactionService, private productservice: ProductService, private router: Router, private accountService: AccountService) {
+    this.username = this.accountService.getUsername();
+  }
+
+  ngOnInit() {
+    if (!this.accountService.isLogin) {
+      this.router.navigate(['/login']);
+    }
     this.todaysRevenue = this.transactionservice.countRevenue(true);
     this.todaysProfit = this.transactionservice.countProfit(true);
     this.todaysTransactionNumber = this.transactionservice.countNumberOfTransactions(true);

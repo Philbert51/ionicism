@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TransactionService } from '../transaction-service';
+import { Router } from '@angular/router';
+import { AccountService } from '../account-service';
 
 @Component({
   selector: 'app-transactionhistory',
@@ -21,9 +23,12 @@ export class TransactionhistoryPage implements OnInit {
   totalProfit: number = 0;
   numOfTransactions: number = 0;
 
-  constructor(private transactionservice: TransactionService) { }
+  constructor(private transactionservice: TransactionService, private router: Router, private accountService: AccountService) { }
 
   ngOnInit() {
+    if (!this.accountService.isLogin) {
+      this.router.navigate(['/login']);
+    }
     // Default tampilkan transaksi HARI INI
     this.transactions = this.transactionservice.getTransactionToday();
     this.totalRevenue = this.transactionservice.countRevenue(true);

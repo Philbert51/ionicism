@@ -12,14 +12,14 @@ export class LoginPage implements OnInit {
   username = '';
   password = '';
 
-  constructor(private router: Router, private accountService: AccountService) {}
+  constructor(private router: Router, private accountService: AccountService) { }
 
   ngOnInit() {
   }
 
   login() {
     if (this.accountService.checkLogin(this.username, this.password)) {
-      this.router.navigate(['/home']);
+      this.router.navigate(['/dashboard']);
     } else {
       alert('Invalid username or password');
     }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../product-service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AccountService } from '../../account-service';
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.page.html',
@@ -12,6 +13,7 @@ export class EditPage implements OnInit {
     private productService: ProductService,
     private route: ActivatedRoute,
     private router: Router,
+    private accountService: AccountService 
   ) {}
 
   editId: number = 0;
@@ -44,6 +46,9 @@ export class EditPage implements OnInit {
   }
 
   ngOnInit() {
+    if (!this.accountService.isLogin) {
+      this.router.navigate(['/login']);
+    }
     this.kategoriList = this.productService.kategori;
     this.route.params.subscribe((params) => {
       this.editId = params['id'];

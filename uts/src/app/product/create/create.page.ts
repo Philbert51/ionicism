@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../product-service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AccountService } from '../../account-service';
 
 @Component({
   selector: 'app-create',
@@ -39,9 +40,13 @@ export class CreatePage implements OnInit {
     private productService: ProductService,
     private router: Router,
     private route: ActivatedRoute,
+    private accountService: AccountService
   ) {}
 
   ngOnInit() {
+    if (!this.accountService.isLogin) {
+      this.router.navigate(['/login']);
+    }
     this.kategoriList = this.productService.kategori;
   }
 

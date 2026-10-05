@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../product-service';
+import { Router } from '@angular/router';
+import { AccountService } from '../../account-service';
 
 @Component({
   selector: 'app-detail',
@@ -10,12 +12,15 @@ import { ProductService } from '../../product-service';
 })
 export class DetailPage implements OnInit {
 
-  constructor(private route: ActivatedRoute, private productService:ProductService) { }
+  constructor(private route: ActivatedRoute, private productService:ProductService, private router: Router, private accountService: AccountService) { }
 
   productId: number = 0;
   product:any;
 
   ngOnInit() {
+    if (!this.accountService.isLogin) {
+      this.router.navigate(['/login']);
+    }
     this.route.params.subscribe(params => {
       this.productId = params['id'];
     });
