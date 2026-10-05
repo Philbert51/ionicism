@@ -14,10 +14,10 @@
     </ion-toolbar>
   </ion-header>
 
-  <div *ngIf="imageUrl == ''">
+  <div *ngIf="imageUrl == '' || checkProductLink(imageUrl) == false">
     <ion-img src="https://ubaya.cloud/no_image.jpg" alt="Preview Gambar" class="ion-margin preview-img"></ion-img>
   </div>
-  <div *ngIf="imageUrl != ''">
+  <div *ngIf="imageUrl != '' && checkProductLink(imageUrl) == true">
     <ion-img [src]="imageUrl" alt="Preview Gambar" class="ion-margin preview-img"></ion-img>
   </div>
 
@@ -38,6 +38,18 @@
           [(ngModel)]="deskripsi" required="true" #deskription="ngModel" [autoGrow]="true" [rows]="1"></ion-textarea>
         <ion-label class="ion-margin-bottom" color="danger"
           *ngIf="deskription.invalid && (deskription.touched || deskription.dirty)">Deskripsi tidak boleh
+          kosong!</ion-label>
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-no-margin">
+        <ion-select label="Kategori" labelPlacement="stacked" placeholder="Pilih kategori..." [(ngModel)]="selectedKategori"
+          required="true" #kategoriSelect="ngModel">
+          <ion-select-option *ngFor="let kategori of kategoriList" [value]="kategori.id">{{ kategori.name }}</ion-select-option>
+        </ion-select>
+        <ion-label class="ion-margin-bottom" color="danger"
+          *ngIf="kategoriSelect.invalid && (kategoriSelect.touched || kategoriSelect.dirty)">Kategori tidak boleh
           kosong!</ion-label>
       </ion-label>
     </ion-item>
