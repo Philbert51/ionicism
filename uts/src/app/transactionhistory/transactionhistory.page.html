@@ -11,42 +11,49 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-segment [(ngModel)]="jenisTampilan">
-    <ion-segment-button value="hariini">
-      <ion-label>Hari Ini</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="bulanini">
-      <ion-label>Bulan Ini</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="filterperiode">
-      <ion-label>Filter Periode</ion-label>
-    </ion-segment-button>
-  </ion-segment>
+  <ion-select placeholder="Pilih Filter" [(ngModel)]="jenisTampilan" class="all-margin"
+    (ionChange)="changePeriodFilter()">
+    <ion-select-option value="hariini">Hari Ini</ion-select-option>
+    <ion-select-option value="bulanini">Bulan Ini</ion-select-option>
+    <ion-select-option value="filterperiode">Filter Periode</ion-select-option>
+  </ion-select>
 
   <ion-list *ngIf="jenisTampilan=='filterperiode'">
     <ion-item>
       <ion-label class="right-margin"><b>Periode:</b></ion-label>
-      <ion-select labelPlacement="stacked" placeholder="Pilih Bulan" [(ngModel)]="filterBulan" class="right-margin">
-        <ion-select-option *ngFor="let bulan of arrBulan; let i = index" [value]="i+1">{{ bulan }}</ion-select-option>
+      <ion-select labelPlacement="stacked" placeholder="Pilih Bulan" [(ngModel)]="filterBulan" class="right-margin"
+        (ionChange)="changePeriodFilter()">
+        <ion-select-option *ngFor="let bulan of arrBulan; let i = index" [value]="i">{{ bulan }}</ion-select-option>
       </ion-select>
       <ion-button size="small" (click)="yearBefore()">
         <ion-icon name="chevron-back-outline"></ion-icon>
       </ion-button>
-      <ion-input type="number" [(ngModel)]="filterTahun" class="input-width text-center"></ion-input>
+      <ion-label class="input-width text-center">{{ filterTahun }}</ion-label>
       <ion-button size="small" (click)="yearAfter()">
         <ion-icon name="chevron-forward-outline"></ion-icon>
       </ion-button>
     </ion-item>
   </ion-list>
 
-  <!-- <ion-card *ngFor="let transaction of transactions" routerLink="/transactionhistory/detail/{{ transaction.id }}"> -->
-  <ion-card routerLink="/transactionhistory/detail/1">
-    <ion-card-header>
-      <ion-card-title>[tanggal & waktu transaksi]</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-text><b>Total:</b> Rp [total harga]</ion-text><br>
-      <ion-text><b>Jumlah Item:</b> [total jumlah produk yg dibeli]</ion-text>
-    </ion-card-content>
-  </ion-card>
+  <ion-text *ngIf="!adaData" class="all-margin">Tidak ada transaksi.</ion-text>
+
+  <div *ngIf="adaData">
+    <ion-list>
+      <ion-item>
+        <ion-label><b>Jumlah Transaksi:</b> {{ numOfTransactions }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label><b>Total Pendapatan:</b> Rp {{ totalRevenue }}</ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-card *ngFor="let transaction of transactions" routerLink="/transactionhistory/detail/{{ transaction.id }}">
+      <ion-card-header>
+        <ion-card-title>{{ formatDate(transaction.tanggal) }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-text><b>Total:</b> Rp {{ transaction.totalTransaksi }}</ion-text><br>
+        <ion-text><b>Jumlah Produk:</b> {{ transaction.produk.length }}</ion-text>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

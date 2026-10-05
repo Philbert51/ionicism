@@ -41,4 +41,14 @@ export class ProductService {
             imageUrl: p_imageUrl
         });
     }
+
+    // Andrea add method get product berdasarkan id
+    getProductById(id:number){
+        for (let i in this.product){
+            if (this.product[i].id == id){
+                return this.product[i];
+            }
+        }
+        return null;
+    }
 }
