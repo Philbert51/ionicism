@@ -1,0 +1,30 @@
+<ion-content [fullscreen]="true" class="ion-padding custom-background">
+  <div class="login-container">
+    <div class="header-section">
+      <h1>Selamat Datang</h1>
+      <p>Masuk Untuk Melanjutkan</p>
+    </div>
+
+    <ion-card class="login-card">
+      <ion-card-content>
+        <div class="input-group">
+          <ion-item lines="none" class="custom-input">
+            <ion-icon name="person-outline" slot="start"></ion-icon>
+            <ion-input type="text" placeholder="Username" [(ngModel)]="username"></ion-input>
+          </ion-item>
+        </div>
+
+        <div class="input-group">
+          <ion-item lines="none" class="custom-input">
+            <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+            <ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
+          </ion-item>
+        </div>
+
+        <ion-button expand="block" shape="round" class="login-btn" (click)="login()">
+          Masuk
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

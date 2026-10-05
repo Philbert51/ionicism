@@ -1,17 +1,12 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="false">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>Daftar Produk</ion-title>
   </ion-toolbar>
-</ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Daftar Produk</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div class="ion-margin">
+  <div class="header-action">
     <ion-button routerLink="/product/create" expand="block" size="medium" class="ion-margin-bottom">
       <ion-icon name="add-outline"></ion-icon>
       Tambah Produk
@@ -19,6 +14,18 @@
 
     <ion-input (keyup)="searchProduct()" expand="block" fill="outline" labelPlacement="floating" type="text"
       placeholder="Cari produk..." label="Cari produk..." [(ngModel)]="searchQuery"></ion-input>
+  </div>
+</ion-header>
+
+<ion-content [fullscreen]="false">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Daftar Produk</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="ion-margin">
+    <ion-label>Jumlah Produk : {{products.length}}</ion-label>
   </div>
 
   <div *ngIf="products.length == 0">
@@ -42,25 +49,40 @@
 
           <ion-col class="ion-align-self-center">
             <div>
-              <h4>{{ product.name }}</h4>
+              <h3>{{ product.name }}</h3>
               <div>
-                <h6>Stok: {{ product.stock }}</h6>
+                <h5>Stok: {{ product.stock }}</h5>
               </div>
               <div class="ion-margin-top">
-                <h5>Rp.{{ product.sellingPrice }}</h5>
+                <h4>Rp.{{ product.sellingPrice }}</h4>
               </div>
             </div>
-            <div class="ion-margin-top ion-text-right">
-              <ion-button size="medium" routerLink="/product/edit/{{product.id}}">
-                <ion-icon name="create-outline"></ion-icon>
-                Edit
-              </ion-button>
 
-              <ion-button size="medium" color="danger" style="margin-left: 1rem;" (click)="deleteProduct(product.id)">
-                <ion-icon name="trash-outline"></ion-icon>
-                Hapus
-              </ion-button>
-            </div>
+            <!-- Baris 1: Tombol Detail (Full Width) -->
+            <ion-button expand="block" routerLink="/product/detail/{{product.id}}" color="secondary"
+              class="ion-margin-top">
+              <ion-icon name="eye-outline" slot="start"></ion-icon>
+              Detail
+            </ion-button>
+
+            <!-- Baris 2: Tombol Ubah dan Hapus (Berdampingan 50:50) -->
+            <ion-row class="ion-no-padding">
+              <!-- Kolom Kiri untuk Ubah -->
+              <ion-col size="6" class="btnUbah">
+                <ion-button expand="block" routerLink="/product/edit/{{product.id}}">
+                  <ion-icon name="create-outline" slot="start"></ion-icon>
+                  Ubah
+                </ion-button>
+              </ion-col>
+
+              <!-- Kolom Kanan untuk Hapus -->
+              <ion-col size="6" class="btnHapus">
+                <ion-button expand="block" color="danger" (click)="deleteProduct(product.id)">
+                  <ion-icon name="trash-outline" slot="start"></ion-icon>
+                  Hapus
+                </ion-button>
+              </ion-col>
+            </ion-row>
           </ion-col>
         </ion-row>
       </ion-grid>

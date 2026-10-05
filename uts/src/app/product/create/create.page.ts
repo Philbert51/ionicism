@@ -15,6 +15,25 @@ export class CreatePage implements OnInit {
   stock: number = 0;
   imageUrl: string = '';
   deskripsi: string = '';
+  selectedKategori: number = -1;
+
+  kategoriList: any[] = [];
+
+  isFirstNamaProduk: boolean = true;
+  isFirstDeskripsi: boolean = true;
+  isFirstKategori: boolean = true;
+
+  setIsFirstNamaProduk() {
+    this.isFirstNamaProduk = false;
+  }
+
+  setIsFirstDeskripsi() {
+    this.isFirstDeskripsi = false;
+  }
+
+  setIsFirstKategori() {
+    this.isFirstKategori = false;
+  }
 
   constructor(
     private productService: ProductService,
@@ -22,7 +41,9 @@ export class CreatePage implements OnInit {
     private route: ActivatedRoute,
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.kategoriList = this.productService.kategori;
+  }
 
   createProduct() {
     if (this.namaProduk == '') {
@@ -43,6 +64,7 @@ export class CreatePage implements OnInit {
         this.hargaJual,
         this.stock,
         this.imageUrl,
+        this.selectedKategori
       );
       this.router.navigate(['/product']);
     }

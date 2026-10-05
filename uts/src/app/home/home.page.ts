@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AccountService } from '../account-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +9,24 @@ import { Component } from '@angular/core';
   standalone: false,
 })
 export class HomePage {
+  constructor(
+    private accountService: AccountService,
+    private router: Router,
+  ) {}
 
-  constructor() {}
+  ngOnInit() {
+    if (this.accountService.isLogin == false) {
+      this.router.navigate(['/login']);
+    }
+  }
 
+  ionViewDidEnter() {
+    if (this.accountService.isLogin == false) {
+      this.router.navigate(['/login']);
+    }
+  }
+
+  getUsername():string{
+    return this.accountService.getUsername();
+  }
 }
