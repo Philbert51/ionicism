@@ -14,6 +14,7 @@ export class ProductPage implements OnInit {
   products: any[] = [];
   originalProductList: any[] = [];
   searchQuery: string = '';
+  productsLength : number = 0;
 
   constructor(
     private productService: ProductService,
@@ -28,7 +29,7 @@ export class ProductPage implements OnInit {
     }
     this.products = this.productService.product;
     this.originalProductList = this.productService.product;
-
+    this.productsLength = this.products.length;
 
   }
 
@@ -51,6 +52,7 @@ export class ProductPage implements OnInit {
     const animation = this.animCtrl.create().addElement(deletedCard).duration(400).fromTo("transform", "translateX(0%)", "translateX(80%)").easing("ease-out").fromTo("opacity", 1, -1).easing("ease-in");
 
     if (confirm('Apakah Anda Yakin Ingin Menghapus ' + this.productService.getProductById(id)?.name + "?")) {
+      this.productsLength--;
       animation.play().then(() => {
         this.productService.deleteProduct(id);
         this.products = this.productService.product;
