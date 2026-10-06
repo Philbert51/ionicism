@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>profile</ion-title>
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">profile</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div class = "body">
+    <!--src is from url for live update to see the profile picture change in real time -->
+    <div class= "profile-picture-container"><ion-avatar class = "profile-picture"><ion-img [src] = "url" alt = "user profile picture"></ion-img></ion-avatar></div>
+    <ion-textarea label = "Profile Image URL :" [autoGrow]="true" class = "input" type="text" placeholder = "Profile Picture Image Url" [(ngModel)] = "url" [value] = "this.accService.getProfilePicture()"></ion-textarea>
+    <ion-input class="input" label = "Username :" [value] = "this.accService.getUsername()" [(ngModel)] = "username"></ion-input>
+    <ion-chip *ngIf = "isEmptyUsername" class = "error-chip"><ion-text><ion-icon class = "center" name="close"></ion-icon>Username is empty!</ion-text></ion-chip>
+    <ion-button (click) = "saveProfile()">Save profile</ion-button>
+    <ion-input  class = "input" type="password" label = "Old Password :" [(ngModel)] = "oldPassword"></ion-input>
+    <ion-input  class = "input" type="password" label = "New Password :" [(ngModel)] = "newPassword"></ion-input>
+    <ion-input  class = "input" type="password" label = "Confirm Password :" [(ngModel)] = "confirmPassword"></ion-input>
+    <ion-chip *ngIf = "isIncorrect" class = "error-chip"><ion-text><ion-icon class = "center" name="close"></ion-icon>Incorrect Password</ion-text></ion-chip>
+    <ion-chip *ngIf = "newPassword != confirmPassword" class = "error-chip"><ion-text><ion-icon class = "center" name="close"></ion-icon>Password does not match</ion-text></ion-chip>
+    <ion-button (click) = "changePassword()">Change password</ion-button>
+  </div>
+</ion-content>
