@@ -17,7 +17,7 @@
   </ion-header>
 
 
-  <h1>Hello, {{username}}!</h1>
+  <ion-text color="primary"><h1>Hello, {{username}}!</h1></ion-text>
 
   <h3>Penjualan Hari Ini</h3>
   <ion-grid>
@@ -26,12 +26,28 @@
         <ion-card class="card-style">
           <ion-card-content>
             <div class="card-title">
-              <ion-icon name="wallet-outline" class="icon-margin icon-size"></ion-icon>
+              <ion-icon name="wallet-outline" class="icon-margin icon-size" color="primary"></ion-icon>
               <ion-text>Pendapatan</ion-text>
             </div>
             <div class="card-number">
               <!-- replace koma agar dengan tanda koma -->
-              <ion-text>Rp.{{ todaysRevenue}}</ion-text>
+              <ion-text>Rp {{ todaysRevenue | number}}</ion-text>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  
+    <ion-row>
+      <ion-col>
+        <ion-card class="card-style">
+          <ion-card-content>
+            <div class="card-title">
+              <ion-icon name="cash-outline" class="icon-margin icon-size" color="primary"></ion-icon>
+              <ion-text>Keuntungan</ion-text>
+            </div>
+            <div class="card-number">
+              <ion-text>Rp {{ todaysProfit | number}}</ion-text>
             </div>
           </ion-card-content>
         </ion-card>
@@ -43,11 +59,11 @@
         <ion-card class="card-style">
           <ion-card-content>
             <div class="card-title">
-              <ion-icon name="cash-outline" class="icon-margin icon-size"></ion-icon>
-              <ion-text>Keuntungan</ion-text>
+              <ion-icon name="file-tray-outline" class="icon-margin icon-size" color="primary"></ion-icon>
+              <ion-text>Item Terjual</ion-text>
             </div>
             <div class="card-number">
-              <ion-text>Rp.{{ todaysProfit }}</ion-text>
+              <ion-text>{{ countItemsQtyTotal() }}</ion-text>
             </div>
           </ion-card-content>
         </ion-card>
@@ -56,7 +72,7 @@
         <ion-card class="card-style">
           <ion-card-content>
             <div class="card-title">
-              <ion-icon name="receipt-outline" class="icon-margin icon-size"></ion-icon>
+              <ion-icon name="receipt-outline" class="icon-margin icon-size" color="primary"></ion-icon>
               <ion-text>Jumlah Transaksi</ion-text>
             </div>
             <div class="card-number">
@@ -72,13 +88,16 @@
         <ion-card class="card-style">
           <ion-card-content>
             <div class="card-title">
-              <ion-icon name="trophy-outline" class="icon-margin icon-size"></ion-icon>
+              <ion-icon name="trophy-outline" class="icon-margin icon-size" color="primary"></ion-icon>
               <ion-text>Produk Terlaris</ion-text>
             </div>
-            <ion-item lines="none" class="product-style">
+            <div *ngIf="!adaTodaysBestSeller">
+              <ion-text>Belum ada produk terjual</ion-text>
+            </div>
+            <ion-item lines="none" class="product-item-style" *ngIf="adaTodaysBestSeller">
               <div>
-                <ion-label><b>{{ todaysBestSellerProduct.name }}</b></ion-label>
-                <ion-label>Jumlah terjual: {{ todaysBestSellerQty }}</ion-label>
+                <ion-label color="medium"><b>{{ todaysBestSellerProduct.name }}</b></ion-label>
+                <ion-label color="medium">Jumlah terjual: {{ todaysBestSellerQty }}</ion-label>
               </div>
               <ion-img slot="end" [src]="todaysBestSellerProduct.imageUrl" class="img-box"></ion-img>
             </ion-item>
@@ -95,7 +114,7 @@
         <ion-card class="card-style">
           <ion-card-content>
             <div class="card-title">
-              <ion-icon name="file-tray-outline" class="icon-margin icon-size"></ion-icon>
+              <ion-icon name="file-tray-outline" class="icon-margin icon-size" color="primary"></ion-icon>
               <ion-text>Jumlah Produk di Toko</ion-text>
             </div>
             <div class="card-number">
@@ -111,13 +130,16 @@
         <ion-card class="card-style">
           <ion-card-content>
             <div class="card-title">
-              <ion-icon name="trending-up-outline" class="icon-margin icon-size"></ion-icon>
+              <ion-icon name="trending-up-outline" class="icon-margin icon-size" color="primary"></ion-icon>
               <ion-text>Produk Terlaris All Time</ion-text>
             </div>
-            <ion-item lines="none" class="product-style">
+            <div *ngIf="!adaAllTimeBestSeller">
+              <ion-text>Belum ada produk terjual</ion-text>
+            </div>
+            <ion-item lines="none" class="product-item-style" *ngIf="adaAllTimeBestSeller">
               <div>
-                <ion-label><b>{{ bestSellerProduct.name }}</b></ion-label>
-                <ion-label>Jumlah terjual: {{ bestSellerQty }}</ion-label>
+                <ion-label color="medium"><b>{{ bestSellerProduct.name }}</b></ion-label>
+                <ion-label color="medium">Jumlah terjual: {{ bestSellerQty }}</ion-label>
               </div>
               <ion-img slot="end" [src]="bestSellerProduct.imageUrl" class="img-box"></ion-img>
             </ion-item>

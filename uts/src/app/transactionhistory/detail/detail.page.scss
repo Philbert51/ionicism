@@ -7,5 +7,16 @@
 }
 
 .all-margin{
-    margin: 1rem;
+    margin: 20px;
+}
+
+ion-item{
+    --background: transparent;
+}
+
+.card-style{
+    margin: 15px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    padding: 5px;
 }
