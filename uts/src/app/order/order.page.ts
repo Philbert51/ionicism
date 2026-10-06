@@ -19,24 +19,37 @@ export class OrderPage implements OnInit {
   products:any[] = [];
   transactions:any[]=[];
   cart:any[]=[];
-
+  
   ngOnInit( ) {
     this.products = this.productService.product;
     this.transactions = this.transactionService.transactions;
     this.cart = this.cartService.cart;
   }
   quantity(index:number): number{
-    let jumlah = this.products[index].quantity;;
+    let jumlah = this.products[index].quantity;
     return jumlah;
   }
-  TambahKeKeranjang( p_productId: number, 
-     p_productPrice: number){
+  isMaxed(index:number):boolean{
+    let qty =  this.products[index].quantity;
+    let produkStok = this.products[index].stock;
+    if(qty < produkStok ) return false;
+    else return true;
+  }
+  TambahKeKeranjang( p_productId: number, p_productPrice: number){
       let subtotal: number = p_productPrice * this.products[p_productId - 1].quantity;
-    this.cartService.AddToCart(p_productId,
+     
+      this.transactionService.initializeTransaction();
+      this.transactionService.addToProduct(p_productId,
+      this.products[p_productId - 1].purchasePrice,
+      this.products[p_productId - 1].sellingPrice,
       this.products[p_productId -1].quantity,
       subtotal
     );
    
+    if(this.products[p_productId -1].quantity <= this.products[p_productId - 1].stock){
+       this.products[p_productId - 1].stock -= this.products[p_productId -1].quantity;
+    }
+
   }
   TambahQty(index: number){
     let produk = this.products[index];
@@ -44,9 +57,6 @@ export class OrderPage implements OnInit {
 
     if(qty < produk.stock){
       produk.quantity++;
-    }
-    else{
-      
     }
   }
   KurangQty(index: number){
@@ -59,4 +69,5 @@ export class OrderPage implements OnInit {
       qty = qty;
     }
   }
+
 }
