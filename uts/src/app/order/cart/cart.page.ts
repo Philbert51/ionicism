@@ -41,18 +41,30 @@ export class CartPage implements OnInit {
   }
   quantity(p_productId: number): number {
     let produk = this.productService.getProductById(p_productId);
+    let transaksi = this.transactionService.getTransactionById(this.id);
+
     let jumlah: number = 0;
-    if (produk != null) {
-      jumlah = produk.quantity;
+    if (produk != null && transaksi != null) {
+      for (let i = 0; i < transaksi.produk.length; i++) {
+        if (transaksi.produk[i].id == p_productId) {
+          jumlah = transaksi.produk[i].quantity;
+        }
+      }
     }
     return jumlah;
   }
   isOne(p_productId: number): Boolean {
     let produk = this.productService.getProductById(p_productId);
+    let transaksi = this.transactionService.getTransactionById(this.id);
     let is1 = false;
-    if (produk != null) {
-      if (produk.quantity == 1) {
-        is1 = true
+    if (produk != null && transaksi != null) {
+      for (let i = 0; i < transaksi.produk.length; i++) {
+        if (transaksi.produk[i].id == p_productId) {
+          if (transaksi.produk[i].quantity <= 1) {
+            is1 = true;
+            break;
+          }
+        }
       }
     }
     return is1;
@@ -71,19 +83,33 @@ export class CartPage implements OnInit {
     let produk = this.productService.getProductById(p_productId);
     let transaksi = this.transactionService.getTransactionById(this.id);
     if (produk != null && transaksi != null) {
-      if (produk.quantity < produk.stock + this.checking(p_productId)) {
-        produk.quantity++;
-        produk.stock--;
+      for (let i = 0; i < transaksi.produk.length; i++) {
+        if (transaksi.produk[i].id == p_productId) {
+          if (produk.stock > 0) {
+            transaksi.produk[i].quantity++;
+            transaksi.produk[i].subtotal = transaksi.produk[i].quantity * transaksi.produk[i].sellingPrice;
+            produk.stock--;
+          }
+          break;
+        }
       }
+
     }
   }
   min(p_productId: number) {
     let produk = this.productService.getProductById(p_productId);
-    if (produk != null) {
-      if (produk.quantity > 1) {
-        produk.quantity--;
-        produk.stock++;
+    let transaksi = this.transactionService.getTransactionById(this.id);
+    if (produk != null && transaksi != null) {
+      for (let i = 0; i < transaksi.produk.length; i++) {
+        if (transaksi.produk[i].id == p_productId) {
+          if (transaksi.produk[i].quantity > 1) {
+            transaksi.produk[i].quantity--;
+            transaksi.produk[i].subtotal = transaksi.produk[i].quantity * transaksi.produk[i].sellingPrice;
+            produk.stock++;
+          }
+        }
       }
+
     }
   }
   checking(p_productId: number): number {
@@ -101,7 +127,6 @@ export class CartPage implements OnInit {
     return produkQtyInTransaction;
   }
   removeProduk(p_productId: number) {
-    //let produk = this.transactions[]
     let transaksi = this.transactionService.getTransactionById(this.id);
     if (transaksi != null) {
       for (let i = 0; i < transaksi.produk.length; i++) {
@@ -111,6 +136,8 @@ export class CartPage implements OnInit {
       }
       console.log(this.transactions[this.id]);
     }
-
+  }
+  confirmTransaction() {
+    this.transactionService.confirmTransaction(this.id, this.listOfProducts);
   }
 }

@@ -326,4 +326,18 @@ export class TransactionService {
     }
     alert('Data Berhasil Dihapus!');
   }
+  confirmTransaction(p_transactionId: number, p_produk:any[]){
+    let activeTransaksi = this.getTransactionById(p_transactionId);
+    
+    if(activeTransaksi != null){
+    for(let i = 0; i < p_produk.length; i++){
+        activeTransaksi.produk.push(p_produk[i]);
+        activeTransaksi.totalTransaksi += p_produk[i].subtotal;
+    }
+     activeTransaksi.isCompleted = true;
+     
+    }
+   
+    
+  }
 }
