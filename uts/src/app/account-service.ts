@@ -24,8 +24,7 @@ export class AccountService {
 
   changePassword(userId: number, oldPass_: string, newPass_: string): boolean {
     if (
-      this.user.password == oldPass_ &&
-      this.user.password == newPass_
+      this.user.password == oldPass_
     ) {
       this.user.password = newPass_;
       return true;
@@ -34,8 +33,16 @@ export class AccountService {
     }
   }
 
+  changeUsername(username : string) {
+    this.user.username = username;
+  }
+
   getUsername(): string {
     return this.user.username;
+  }
+
+  changeProfilePicture(url : string) {
+    this.user.profilePicture = url;
   }
 
   getProfilePicture(): string {
