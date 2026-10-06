@@ -1,6 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ProductService } from '../product-service';
-//import { producerNotifyConsumers } from '@angular/core/primitives/signals';
 import { TransactionService } from '../transaction-service';
 @Component({
   selector: 'app-cart',
@@ -14,7 +13,7 @@ export class CartPage implements OnInit {
   transactions: any[] = [];
   listOfProducts: any[]=[];
   detailProducts: any[] = [];
-  
+  id = 0; 
   constructor(private productService: ProductService,
     private transactionService: TransactionService,
     private cdr: ChangeDetectorRef

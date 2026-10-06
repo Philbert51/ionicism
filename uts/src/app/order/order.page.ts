@@ -21,11 +21,21 @@ export class OrderPage implements OnInit {
   cart:any[]=[];
   searchQuery: string ='';
   originalProductList: any[]=[];
+  
   ngOnInit( ) {
     this.products = this.productService.product;
     this.transactions = this.transactionService.transactions;
     this.originalProductList = this.productService.product;
     this.cart = this.cartService.cart;
+  }
+  activeTransactionId(): number{
+    let id = 0;
+    for(let i = 0; i < this.transactions.length; i++){
+      if(this.transactions[i].isCompleted == false){
+        id = this.transactions[i].id
+      }
+    }
+    return id;
   }
   quantity(p_productId:number): number{
     let p = this.productService.getProductById(p_productId);

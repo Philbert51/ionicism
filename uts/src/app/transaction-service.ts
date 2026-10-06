@@ -315,4 +315,15 @@ export class TransactionService {
         }
 
     }
+    deleteProduk(id: number) {
+    for (let i = 0; i < this.transactions.length; i++) {
+        for(let j = 0; j < this.transactions[i].produk.length; j++){
+            if(this.transactions[i].produk[j].id == id){
+                this.transactions[i].produk.splice(j,1);
+                break;
+            }
+        }
+    }
+    alert('Data Berhasil Dihapus!');
+  }
 }
