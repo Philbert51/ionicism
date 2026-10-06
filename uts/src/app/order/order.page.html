@@ -11,6 +11,9 @@
     </ion-toolbar>
   </ion-header>
 
+  <ion-input (keyup)="searchProduct()" expand="block" fill="outline" labelPlacement="floating" type="text"
+      placeholder="Cari produk..." label="Cari produk..." [(ngModel)]="searchQuery"></ion-input>
+  
   <ion-card *ngFor="let product of products">
     <ion-grid>
       <ion-row>

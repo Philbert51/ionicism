@@ -19,7 +19,8 @@ export class OrderPage implements OnInit {
   products:any[] = [];
   transactions:any[]=[];
   cart:any[]=[];
-  
+  searchQuery: string ='';
+  originalProductList: any[]=[];
   ngOnInit( ) {
     this.products = this.productService.product;
     this.transactions = this.transactionService.transactions;
@@ -70,4 +71,11 @@ export class OrderPage implements OnInit {
     }
   }
 
+  searchProduct() {
+    if (!this.searchQuery || this.searchQuery.trim() == '') {
+      this.products = this.originalProductList;
+    } else {
+      //this.products = this.productService.searchProduct(this.searchQuery);
+    }
+  }
 }
