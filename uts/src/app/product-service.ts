@@ -45,4 +45,14 @@ export class ProductService {
             quantity: 1
         });
     }
+
+    // Andrea add method get product berdasarkan id
+    getProductById(id:number){
+        for (let i in this.product){
+            if (this.product[i].id == id){
+                return this.product[i];
+            }
+        }
+        return null;
+    }
 }
