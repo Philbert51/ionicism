@@ -17,6 +17,7 @@ export class CartPage implements OnInit {
   listOfProducts: any[] = [];
   activeTransaction: any;
   detailProducts: any[] = [];
+  total: number = 0;
   constructor(private route: ActivatedRoute,
     private productService: ProductService,
     private transactionService: TransactionService
@@ -36,6 +37,7 @@ export class CartPage implements OnInit {
       let id = this.listOfProducts[i].id;
       let product = this.productService.getProductById(id);
       this.detailProducts.push(product);
+      this.total += this.listOfProducts[i].subtotal;
       console.log(this.detailProducts);
     }
   }
@@ -139,5 +141,6 @@ export class CartPage implements OnInit {
   }
   confirmTransaction() {
     this.transactionService.confirmTransaction(this.id, this.listOfProducts);
+    this.transactionService.initializeTransaction();
   }
 }

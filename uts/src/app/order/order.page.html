@@ -11,9 +11,14 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-input (keyup)="searchProduct()" expand="block" fill="outline" labelPlacement="floating" type="text"
-    placeholder="Cari produk..." label="Cari produk..." [(ngModel)]="searchQuery"></ion-input>
+  <div class="stickUp">
+    <ion-input (keyup)="searchProduct()" expand="block" fill="outline" labelPlacement="floating" type="text"
+      placeholder="Cari produk..." label="Cari produk..." [(ngModel)]="searchQuery"></ion-input>
 
+    <ion-button routerLink="/order/cart/{{activeTransactionId()}}">
+      <ion-icon slot="start" name="cart"></ion-icon>
+      Lihat Keranjang</ion-button>
+  </div>
   <ion-card *ngFor="let product of products">
     <ion-grid>
       <ion-row>
@@ -39,10 +44,4 @@
       </ion-row>
     </ion-grid>
   </ion-card>
-
-
-  <ion-button routerLink="/order/cart/{{activeTransactionId()}}">
-    <ion-icon slot="start" name="cart"></ion-icon>
-    Lihat Keranjang</ion-button>
-
 </ion-content>

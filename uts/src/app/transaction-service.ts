@@ -31,7 +31,7 @@ export class TransactionService {
     transactions: Transactions[] = [
         {
             id: 1,
-            tanggal: new Date('2026-10-06'), // YYYY-MM-DD
+            tanggal: new Date('2026-10-07'), // YYYY-MM-DD
             totalTransaksi: 1999.97,
             isCompleted: true,
             produk: [
@@ -91,13 +91,16 @@ export class TransactionService {
     ];
 
     // Andrea add get methods
-    getTransactionToday(): Transactions[] {
+     getTransactionToday(): Transactions[] {
         var result: Transactions[] = [];
         var today = new Date();
         for (let i in this.transactions) {
-            let date = this.transactions[i].tanggal;
+            //abi add checking if the transaction is completed
+            if(this.transactions[i].isCompleted){
+                let date = this.transactions[i].tanggal;
             if (date.getDate() == today.getDate() && date.getMonth() == today.getMonth() && date.getFullYear() == today.getFullYear()) {
                 result.push(this.transactions[i]);
+            }
             }
         }
         return result;
@@ -328,16 +331,14 @@ export class TransactionService {
   }
   confirmTransaction(p_transactionId: number, p_produk:any[]){
     let activeTransaksi = this.getTransactionById(p_transactionId);
-    
+    let length = p_produk.length;
     if(activeTransaksi != null){
-    for(let i = 0; i < p_produk.length; i++){
-        activeTransaksi.produk.push(p_produk[i]);
+    for(let i = 0; i < length; i++){
+        //activeTransaksi.produk.push(p_produk[i]);
         activeTransaksi.totalTransaksi += p_produk[i].subtotal;
     }
      activeTransaksi.isCompleted = true;
      
     }
-   
-    
   }
 }

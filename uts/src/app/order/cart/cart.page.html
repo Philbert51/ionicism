@@ -10,6 +10,12 @@
       <ion-title size="large">cart</ion-title>
     </ion-toolbar>
   </ion-header>
+  <div class="stickUp">
+    <ion-label>Total: {{total}}</ion-label>
+    <div>
+    <ion-button (click)="confirmTransaction()" color="success" >KONFIRMASI TRANSAKSI</ion-button>
+    </div>
+  </div>
   <div *ngFor="let produk of listOfProducts; let i = index">
     <ion-card class="card-style">
         <ion-item>
@@ -35,5 +41,5 @@
       <ion-button (click)="removeProduk(produk.id)">REMOVE</ion-button>
     </ion-card>
   </div>
-  <ion-button (click)="confirmTransaction()" color="success">KONFIRMASI TRANSAKSI</ion-button>
+ 
 </ion-content>
