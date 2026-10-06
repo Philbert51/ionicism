@@ -28,76 +28,49 @@ export class OrderPage implements OnInit {
     this.cart = this.cartService.cart;
   }
   quantity(p_productId:number): number{
-    let produk;
-      for(let i = 0; i < this.products.length; i++){
-        if(this.products[i].id == p_productId){
-          produk = this.products[i];
-          break;
-        }
-      }
-    let jumlah = produk.quantity;
+    let p = this.productService.getProductById(p_productId);
+    let jumlah = p!!.quantity;
     return jumlah;
   }
   isMaxed(p_productId:number):boolean{
-    let produk;
-      for(let i = 0; i < this.products.length; i++){
-        if(this.products[i].id == p_productId){
-          produk = this.products[i];
-          break;
-        }
-      }
-    let qty =  produk.quantity;
-    let produkStok = produk.stock;
+    let p = this.productService.getProductById(p_productId);
+    let qty =  p!!.quantity;
+    let produkStok = p!!.stock;
     if(qty < produkStok ) return false;
     else return true;
   }
   TambahKeKeranjang( p_productId: number, p_productPrice: number){
-      let produk;
-      for(let i = 0; i < this.products.length; i++){
-        if(this.products[i].id == p_productId){
-          produk = this.products[i];
-          break;
-        }
-      }
-      let subtotal: number = produk.sellingPrice * produk.quantity;
+      let p = this.productService.getProductById(p_productId);
+      let subtotal: number = p!!.sellingPrice * p!!.quantity;
       this.transactionService.initializeTransaction();
       this.transactionService.addToProduct(p_productId,
-      produk.purchasePrice,
-      produk.sellingPrice,
-      produk.quantity,
+      p!!.purchasePrice,
+      p!!.sellingPrice,
+      p!!.quantity,
       subtotal
     );
    
-    if(produk.quantity <= produk.stock){
-       produk.stock -= produk.quantity;
+    if(p!!.quantity <= p!!.stock){
+       p!!.stock -= p!!.quantity;
     }
 
+    if(p!!.quantity > p!!.stock){
+      p!!.quantity = p!!.stock;
+    }
   }
   TambahQty(p_productId: number){
-     let produk;
-      for(let i = 0; i < this.products.length; i++){
-        if(this.products[i].id == p_productId){
-          produk = this.products[i];
-          break;
-        }
-      }
-    let qty = produk.quantity;
+     let p = this.productService.getProductById(p_productId);
+    let qty = p!!.quantity;
 
-    if(qty < produk.stock){
-      produk.quantity++;
+    if(qty < p!!.stock){
+      p!!.quantity++;
     }
   }
   KurangQty(p_productId: number){
-    let produk;
-      for(let i = 0; i < this.products.length; i++){
-        if(this.products[i].id == p_productId){
-          produk = this.products[i];
-          break;
-        }
-      }
-    let qty = produk.quantity;
+    let p = this.productService.getProductById(p_productId);
+    let qty = p!!.quantity;
     if(qty > 0){
-      produk.quantity--;
+      p!!.quantity--;
     }
     else{
       qty = qty;
@@ -105,14 +78,8 @@ export class OrderPage implements OnInit {
   }
 
   isStockEmpty(p_productId: number): Boolean{
-    let produk;
-      for(let i = 0; i < this.products.length; i++){
-        if(this.products[i].id == p_productId){
-          produk = this.products[i];
-          break;
-        }
-      }
-      if(produk.stock == 0) return true;
+      let p = this.productService.getProductById(p_productId);
+      if(p!!.stock == 0) return true;
       else return false;
   }
   searchProduct() {

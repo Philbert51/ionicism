@@ -26,6 +26,7 @@
           </ion-item>
             <p>{{product.description}}</p>
           <p>Harga: {{product.sellingPrice}}</p>
+          <p>Stok: {{product.stock}}</p>
           <ion-button (click)="KurangQty(product.id)"><ion-icon name="remove-outline"></ion-icon> </ion-button>
           <ion-label> {{quantity(product.id)}} </ion-label>
           <ion-button (click)="TambahQty(product.id)" [disabled]="isMaxed(product.id)"><ion-icon name="add-outline"></ion-icon> </ion-button>

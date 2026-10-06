@@ -10,21 +10,27 @@
       <ion-title size="large">cart</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-label>{{listOfProducts.length}}</ion-label>
-  <div *ngFor="let item of listOfProducts">
-    <ion-card>
-      <ion-list>
+  <div *ngFor="let produk of listOfProducts">
+    <ion-card class="card-style">
+      <div *ngFor="let p of detailProducts">
         <ion-item>
-          <ion-label>Id Produk: {{item.id}}</ion-label>
+          <ion-img [src]="p.imageUrl" class="img-box"></ion-img>
+          <div>
+            <h1>{{p.name}}</h1>
+          </div>
         </ion-item>
-        <ion-item>
-          <ion-label>Quantity: {{item.quantity}}</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>{{item.subtotal}}</ion-label>
-        </ion-item>
-      </ion-list>
-      </ion-card>
+      </div>
+      <ion-item>
+        <ion-label>Id Produk: {{produk.id}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Quantity: {{produk.quantity}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{produk.subtotal}}</ion-label>
+      </ion-item>
+
+    </ion-card>
   </div>
   <ion-button color="success">KONFIRMASI TRANSAKSI</ion-button>
 </ion-content>
