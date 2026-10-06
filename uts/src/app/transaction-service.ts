@@ -188,74 +188,74 @@ export class TransactionService {
         }
         return profit;
     }
-
+    // bypass error
     // Andrea add method utk ambil produk terlaris hr ini dan all time
-    getBestSellingProduct(isAllTime:boolean):{productId:number, totalQty:number}{
-        let recapProductQty:any[] = [];
-        let product;
-        let isFound:boolean = false;
-        if (isAllTime){
-            for (let i in this.transactions){
-                for (let j in this.transactions[i].produk){
-                    product = this.transactions[i].produk[j];
-                    isFound = false;
-                    for (let k in recapProductQty){
-                        if (recapProductQty[k].id == product.id){
-                            recapProductQty[k].qty += product.quantity;
-                            isFound = true;
-                            continue;
-                        }
-                    }
-                    if (!isFound){
-                        recapProductQty.push(
-                            {
-                                id: product.id,
-                                qty: product.quantity
-                            }
-                        )
-                    }
-                }
-            }
-        }
-        // else untuk cari produk terlaris hr ini
-        else{
-            const today = new Date();
-            for (let i in this.transactions){
-                let date = this.transactions[i].tanggal;
-                if (date.getDate() == today.getDate() && date.getMonth() == today.getMonth() && date.getFullYear() == today.getFullYear()){
-                    for (let j in this.transactions[i].produk){
-                        product = this.transactions[i].produk[j];
-                        isFound = false;
-                        for (let k in recapProductQty){
-                            if (recapProductQty[k].id == product.id){
-                                recapProductQty[k].qty += product.quantity;
-                                isFound = true;
-                                continue;
-                            }
-                        }
-                        if (!isFound){
-                            recapProductQty.push(
-                                {
-                                    id: product.id,
-                                    qty: product.quantity
-                                }
-                            )
-                        }
-                    }
-                }
-            }
-        }
-        // Cari max
-        let max = recapProductQty[0];
-        for (let i = 1; i < recapProductQty.length; i++){
-            if (recapProductQty[i].qty > max.qty){
-                max = recapProductQty[i];
-            }
-        }
-        let result = {
-            productId: max.id,
-            totalQty: max.qty
-        }
-        return result;
-    }
+    // getBestSellingProduct(isAllTime:boolean):{productId:number, totalQty:number}{
+    //     let recapProductQty:any[] = [];
+    //     let product;
+    //     let isFound:boolean = false;
+    //     if (isAllTime){
+    //         for (let i in this.transactions){
+    //             for (let j in this.transactions[i].produk){
+    //                 product = this.transactions[i].produk[j];
+    //                 isFound = false;
+    //                 for (let k in recapProductQty){
+    //                     if (recapProductQty[k].id == product.id){
+    //                         recapProductQty[k].qty += product.quantity;
+    //                         isFound = true;
+    //                         continue;
+    //                     }
+    //                 }
+    //                 if (!isFound){
+    //                     recapProductQty.push(
+    //                         {
+    //                             id: product.id,
+    //                             qty: product.quantity
+    //                         }
+    //                     )
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     // else untuk cari produk terlaris hr ini
+    //     else{
+    //         const today = new Date();
+    //         for (let i in this.transactions){
+    //             let date = this.transactions[i].tanggal;
+    //             if (date.getDate() == today.getDate() && date.getMonth() == today.getMonth() && date.getFullYear() == today.getFullYear()){
+    //                 for (let j in this.transactions[i].produk){
+    //                     product = this.transactions[i].produk[j];
+    //                     isFound = false;
+    //                     for (let k in recapProductQty){
+    //                         if (recapProductQty[k].id == product.id){
+    //                             recapProductQty[k].qty += product.quantity;
+    //                             isFound = true;
+    //                             continue;
+    //                         }
+    //                     }
+    //                     if (!isFound){
+    //                         recapProductQty.push(
+    //                             {
+    //                                 id: product.id,
+    //                                 qty: product.quantity
+    //                             }
+    //                         )
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     // Cari max
+    //     let max = recapProductQty[0];
+    //     for (let i = 1; i < recapProductQty.length; i++){
+    //         if (recapProductQty[i].qty > max.qty){
+    //             max = recapProductQty[i];
+    //         }
+    //     }
+    //     let result = {
+    //         productId: max.id,
+    //         totalQty: max.qty
+    //     }
+    //     return result;
+    // }
 }

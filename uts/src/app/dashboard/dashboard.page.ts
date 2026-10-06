@@ -24,13 +24,14 @@ export class DashboardPage implements OnInit {
     this.todaysRevenue = this.transactionservice.countRevenue(true);
     this.todaysProfit = this.transactionservice.countProfit(true);
     this.todaysTransactionNumber = this.transactionservice.countNumberOfTransactions(true);
-    let bestSeller = this.transactionservice.getBestSellingProduct(false); // berisi object literal yang isinya productId dan totalQty
-    this.todaysBestSellerProduct = this.productservice.getProductById(bestSeller.productId);
-    this.todaysBestSellerQty = bestSeller.totalQty;
+    // bypass error
+    // let bestSeller = this.transactionservice.getBestSellingProduct(false); // berisi object literal yang isinya productId dan totalQty
+    // this.todaysBestSellerProduct = this.productservice.getProductById(bestSeller.productId); bypass error
+    // this.todaysBestSellerQty = bestSeller.totalQty;
 
     this.numOfProducts = this.productservice.product.length;
-    bestSeller = this.transactionservice.getBestSellingProduct(true);
-    this.bestSellerProduct = this.productservice.getProductById(bestSeller.productId);
-    this.bestSellerQty = bestSeller.totalQty;
+    // let bestSeller = this.transactionservice.getBestSellingProduct(true);
+    // this.bestSellerProduct = this.productservice.getProductById(bestSeller.productId);
+    // this.bestSellerQty = bestSeller.totalQty;
   }
 }

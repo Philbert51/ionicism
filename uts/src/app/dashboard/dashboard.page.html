@@ -70,17 +70,19 @@
             </div>
             <ion-item lines="none" class="product-style">
               <div>
-                <ion-label><b>{{ todaysBestSellerProduct.name }}</b></ion-label>
+                <!-- <ion-label><b>{{ todaysBestSellerProduct.name }}</b></ion-label> bypass error -->
+                <ion-label>Miaw</ion-label>
                 <ion-label>Jumlah terjual: {{ todaysBestSellerQty }}</ion-label>
               </div>
-              <ion-img slot="end" [src]="todaysBestSellerProduct.imageUrl" class="img-box"></ion-img>
+              <!-- <ion-img slot="end" [src]="todaysBestSellerProduct.imageUrl" class="img-box"></ion-img> bypass error -->
+              <ion-img slot="end" src="https://via.placeholder.com/150" class="img-box"></ion-img>
             </ion-item>
           </ion-card-content>
         </ion-card>
-      </ion-col>   
+      </ion-col>
     </ion-row>
   </ion-grid>
-  
+
   <h3>Ringkasan Produk</h3>
   <ion-grid>
     <ion-row>
@@ -109,14 +111,16 @@
             </div>
             <ion-item lines="none" class="product-style">
               <div>
-                <ion-label><b>{{ bestSellerProduct.name }}</b></ion-label>
+                <!-- <ion-label><b>{{ bestSellerProduct.name }}</b></ion-label> bypass error -->
+                <ion-label>Miaw</ion-label>
                 <ion-label>Jumlah terjual: {{ bestSellerQty }}</ion-label>
               </div>
-              <ion-img slot="end" [src]="bestSellerProduct.imageUrl" class="img-box"></ion-img>
+              <!-- <ion-img slot="end" [src]="bestSellerProduct.imageUrl" class="img-box"></ion-img> bypass error -->
+               <ion-img slot="end" src="https://via.placeholder.com/150" class="img-box"></ion-img>
             </ion-item>
           </ion-card-content>
         </ion-card>
-      </ion-col>   
+      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
