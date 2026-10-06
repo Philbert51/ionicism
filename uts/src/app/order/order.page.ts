@@ -24,44 +24,77 @@ export class OrderPage implements OnInit {
   ngOnInit( ) {
     this.products = this.productService.product;
     this.transactions = this.transactionService.transactions;
+    this.originalProductList = this.productService.product;
     this.cart = this.cartService.cart;
   }
-  quantity(index:number): number{
-    let jumlah = this.products[index].quantity;
+  quantity(p_productId:number): number{
+    let produk;
+      for(let i = 0; i < this.products.length; i++){
+        if(this.products[i].id == p_productId){
+          produk = this.products[i];
+          break;
+        }
+      }
+    let jumlah = produk.quantity;
     return jumlah;
   }
-  isMaxed(index:number):boolean{
-    let qty =  this.products[index].quantity;
-    let produkStok = this.products[index].stock;
+  isMaxed(p_productId:number):boolean{
+    let produk;
+      for(let i = 0; i < this.products.length; i++){
+        if(this.products[i].id == p_productId){
+          produk = this.products[i];
+          break;
+        }
+      }
+    let qty =  produk.quantity;
+    let produkStok = produk.stock;
     if(qty < produkStok ) return false;
     else return true;
   }
   TambahKeKeranjang( p_productId: number, p_productPrice: number){
-      let subtotal: number = p_productPrice * this.products[p_productId - 1].quantity;
-     
+      let produk;
+      for(let i = 0; i < this.products.length; i++){
+        if(this.products[i].id == p_productId){
+          produk = this.products[i];
+          break;
+        }
+      }
+      let subtotal: number = produk.sellingPrice * produk.quantity;
       this.transactionService.initializeTransaction();
       this.transactionService.addToProduct(p_productId,
-      this.products[p_productId - 1].purchasePrice,
-      this.products[p_productId - 1].sellingPrice,
-      this.products[p_productId -1].quantity,
+      produk.purchasePrice,
+      produk.sellingPrice,
+      produk.quantity,
       subtotal
     );
    
-    if(this.products[p_productId -1].quantity <= this.products[p_productId - 1].stock){
-       this.products[p_productId - 1].stock -= this.products[p_productId -1].quantity;
+    if(produk.quantity <= produk.stock){
+       produk.stock -= produk.quantity;
     }
 
   }
-  TambahQty(index: number){
-    let produk = this.products[index];
+  TambahQty(p_productId: number){
+     let produk;
+      for(let i = 0; i < this.products.length; i++){
+        if(this.products[i].id == p_productId){
+          produk = this.products[i];
+          break;
+        }
+      }
     let qty = produk.quantity;
 
     if(qty < produk.stock){
       produk.quantity++;
     }
   }
-  KurangQty(index: number){
-    let produk = this.products[index];
+  KurangQty(p_productId: number){
+    let produk;
+      for(let i = 0; i < this.products.length; i++){
+        if(this.products[i].id == p_productId){
+          produk = this.products[i];
+          break;
+        }
+      }
     let qty = produk.quantity;
     if(qty > 0){
       produk.quantity--;
@@ -71,11 +104,22 @@ export class OrderPage implements OnInit {
     }
   }
 
+  isStockEmpty(p_productId: number): Boolean{
+    let produk;
+      for(let i = 0; i < this.products.length; i++){
+        if(this.products[i].id == p_productId){
+          produk = this.products[i];
+          break;
+        }
+      }
+      if(produk.stock == 0) return true;
+      else return false;
+  }
   searchProduct() {
     if (!this.searchQuery || this.searchQuery.trim() == '') {
       this.products = this.originalProductList;
     } else {
-      //this.products = this.productService.searchProduct(this.searchQuery);
+     this.products = this.productService.searchProduct(this.searchQuery);
     }
   }
 }

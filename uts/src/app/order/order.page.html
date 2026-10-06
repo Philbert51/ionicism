@@ -26,10 +26,10 @@
           </ion-item>
             <p>{{product.description}}</p>
           <p>Harga: {{product.sellingPrice}}</p>
-          <ion-button (click)="KurangQty(product.id - 1)"><ion-icon name="remove-outline"></ion-icon> </ion-button>
-          <ion-label> {{quantity(product.id-1)}} </ion-label>
-          <ion-button (click)="TambahQty(product.id - 1)" [disabled]="isMaxed(product.id - 1)"><ion-icon name="add-outline"></ion-icon> </ion-button>
-          <ion-button (click)="TambahKeKeranjang(product.id, product.sellingPrice)">
+          <ion-button (click)="KurangQty(product.id)"><ion-icon name="remove-outline"></ion-icon> </ion-button>
+          <ion-label> {{quantity(product.id)}} </ion-label>
+          <ion-button (click)="TambahQty(product.id)" [disabled]="isMaxed(product.id)"><ion-icon name="add-outline"></ion-icon> </ion-button>
+          <ion-button (click)="TambahKeKeranjang(product.id, product.sellingPrice)" [disabled]="isStockEmpty(product.id)">
             <ion-icon slot="start" name="cart"></ion-icon>
             Tambah ke Keranjang</ion-button>
         </ion-col>

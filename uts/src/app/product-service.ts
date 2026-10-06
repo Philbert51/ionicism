@@ -55,4 +55,14 @@ export class ProductService {
         }
         return null;
     }
+    searchProduct(searchQuery: string): any[] {
+    let tempProducts: any[] = [];
+    const regexCari = new RegExp(searchQuery, 'i');
+    for (let product of this.product) {
+      if (regexCari.test(product.name)) {
+        tempProducts.push(product);
+      }
+    }
+    return tempProducts;
+  }
 }
