@@ -12,6 +12,14 @@ const routes: Routes = [
         loadChildren: () => import('../dashboard/dashboard.module').then(m => m.DashboardPageModule)
       },
       {
+        path: 'order',
+        loadChildren: () => import('../order/order.module').then(m => m.OrderPageModule)
+      },
+      {
+        path: 'cart',
+        loadChildren: () => import('../cart/cart.module').then(m => m.CartPageModule)
+      },
+      {
         path: 'transactionhistory',
         loadChildren: () => import('../transactionhistory/transactionhistory.module').then(m => m.TransactionhistoryPageModule)
       },
