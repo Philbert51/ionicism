@@ -51,17 +51,20 @@ export class ProductPage implements OnInit {
   }
 
   deleteProduct(id: number) {
-    const deletedCard = document.querySelector("#product" + id) as HTMLElement;
-    const animation = this.animCtrl.create().addElement(deletedCard).duration(400).fromTo("transform", "translateX(0%)", "translateX(80%)").easing("ease-out").fromTo("opacity", 1, -1).easing("ease-in");
+    // const deletedCard = document.querySelector("#product" + id) as HTMLElement;
+    // const animation = this.animCtrl.create().addElement(deletedCard).duration(400).fromTo("transform", "translateX(0%)", "translateX(80%)").easing("ease-out").fromTo("opacity", 1, -1).easing("ease-in");
 
     if (confirm('Apakah Anda Yakin Ingin Menghapus ' + this.productService.getProductById(id)?.name + "?")) {
       this.productsLength--;
-      animation.play().then(() => {
-        this.productService.deleteProduct(id);
-        this.products = this.productService.product;
-        this.originalProductList = this.productService.product;
-        deletedCard.remove();
-      });
+      // animation.play().then(() => {
+      //   this.productService.deleteProduct(id);
+      //   this.products = this.productService.product;
+      //   this.originalProductList = this.productService.product;
+      //   deletedCard.remove();
+      // });
+      this.productService.deleteProduct(id);
+      this.products = this.productService.product;
+      this.originalProductList = this.productService.product;
     }
   }
 }

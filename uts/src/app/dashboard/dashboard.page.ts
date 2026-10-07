@@ -51,7 +51,7 @@ export class DashboardPage implements OnInit {
       this.todaysBestSellerQty = todaysBestSeller.totalQty;
     }
 
-    this.numOfProducts = this.productservice.product.length;
+    this.numOfProducts = this.productservice.getNotDeletedProductCount();
     let bestSeller = this.transactionservice.getBestSellingProduct(true);
     if (bestSeller == null) {
       this.adaAllTimeBestSeller = false;
@@ -61,6 +61,15 @@ export class DashboardPage implements OnInit {
       this.bestSellerProduct = this.productservice.getProductById(bestSeller.productId);
       this.bestSellerQty = bestSeller.totalQty;
     }
+  }
+
+  refreshData() {
+    return true;
+  }
+
+  getNotDeletedProductCount(): number {
+    this.numOfProducts = this.productservice.getNotDeletedProductCount();
+    return this.numOfProducts;
   }
 
   countItemsQtyTotal(): number {

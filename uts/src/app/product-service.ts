@@ -43,7 +43,7 @@ export class ProductService {
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs0J8EDGsqxeAME7LxeldTY9ZRKbXOnRdcgyC_YwKRsw&s=10',
       kategori: 3,
       quantity: 1,
-      isDeleted: false,
+      isDeleted: true,
     },
     {
       id: 2,
@@ -210,15 +210,15 @@ export class ProductService {
     return count;
   }
 
-  getNotDeletedProductList(): any[] {
-    let notDeletedProducts: any[] = [];
-    // for (let i = 0; i < this.product.length; i++) {
-    //   if (this.product[i].isDeleted === false) {
-    //     notDeletedProducts.push(this.product[i]);
-    //   }
-    // }
-    return notDeletedProducts;
-  }
+  // getNotDeletedProductList(): any[] {
+  //   let notDeletedProducts: any[] = [];
+  //   for (let i = 0; i < this.product.length; i++) {
+  //     if (this.product[i].isDeleted === false) {
+  //       notDeletedProducts.push(this.product[i]);
+  //     }
+  //   }
+  //   return notDeletedProducts;
+  // }
 
   // Andrea add method get product berdasarkan id
   getProductById(id: number) {

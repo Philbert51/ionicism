@@ -7,7 +7,8 @@
   </ion-toolbar>
 
   <div class="header-action">
-    <ion-button expand="block" class="ion-margin-bottom" routerLink="/order/cart/{{activeTransactionId()}}" [disabled]="isCartEmpty()">
+    <ion-button expand="block" class="ion-margin-bottom" routerLink="/order/cart/{{activeTransactionId()}}"
+      [disabled]="isCartEmpty()">
       <ion-icon slot="start" name="cart"></ion-icon>
       Lihat Keranjang</ion-button>
     <ion-input (keyup)="searchProduct()" expand="block" fill="outline" labelPlacement="floating" type="text"
@@ -28,47 +29,50 @@
     </ion-label>
   </div>
 
-  <ion-card *ngFor="let product of products" class="kartu-produk">
-    <ion-grid>
-      <ion-row>
-        <ion-col size="auto" class="ion-align-self-center">
-          <div *ngIf="product.imageUrl !== ''">
-            <ion-img [src]="product.imageUrl" alt="{{ product.name }}" class="img-kotak"></ion-img>
-          </div>
-          <div *ngIf="product.imageUrl === ''">
-            <img src="https://ubaya.cloud/no_image.jpg" alt="{{ product.name }}" class="img-kotak">
-          </div>
-        </ion-col>
-        <ion-col class="ion-align-self-center">
-          <div routerLink="/detail-product/{{product.id - 1}}">
-            <h3>{{ product.name }}</h3>
-            <div>
-              <h5>Stok: {{ product.stock }}</h5>
+  <div *ngFor="let product of products" class="kartu-produk">
+    <ion-card *ngIf="product.isDeleted === false">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="auto" class="ion-align-self-center">
+            <div *ngIf="product.imageUrl !== ''">
+              <ion-img [src]="product.imageUrl" alt="{{ product.name }}" class="img-kotak"></ion-img>
             </div>
-            <div class="ion-margin-top">
-              <h4>Rp.{{ product.sellingPrice }}</h4>
+            <div *ngIf="product.imageUrl === ''">
+              <img src="https://ubaya.cloud/no_image.jpg" alt="{{ product.name }}" class="img-kotak">
             </div>
-          </div>
-
-          <div class="product-actions ion-margin-top">
-            <div class="quantity-controls">
-              <ion-button (click)="KurangQty(product.id)" [disabled]="isOne(product.id)">
-                <ion-icon name="remove-outline"></ion-icon>
-              </ion-button>
-              <ion-label>{{ quantity(product.id) }}</ion-label>
-              <ion-button (click)="TambahQty(product.id)" [disabled]="isMaxed(product.id)">
-                <ion-icon name="add-outline"></ion-icon>
-              </ion-button>
+          </ion-col>
+          <ion-col class="ion-align-self-center">
+            <div routerLink="/detail-product/{{product.id - 1}}">
+              <h3>{{ product.name }}</h3>
+              <h3>{{product.isDeleted}}</h3>
+              <div>
+                <h5>Stok: {{ product.stock }}</h5>
+              </div>
+              <div class="ion-margin-top">
+                <h4>Rp.{{ product.sellingPrice }}</h4>
+              </div>
             </div>
 
-            <ion-button (click)="TambahKeKeranjang(product.id, product.sellingPrice)"
-              [disabled]="isStockEmpty(product.id)" class="add-cart-button">
-              <ion-icon slot="start" name="cart"></ion-icon>
-              Tambah ke Keranjang
-            </ion-button>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
+            <div class="product-actions ion-margin-top">
+              <div class="quantity-controls">
+                <ion-button (click)="KurangQty(product.id)" [disabled]="isOne(product.id)">
+                  <ion-icon name="remove-outline"></ion-icon>
+                </ion-button>
+                <ion-label>{{ quantity(product.id) }}</ion-label>
+                <ion-button (click)="TambahQty(product.id)" [disabled]="isMaxed(product.id)">
+                  <ion-icon name="add-outline"></ion-icon>
+                </ion-button>
+              </div>
+
+              <ion-button (click)="TambahKeKeranjang(product.id, product.sellingPrice)"
+                [disabled]="isStockEmpty(product.id)" class="add-cart-button">
+                <ion-icon slot="start" name="cart"></ion-icon>
+                Tambah ke Keranjang
+              </ion-button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
 </ion-content>
