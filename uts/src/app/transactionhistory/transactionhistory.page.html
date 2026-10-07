@@ -10,6 +10,11 @@
       <ion-title size="large">Riwayat Transaksi</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-button expand="block" color="primary" class="ion-margin" routerLink="/transactionhistory/add" (click)="addTransaction()">
+    <ion-icon name="add-outline" slot="start"></ion-icon>
+    Tambah Transaksi Baru
+  </ion-button>
   
   <ion-select label="Periode" labelPlacement="stacked" placeholder="Pilih Filter" [(ngModel)]="jenisTampilan" class="select-style"
     (ionChange)="changePeriodFilter()" color="secondary">

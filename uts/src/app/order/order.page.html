@@ -1,6 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>order</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/transactionhistory" icon="arrow-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Transaksi Baru</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -15,7 +18,7 @@
     <ion-input (keyup)="searchProduct()" expand="block" fill="outline" labelPlacement="floating" type="text"
       placeholder="Cari produk..." label="Cari produk..." [(ngModel)]="searchQuery"></ion-input>
 
-    <ion-button routerLink="/order/cart/{{activeTransactionId()}}">
+    <ion-button expand="block" class="ion-margin-top" routerLink="/order/cart/{{activeTransactionId()}}">
       <ion-icon slot="start" name="cart"></ion-icon>
       Lihat Keranjang</ion-button>
   </div>
@@ -29,7 +32,6 @@
           <ion-item routerLink="/detail-product/{{product.id - 1}}">
             <h2>{{product.name}}</h2>
           </ion-item>
-          <p>{{product.description}}</p>
           <p>Harga: {{product.sellingPrice}}</p>
           <p>Stok: {{product.stock}}</p>
           <ion-button (click)="KurangQty(product.id)"><ion-icon name="remove-outline"></ion-icon> </ion-button>
