@@ -36,7 +36,7 @@
 
   <div *ngIf="products != []">
     <ion-card *ngFor="let product of products" [id] = "'product' + product.id" class="kartu-produk">
-      <ion-grid>
+      <ion-grid *ngIf="product.isDeleted == false">
         <ion-row>
           <ion-col size="auto" class="ion-align-self-center">
             <div *ngIf="product.imageUrl !== ''">

@@ -11,8 +11,8 @@ import { TransactionService } from '../../transaction-service';
 export class CartPage implements OnInit {
 
   id: number | any = null; // comes from the route as a string, even though it is typed as a number
-  products: any[] = [];
-  transactions: any[] = [];
+  products: any[] = []; // all products from the product service
+  transactions: any[] = []; // same array object as the service, not a copy
 
   listOfProducts: any[] = [];
   detailProducts: any[] = [];
@@ -38,7 +38,9 @@ export class CartPage implements OnInit {
     this.products = this.productService.product;
 
     // finds this cart by its id, nothing is found when the id is 0
+
     let t = this.transactionService.getTransactionById(this.id);
+
 
     // same array as the transaction, so an item removed in the service also leaves this list
 
@@ -47,12 +49,15 @@ export class CartPage implements OnInit {
       console.log(this.listOfProducts);
     }
 
+
     // fills in the product details and the total for the items found above
+
     this.refreshCart();
-    console.log(this.id);
-    console.log(this.transactions[this.id]);
 
   }
+
+  // rebuilds the product details and the total from the items in the cart
+  // the details are filled in the same order as the items, the template reads them by position
 
   refreshCart() {
     this.detailProducts = [];
@@ -124,7 +129,9 @@ export class CartPage implements OnInit {
         }
       }
       // refreshes the total and the details after the quantity changed
+
       this.refreshCart();
+
     }
   }
 
@@ -142,7 +149,9 @@ export class CartPage implements OnInit {
         }
       }
       // refreshes the total and the details after the quantity changed
+
       this.refreshCart();
+
     }
   }
 
@@ -165,7 +174,9 @@ export class CartPage implements OnInit {
   // the real removal happens in the transaction service
   // warning: the service removes this product id from every transaction that contains it, not only this cart
   removeProduk(p_productId: number) {
+
     let produk = this.productService.getProductById(p_productId);
+
     let transaksi = this.transactionService.getTransactionById(this.id);
     if (produk != null && transaksi != null) {
       for (let i = 0; i < transaksi.produk.length; i++) {
@@ -178,14 +189,17 @@ export class CartPage implements OnInit {
           this.transactionService.deleteProduk(p_productId);
 
           // gives the removed quantity back to the stock
+
           produk.stock += qty;
+
         }
       }
 
       // refreshes the total and the details, the list is now one item shorter
 
       this.refreshCart();
-      console.log(this.transactions[this.id]);
+
+      console.log(this.transactions[this.id]); // debug output only
     }
   }
 

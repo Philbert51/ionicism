@@ -43,6 +43,7 @@ export class ProductService {
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs0J8EDGsqxeAME7LxeldTY9ZRKbXOnRdcgyC_YwKRsw&s=10',
       kategori: 3,
       quantity: 1,
+      isDeleted: false,
     },
     {
       id: 2,
@@ -55,6 +56,7 @@ export class ProductService {
         'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/110/MTA-167369951/br-m036969-00220_vga-asus-amd-radeon-rx-7900-xtx-tuf-gaming-oc-24gb-gddr6_full05-8616462f.jpg',
       kategori: 3,
       quantity: 1,
+      isDeleted: false,
     },
     {
       id: 3,
@@ -67,6 +69,7 @@ export class ProductService {
         'https://kkomputer.com/7074/intel-core-i9-13900k-58-ghz-24c32t-lga-1700-rl.jpg',
       kategori: 3,
       quantity: 1,
+      isDeleted: false,
     },
     {
       id: 4,
@@ -78,6 +81,7 @@ export class ProductService {
       imageUrl: '',
       kategori: 1,
       quantity: 1,
+      isDeleted: false,
     },
     {
       id: 5,
@@ -89,6 +93,7 @@ export class ProductService {
       imageUrl: '',
       kategori: 1,
       quantity: 1,
+      isDeleted: false,
     },
     {
       id: 6,
@@ -100,6 +105,7 @@ export class ProductService {
       imageUrl: '',
       kategori: 1,
       quantity: 1,
+      isDeleted: false,
     },
     {
       id: 7,
@@ -111,6 +117,7 @@ export class ProductService {
       imageUrl: '',
       kategori: 1,
       quantity: 1,
+      isDeleted: false,
     },
     {
       id: 8,
@@ -122,6 +129,7 @@ export class ProductService {
       imageUrl: '',
       kategori: 1,
       quantity: 1,
+      isDeleted: false,
     },
     {
       id: 9,
@@ -133,6 +141,7 @@ export class ProductService {
       imageUrl: '',
       kategori: 1,
       quantity: 1,
+      isDeleted: false,
     },
     {
       id: 10,
@@ -144,6 +153,7 @@ export class ProductService {
       imageUrl: '',
       kategori: 1,
       quantity: 1,
+      isDeleted: false,
     },
     {
       id: 11,
@@ -155,8 +165,16 @@ export class ProductService {
       imageUrl: '',
       kategori: 1,
       quantity: 1,
+      isDeleted: false,
     },
   ];
+
+  getLastProductId(): number {
+    if (this.product.length === 0) {
+      return 0; // Jika tidak ada produk, kembalikan 0 sebagai ID terakhir
+    }
+    return this.product[this.product.length - 1].id;
+  }
 
   addProduct(
     p_name: string,
@@ -168,7 +186,7 @@ export class ProductService {
     p_kategori: number
   ) {
     this.product.push({
-      id: this.product.length + 1,
+      id: this.getLastProductId() + 1,
       name: p_name,
       description: p_description,
       stock: p_stock,
@@ -176,9 +194,30 @@ export class ProductService {
       purchasePrice: p_purchasePrice,
       imageUrl: p_imageUrl,
       kategori: p_kategori,
+      isDeleted: false,
       quantity: 1,
     });
     alert('Data Berhasil Disimpan!');
+  }
+
+  getNotDeletedProductCount(): number {
+    let count = 0;
+    for (let i = 0; i < this.product.length; i++) {
+      if (this.product[i].isDeleted === false) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  getNotDeletedProductList(): any[] {
+    let notDeletedProducts: any[] = [];
+    // for (let i = 0; i < this.product.length; i++) {
+    //   if (this.product[i].isDeleted === false) {
+    //     notDeletedProducts.push(this.product[i]);
+    //   }
+    // }
+    return notDeletedProducts;
   }
 
   // Andrea add method get product berdasarkan id
@@ -230,7 +269,7 @@ export class ProductService {
   deleteProduct(id: number) {
     for (let i = 0; i < this.product.length; i++) {
       if (this.product[i].id == id) {
-        this.product.splice(i, 1);
+        this.product[i].isDeleted = true;
         break;
       }
     }
