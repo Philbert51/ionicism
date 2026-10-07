@@ -194,7 +194,6 @@ export class CartPage implements OnInit {
     if (t != null) {
       if (t.produk.length != 0) {
         this.transactionService.confirmTransaction(this.id, this.listOfProducts);
-        this.transactionService.initializeTransaction();
         alert("Berhasil menambahkan transaksi");
       }
       else {

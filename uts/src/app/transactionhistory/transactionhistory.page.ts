@@ -49,6 +49,10 @@ export class TransactionhistoryPage implements OnInit {
     }
   }
 
+  ionViewDidEnter(){
+    this.changePeriodFilter();
+  }
+  
   yearBefore() {
     this.filterTahun--;
     this.changePeriodFilter();
