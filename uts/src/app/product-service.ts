@@ -158,6 +158,13 @@ export class ProductService {
     },
   ];
 
+  getLastProductId(): number {
+    if (this.product.length === 0) {
+      return 0; // Jika tidak ada produk, kembalikan 0 sebagai ID terakhir
+    }
+    return this.product[this.product.length - 1].id;
+  }
+
   addProduct(
     p_name: string,
     p_description: string,
@@ -168,7 +175,7 @@ export class ProductService {
     p_kategori: number
   ) {
     this.product.push({
-      id: this.product.length + 1,
+      id: this.getLastProductId() + 1,
       name: p_name,
       description: p_description,
       stock: p_stock,
