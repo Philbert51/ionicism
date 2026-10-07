@@ -200,6 +200,26 @@ export class ProductService {
     alert('Data Berhasil Disimpan!');
   }
 
+  getNotDeletedProductCount(): number {
+    let count = 0;
+    for (let i = 0; i < this.product.length; i++) {
+      if (this.product[i].isDeleted === false) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  getNotDeletedProductList(): any[] {
+    let notDeletedProducts: any[] = [];
+    // for (let i = 0; i < this.product.length; i++) {
+    //   if (this.product[i].isDeleted === false) {
+    //     notDeletedProducts.push(this.product[i]);
+    //   }
+    // }
+    return notDeletedProducts;
+  }
+
   // Andrea add method get product berdasarkan id
   getProductById(id: number) {
     for (let i in this.product) {

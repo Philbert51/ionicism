@@ -29,8 +29,7 @@ export class ProductPage implements OnInit {
     }
     this.products = this.productService.product;
     this.originalProductList = this.productService.product;
-    this.productsLength = this.products.length;
-
+    this.productsLength = this.productService.getNotDeletedProductCount();
   }
 
   ionViewDidEnter() {
@@ -47,6 +46,10 @@ export class ProductPage implements OnInit {
     }
   }
 
+  getProductCount(): number {
+    return this.productService.getNotDeletedProductCount();
+  }
+
   deleteProduct(id: number) {
     const deletedCard = document.querySelector("#product" + id) as HTMLElement;
     const animation = this.animCtrl.create().addElement(deletedCard).duration(400).fromTo("transform", "translateX(0%)", "translateX(80%)").easing("ease-out").fromTo("opacity", 1, -1).easing("ease-in");
@@ -60,9 +63,5 @@ export class ProductPage implements OnInit {
         deletedCard.remove();
       });
     }
-  }
-
-  displayDetail(id: number) {
-    alert('meow');
   }
 }
