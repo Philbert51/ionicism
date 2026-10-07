@@ -16,8 +16,12 @@
     </ion-toolbar>
   </ion-header>
 
-
-  <ion-text color="primary"><h1>Hello, {{username}}!</h1></ion-text>
+  <ion-button expand="block" (click)="ngOnInit()" class="ion-margin" color="secondary">
+    Refresh
+  </ion-button>
+  <ion-text color="primary">
+    <h1>Hello, {{username}}!</h1>
+  </ion-text>
 
   <h3>Penjualan Hari Ini</h3>
   <ion-grid>
@@ -31,13 +35,13 @@
             </div>
             <div class="card-number">
               <!-- replace koma agar dengan tanda koma -->
-              <ion-text>Rp {{ todaysRevenue | number}}</ion-text>
+              <ion-text>Rp{{ todaysRevenue | number}}</ion-text>
             </div>
           </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
-  
+
     <ion-row>
       <ion-col>
         <ion-card class="card-style">
@@ -47,7 +51,7 @@
               <ion-text>Keuntungan</ion-text>
             </div>
             <div class="card-number">
-              <ion-text>Rp {{ todaysProfit | number}}</ion-text>
+              <ion-text>Rp{{ todaysProfit | number}}</ion-text>
             </div>
           </ion-card-content>
         </ion-card>
@@ -118,7 +122,7 @@
               <ion-text>Jumlah Produk di Toko</ion-text>
             </div>
             <div class="card-number">
-              <ion-text>{{ numOfProducts }}</ion-text>
+              <ion-text>{{ getNotDeletedProductCount() }}</ion-text>
             </div>
           </ion-card-content>
         </ion-card>

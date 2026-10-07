@@ -1,31 +1,36 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [
+// Perhatiannnn
+// Jika mencari modul router asli, ke bagian tabs/tabs-routing.module.ts, karena semua halaman berada di dalam tab dan dimuat secara lazy dari modul tab. 
+// Modul ini hanya mendaftarkan rute utama aplikasi, dan semua halaman berada di dalam tab.
+const routes: Routes = [ // daftar rute utama aplikasi, dicocokkan dari atas ke bawah
   {
+    // alamat kosong langsung dialihkan ke halaman login
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'
   },
   {
+    // halaman login dimuat secara lazy dari modulnya sendiri
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
   {
+    // semua halaman lain berada di dalam tab dan dimuat secara lazy dari modul tab
     path: '',
-    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
-  },
-  {
-    path: 'profile',
-    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   }
-
 ];
 
+// modul routing utama aplikasi
 @NgModule({
   imports: [
+    // preloadallmodules membuat semua modul lazy dimuat di latar belakang setelah aplikasi berjalan
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
   ],
+
+  // agar direktif router bisa dipakai oleh modul yang mengimpor modul ini
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

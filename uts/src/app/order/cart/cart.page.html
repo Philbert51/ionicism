@@ -1,0 +1,49 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/order" icon="arrow-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Keranjang</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Keranjang</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div class="stickUp">
+    <ion-label>Total: {{total}}</ion-label>
+    <div>
+      <ion-button (click)="confirmTransaction()" color="success" routerLink="/transactionhistory/">KONFIRMASI
+        TRANSAKSI</ion-button>
+    </div>
+  </div>
+  <div *ngFor="let produk of listOfProducts; let i = index">
+    <ion-card class="card-style">
+      <div>
+        <ion-item>
+          <ion-img *ngIf="detailProducts[i].imageUrl != ''" [src]="detailProducts[i].imageUrl" class="img-box"></ion-img>
+          <ion-img *ngIf="detailProducts[i].imageUrl == ''" src="https://ubaya.cloud/no_image.jpg" class="img-box"></ion-img>
+          <div>
+            <h1>{{detailProducts[i].name}}</h1>
+            <ion-label>Jumlah: {{produk.quantity}}</ion-label>
+            <ion-label>Subtotal: Rp.{{produk.subtotal}}</ion-label>
+          </div>
+        </ion-item>
+        <ion-row class="buttonQuantity">
+          <ion-button (click)="min(produk.id)" [disabled]="isOne(produk.id)">
+            <ion-icon name="remove-outline"></ion-icon>
+            </ion-button>
+            <ion-button (click)="plus(produk.id)" [disabled]="isMaxed(produk.id)">
+              <ion-icon name="add-outline"></ion-icon>
+            </ion-button>
+            <ion-button (click)="removeProduk(produk.id)">REMOVE</ion-button>
+        </ion-row>
+
+      </div>
+    </ion-card>
+  </div>
+
+</ion-content>

@@ -1,0 +1,93 @@
+// .stickUp {
+//   position: sticky;
+//   top: 0;
+//   z-index: 10;
+//   background: rgb(0, 0, 1, 0.5);
+//   padding: 20px 10px; //atas bawah, kanan kiri
+// }
+
+.header-action {
+  margin: 1rem 1rem 1rem 1rem;
+}
+
+.img-kotak {
+  aspect-ratio: 1/1;
+  object-fit: contain;
+  object-position: center;
+  background-color: #ffffff;
+  max-height: 150px;
+  max-width: 150px;
+}
+
+.search-box {
+  color: var(--ion-color-dark);
+}
+
+h3,
+h4,
+h5 {
+  margin: 0.3rem;
+}
+
+h4 {
+  font-size: 1.3rem;
+}
+
+h5 {
+  font-size: 1.1rem;
+}
+
+.info-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin-top: 2rem;
+}
+
+.info-container h1 {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.product-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: nowrap;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: 0.15rem;
+}
+
+.quantity-controls ion-button {
+  margin: 0;
+}
+
+.quantity-controls ion-label {
+  min-width: 1.5rem;
+  margin: 0 0.15rem;
+  text-align: center;
+}
+
+.add-cart-button {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  margin-left: 1rem;
+}
+
+.kartu-produk {
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  // padding: 10px;
+}
+
+ion-header {
+  background-color: var(--ion-background-color);
+}

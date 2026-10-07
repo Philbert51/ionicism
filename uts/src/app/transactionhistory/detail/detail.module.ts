@@ -8,13 +8,17 @@ import { DetailPageRoutingModule } from './detail-routing.module';
 
 import { DetailPage } from './detail.page';
 
+// modul halaman detail transaksi, mengumpulkan semua yang dibutuhkan halaman ini
 @NgModule({
+  // commonmodule untuk ngif dan ngfor, formsmodule untuk ngmodel, ionicmodule untuk komponen ionic, lalu modul routing milik halaman ini
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     DetailPageRoutingModule
   ],
+
+  // komponen halaman yang dimiliki modul ini, harus dideklarasikan supaya bisa dipakai di template
   declarations: [DetailPage]
 })
 export class DetailPageModule {}

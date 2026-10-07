@@ -17,7 +17,8 @@
 
   <div class="profile-container">
     <!--src is from url for live update to see the profile picture change in real time -->
-    <div class="profile-picture-container"><ion-avatar class="profile-picture"><ion-img [src]="url"
+    <div class="profile-picture-container"><ion-avatar class="profile-picture"><ion-img 
+      [src]="isValid() ? url : 'https://ubaya.cloud/no_image.jpg' "
           alt="user profile picture"></ion-img></ion-avatar></div>
 
     <ion-label class="judul">Profile</ion-label>
@@ -41,6 +42,8 @@
 
         <ion-chip *ngIf="isEmptyUsername" class="error-chip"><ion-text><ion-icon class="center"
               name="close"></ion-icon>Username is empty!</ion-text></ion-chip>
+        <ion-chip *ngIf="!isValid()" class="error-chip"><ion-text><ion-icon class="center"
+              name="close"></ion-icon>Invalid Image URL!</ion-text></ion-chip>
 
         <ion-button expand="block" shape="round" class="profile-btn" (click)="saveProfile()">
           Save profile

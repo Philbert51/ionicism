@@ -13,7 +13,7 @@
     </ion-button>
 
     <ion-input (keyup)="searchProduct()" expand="block" fill="outline" labelPlacement="floating" type="text"
-      placeholder="Cari produk..." label="Cari produk..." [(ngModel)]="searchQuery"></ion-input>
+      placeholder="Cari produk..." label="Cari produk..." [(ngModel)]="searchQuery" class="search-box"></ion-input>
   </div>
 </ion-header>
 
@@ -35,57 +35,59 @@
   </div>
 
   <div *ngIf="products != []">
-    <ion-card *ngFor="let product of products" [id] = "'product' + product.id" class="kartu-produk">
-      <ion-grid>
-        <ion-row>
-          <ion-col size="auto" class="ion-align-self-center">
-            <div *ngIf="product.imageUrl !== ''">
-              <ion-img [src]="product.imageUrl" alt="{{ product.name }}" class="img-kotak"></ion-img>
-            </div>
-            <div *ngIf="product.imageUrl === ''">
-              <img src="https://ubaya.cloud/no_image.jpg" alt="{{ product.name }}" class="img-kotak">
-            </div>
-          </ion-col>
+    <div *ngFor="let product of products" [id]="'product' + product.id">
+      <ion-card *ngIf="product.isDeleted == false" class="kartu-produk">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="auto" class="ion-align-self-center">
+              <div *ngIf="product.imageUrl !== ''">
+                <ion-img [src]="product.imageUrl" alt="{{ product.name }}" class="img-kotak"></ion-img>
+              </div>
+              <div *ngIf="product.imageUrl === ''">
+                <img src="https://ubaya.cloud/no_image.jpg" alt="{{ product.name }}" class="img-kotak">
+              </div>
+            </ion-col>
 
-          <ion-col class="ion-align-self-center">
-            <div>
-              <h3>{{ product.name }}</h3>
+            <ion-col class="ion-align-self-center">
               <div>
-                <h5>Stok: {{ product.stock }}</h5>
+                <h3>{{ product.name }}</h3>
+                <div>
+                  <h5>Stok: {{ product.stock }}</h5>
+                </div>
+                <div class="ion-margin-top">
+                  <h4>Rp.{{ product.sellingPrice }}</h4>
+                </div>
               </div>
-              <div class="ion-margin-top">
-                <h4>Rp.{{ product.sellingPrice }}</h4>
-              </div>
-            </div>
 
-            <!-- Baris 1: Tombol Detail (Full Width) -->
-            <ion-button expand="block" routerLink="/product/detail/{{product.id}}" color="secondary"
-              class="ion-margin-top">
-              <ion-icon name="eye-outline" slot="start"></ion-icon>
-              Detail
-            </ion-button>
+              <!-- Baris 1: Tombol Detail (Full Width) -->
+              <ion-button expand="block" routerLink="/product/detail/{{product.id}}" color="secondary"
+                class="ion-margin-top">
+                <ion-icon name="eye-outline" slot="start"></ion-icon>
+                Detail
+              </ion-button>
 
-            <!-- Baris 2: Tombol Ubah dan Hapus (Berdampingan 50:50) -->
-            <ion-row class="ion-no-padding">
-              <!-- Kolom Kiri untuk Ubah -->
-              <ion-col size="6" class="btnUbah">
-                <ion-button expand="block" routerLink="/product/edit/{{product.id}}">
-                  <ion-icon name="create-outline" slot="start"></ion-icon>
-                  Ubah
-                </ion-button>
-              </ion-col>
+              <!-- Baris 2: Tombol Ubah dan Hapus (Berdampingan 50:50) -->
+              <ion-row class="ion-no-padding">
+                <!-- Kolom Kiri untuk Ubah -->
+                <ion-col size="6" class="btnUbah">
+                  <ion-button expand="block" routerLink="/product/edit/{{product.id}}">
+                    <ion-icon name="create-outline" slot="start"></ion-icon>
+                    Ubah
+                  </ion-button>
+                </ion-col>
 
-              <!-- Kolom Kanan untuk Hapus -->
-              <ion-col size="6" class="btnHapus">
-                <ion-button expand="block" color="danger" (click)="deleteProduct(product.id)">
-                  <ion-icon name="trash-outline" slot="start"></ion-icon>
-                  Hapus
-                </ion-button>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card>
+                <!-- Kolom Kanan untuk Hapus -->
+                <ion-col size="6" class="btnHapus">
+                  <ion-button expand="block" color="danger" (click)="deleteProduct(product.id)">
+                    <ion-icon name="trash-outline" slot="start"></ion-icon>
+                    Hapus
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+    </div>
   </div>
 </ion-content>
