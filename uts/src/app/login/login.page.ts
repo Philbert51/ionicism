@@ -16,17 +16,25 @@ export class LoginPage implements OnInit {
   constructor(private router: Router, private accountService: AccountService, public animCtrl : AnimationController) { }
 
   ngOnInit() {
+  }
 
-    //<animations>
+  ionViewDidEnter() {
     const loginCard = document.querySelector(".login-card") as HTMLElement; // as HTMLElement = trust me bro it will never be null
     const headerText = document.querySelector(".header-section") as HTMLElement;
+    //<animations>
     this.animCtrl.create().addElement(loginCard).duration(700).fromTo("opacity", 0, 1).easing("ease-out").play().then();
     this.animCtrl.create().addElement(loginCard).duration(500).fromTo("transform", "translateY(70px)", "translateY(0)").easing("ease-out").play().then(() => {
       this.animCtrl.create().addElement(headerText).duration(300).fromTo("opacity", 0, 1).easing("ease-out").play();
       this.animCtrl.create().addElement(headerText).duration(500).fromTo("transform", "translateY(70px)", "translateY(0)").easing("ease-out").play()
     });
     //</animations>
+  }
 
+  ionViewWillLeave () {
+    const loginCard = document.querySelector(".login-card") as HTMLElement; // as HTMLElement = trust me bro it will never be null
+    const headerText = document.querySelector(".header-section") as HTMLElement;
+    loginCard.style.opacity = "0";
+    headerText.style.opacity = "0"; 
   }
 
   login() {

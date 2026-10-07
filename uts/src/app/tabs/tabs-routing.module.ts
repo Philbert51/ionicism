@@ -12,6 +12,10 @@ const routes: Routes = [
         loadChildren: () => import('../dashboard/dashboard.module').then(m => m.DashboardPageModule)
       },
       {
+        path: 'order',
+        loadChildren: () => import('../order/order.module').then(m => m.OrderPageModule)
+      },
+      {
         path: 'transactionhistory',
         loadChildren: () => import('../transactionhistory/transactionhistory.module').then(m => m.TransactionhistoryPageModule)
       },
@@ -26,6 +30,14 @@ const routes: Routes = [
       {
         path: 'profile',
         loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule)
+      },
+      {
+        path: 'about',
+        loadChildren: () => import('../about/about.module').then(m => m.AboutPageModule)
+      },
+      {
+        path : "order",
+        loadChildren: () => {return import("../order/order.module").then(m => m.OrderPageModule);}
       },
       {
         path: '',
