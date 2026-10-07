@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
+// Perhatiannnn
+// Jika mencari modul router asli, ke bagian tabs/tabs-routing.module.ts, karena semua halaman berada di dalam tab dan dimuat secara lazy dari modul tab. 
+// Modul ini hanya mendaftarkan rute utama aplikasi, dan semua halaman berada di dalam tab.
 const routes: Routes = [ // daftar rute utama aplikasi, dicocokkan dari atas ke bawah
   {
     // alamat kosong langsung dialihkan ke halaman login
