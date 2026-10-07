@@ -10,7 +10,7 @@ import { TransactionService } from '../../transaction-service';
 })
 export class CartPage implements OnInit {
 
-  id : number | any = null; // comes from the route as a string, even though it is typed as a number
+  id: number | any = null; // comes from the route as a string, even though it is typed as a number
   products: any[] = []; // all products from the product service
   transactions: any[] = []; // same array object as the service, not a copy
 
@@ -35,26 +35,26 @@ export class CartPage implements OnInit {
     this.products = this.productService.product;
 
     // finds this cart by its id, nothing is found when the id is 0
-    <added>
+
     let t = this.transactionService.getTransactionById(this.id);
-    </added>
+
 
     // same array as the transaction, so an item removed in the service also leaves this list
-    <added>
+
     if (t != null) {
       this.listOfProducts = t.produk;
     }
-    </added>
+
 
     // fills in the product details and the total for the items found above
-    <added>
+
     this.refreshCart();
-    </added>
+
   }
 
   // rebuilds the product details and the total from the items in the cart
   // the details are filled in the same order as the items, the template reads them by position
-  <added>
+
   refreshCart() {
     this.detailProducts = [];
     this.total = 0;
@@ -64,7 +64,7 @@ export class CartPage implements OnInit {
       this.total += this.listOfProducts[i].subtotal;
     }
   }
-  </added>
+
 
   // returns how many of this product are in this cart, 0 when it is not there
   quantity(p_productId: number): number {
@@ -138,9 +138,9 @@ export class CartPage implements OnInit {
       }
 
       // refreshes the total and the details after the quantity changed
-      <added>
+
       this.refreshCart();
-      </added>
+
     }
   }
 
@@ -161,9 +161,9 @@ export class CartPage implements OnInit {
       }
 
       // refreshes the total and the details after the quantity changed
-      <added>
+
       this.refreshCart();
-      </added>
+
     }
   }
 
@@ -186,31 +186,31 @@ export class CartPage implements OnInit {
   // the real removal happens in the transaction service
   // warning: the service removes this product id from every transaction that contains it, not only this cart
   removeProduk(p_productId: number) {
-    <added>
+
     let produk = this.productService.getProductById(p_productId);
-    </added>
+
     let transaksi = this.transactionService.getTransactionById(this.id);
     if (produk != null && transaksi != null) {
       for (let i = 0; i < transaksi.produk.length; i++) {
         // only call the service when the product really is in this cart
         if (transaksi.produk[i].id == p_productId) {
           // the quantity is read before the removal, afterwards the cart line is gone
-          <added>
+
           let qty = transaksi.produk[i].quantity;
-          </added>
+
           this.transactionService.deleteProduk(p_productId);
 
           // gives the removed quantity back to the stock
-          <added>
+
           produk.stock += qty;
-          </added>
+
         }
       }
 
       // refreshes the total and the details, the list is now one item shorter
-      <added>
+
       this.refreshCart();
-      </added>
+
       console.log(this.transactions[this.id]); // debug output only
     }
   }

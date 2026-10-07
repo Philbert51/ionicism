@@ -43,6 +43,7 @@ export class ProductService {
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs0J8EDGsqxeAME7LxeldTY9ZRKbXOnRdcgyC_YwKRsw&s=10',
       kategori: 3,
       quantity: 1,
+      isDeleted: false,
     },
     {
       id: 2,
@@ -55,6 +56,7 @@ export class ProductService {
         'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/110/MTA-167369951/br-m036969-00220_vga-asus-amd-radeon-rx-7900-xtx-tuf-gaming-oc-24gb-gddr6_full05-8616462f.jpg',
       kategori: 3,
       quantity: 1,
+      isDeleted: false,
     },
     {
       id: 3,
@@ -67,6 +69,7 @@ export class ProductService {
         'https://kkomputer.com/7074/intel-core-i9-13900k-58-ghz-24c32t-lga-1700-rl.jpg',
       kategori: 3,
       quantity: 1,
+      isDeleted: false,
     },
     {
       id: 4,
@@ -78,6 +81,7 @@ export class ProductService {
       imageUrl: '',
       kategori: 1,
       quantity: 1,
+      isDeleted: false,
     },
     {
       id: 5,
@@ -89,6 +93,7 @@ export class ProductService {
       imageUrl: '',
       kategori: 1,
       quantity: 1,
+      isDeleted: false,
     },
     {
       id: 6,
@@ -100,6 +105,7 @@ export class ProductService {
       imageUrl: '',
       kategori: 1,
       quantity: 1,
+      isDeleted: false,
     },
     {
       id: 7,
@@ -111,6 +117,7 @@ export class ProductService {
       imageUrl: '',
       kategori: 1,
       quantity: 1,
+      isDeleted: false,
     },
     {
       id: 8,
@@ -122,6 +129,7 @@ export class ProductService {
       imageUrl: '',
       kategori: 1,
       quantity: 1,
+      isDeleted: false,
     },
     {
       id: 9,
@@ -133,6 +141,7 @@ export class ProductService {
       imageUrl: '',
       kategori: 1,
       quantity: 1,
+      isDeleted: false,
     },
     {
       id: 10,
@@ -144,6 +153,7 @@ export class ProductService {
       imageUrl: '',
       kategori: 1,
       quantity: 1,
+      isDeleted: false,
     },
     {
       id: 11,
@@ -155,6 +165,7 @@ export class ProductService {
       imageUrl: '',
       kategori: 1,
       quantity: 1,
+      isDeleted: false,
     },
   ];
 
@@ -183,6 +194,7 @@ export class ProductService {
       purchasePrice: p_purchasePrice,
       imageUrl: p_imageUrl,
       kategori: p_kategori,
+      isDeleted: false,
       quantity: 1,
     });
     alert('Data Berhasil Disimpan!');
@@ -237,7 +249,7 @@ export class ProductService {
   deleteProduct(id: number) {
     for (let i = 0; i < this.product.length; i++) {
       if (this.product[i].id == id) {
-        this.product.splice(i, 1);
+        this.product[i].isDeleted = true;
         break;
       }
     }
