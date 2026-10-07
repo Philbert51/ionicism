@@ -4,6 +4,7 @@ interface Transactions {
     id: number;
     tanggal: Date;
     totalTransaksi: number;
+    isCompleted: boolean;
     // produk: [
     //     {
     //         id: number,
@@ -30,8 +31,9 @@ export class TransactionService {
     transactions: Transactions[] = [
         {
             id: 1,
-            tanggal: new Date('2026-10-06'), // YYYY-MM-DD
+            tanggal: new Date('2026-10-07'), // YYYY-MM-DD
             totalTransaksi: 1999.97,
+            isCompleted: true,
             produk: [
                 {
                     id: 1,
@@ -53,6 +55,7 @@ export class TransactionService {
             id: 2,
             tanggal: new Date('2026-10-26'), // YYYY-MM-DD
             totalTransaksi: 1599.98,
+            isCompleted: true,
             produk: [
                 {
                     id: 2,
@@ -67,6 +70,7 @@ export class TransactionService {
             id: 3,
             tanggal: new Date('2025-09-03'), // YYYY-MM-DD
             totalTransaksi: 1999.97,
+            isCompleted: true,
             produk: [
                 {
                     id: 2,
@@ -88,6 +92,7 @@ export class TransactionService {
             id: 4,
             tanggal: new Date('2026-10-06'), // YYYY-MM-DD
             totalTransaksi: 1299.98,
+            isCompleted: true,
             produk: [
                 {
                     id: 1,
@@ -283,6 +288,82 @@ export class TransactionService {
                 totalQty: max.qty
             }
             return result;
+        }
+    }
+
+    //abi add method tambah ke Produk
+    addToProduct(p_id: number, p_purchasePrice: number,
+        p_sellingPrice: number, p_quantity: number, p_subtotal: number,) {
+        let productAdded = false;
+        let stockNow = this.transactions
+        for (let i = 0; i < this.transactions.length; i++) {
+            if (this.transactions[i].isCompleted == false) {
+                //cek apakah produk sudah ada
+                for (let j = 0; j < this.transactions[i].produk.length; j++) {
+                    if (this.transactions[i].produk[j].id == p_id) {
+                        productAdded = true;
+                        this.transactions[i].produk[j].quantity += p_quantity
+                        this.transactions[i].produk[j].subtotal += p_subtotal;
+                    }
+                }
+                if (!productAdded) {
+                    this.transactions[i].produk.push(
+                        {
+                            id: p_id,
+                            purchasePrice: p_purchasePrice,
+                            sellingPrice: p_sellingPrice,
+                            quantity: p_quantity,
+                            subtotal: p_subtotal
+                        });
+                }
+                console.log(this.transactions[i]);
+                console.log(this.transactions[i].produk);
+                break;
+            }
+        }
+    }
+    initializeTransaction() {
+        let lastId = this.transactions[this.transactions.length - 1].id;
+        let isTransaksiActive = false;
+        for (let i = 0; i < this.transactions.length; i++) {
+            if (this.transactions[i].isCompleted == false) {
+                isTransaksiActive = true;
+                break;
+            }
+        }
+        if (!isTransaksiActive) {
+            this.transactions.push(
+                {
+                    id: lastId + 1,
+                    tanggal: new Date(),
+                    totalTransaksi: 0,
+                    isCompleted: false,
+                    produk: []
+                })
+        }
+
+    }
+    deleteProduk(id: number) {
+        for (let i = 0; i < this.transactions.length; i++) {
+            for (let j = 0; j < this.transactions[i].produk.length; j++) {
+                if (this.transactions[i].produk[j].id == id) {
+                    this.transactions[i].produk.splice(j, 1);
+                    break;
+                }
+            }
+        }
+        alert('Data Berhasil Dihapus!');
+    }
+    confirmTransaction(p_transactionId: number, p_produk: any[]) {
+        let activeTransaksi = this.getTransactionById(p_transactionId);
+        let length = p_produk.length;
+        if (activeTransaksi != null) {
+            for (let i = 0; i < length; i++) {
+                //activeTransaksi.produk.push(p_produk[i]);
+                activeTransaksi.totalTransaksi += p_produk[i].subtotal;
+            }
+            activeTransaksi.isCompleted = true;
+
         }
     }
 }

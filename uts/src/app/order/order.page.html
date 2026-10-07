@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>order</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">order</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="stickUp">
+    <ion-input (keyup)="searchProduct()" expand="block" fill="outline" labelPlacement="floating" type="text"
+      placeholder="Cari produk..." label="Cari produk..." [(ngModel)]="searchQuery"></ion-input>
+
+    <ion-button routerLink="/order/cart/{{activeTransactionId()}}">
+      <ion-icon slot="start" name="cart"></ion-icon>
+      Lihat Keranjang</ion-button>
+  </div>
+  <ion-card *ngFor="let product of products">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4">
+          <img [src]="product.imageUrl" alt="{{ product.name }}" />
+        </ion-col>
+        <ion-col size="8">
+          <ion-item routerLink="/detail-product/{{product.id - 1}}">
+            <h2>{{product.name}}</h2>
+          </ion-item>
+          <p>{{product.description}}</p>
+          <p>Harga: {{product.sellingPrice}}</p>
+          <p>Stok: {{product.stock}}</p>
+          <ion-button (click)="KurangQty(product.id)"><ion-icon name="remove-outline"></ion-icon> </ion-button>
+          <ion-label> {{quantity(product.id)}} </ion-label>
+          <ion-button (click)="TambahQty(product.id)" [disabled]="isMaxed(product.id)"><ion-icon
+              name="add-outline"></ion-icon> </ion-button>
+          <ion-button (click)="TambahKeKeranjang(product.id, product.sellingPrice)"
+            [disabled]="isStockEmpty(product.id)">
+            <ion-icon slot="start" name="cart"></ion-icon>
+            Tambah ke Keranjang</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</ion-content>
