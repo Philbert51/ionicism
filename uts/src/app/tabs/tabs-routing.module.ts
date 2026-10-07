@@ -36,6 +36,10 @@ const routes: Routes = [
         loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule)
       },
       {
+        path: 'about',
+        loadChildren: () => import('../about/about.module').then(m => m.AboutPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/dashboard',
         pathMatch: 'full'
