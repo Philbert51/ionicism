@@ -396,12 +396,9 @@ export class TransactionService {
         alert('Data Berhasil Dihapus!');
     }
     confirmTransaction(p_transactionId: number, p_produk: any[]) {
-        // closes the cart, adds the subtotals into the total and marks it completed
-        // warning: no check for an empty cart or an already completed transaction, so confirming twice adds the totals twice
         let activeTransaksi = this.getTransactionById(p_transactionId);
         let length = p_produk.length;
         if (activeTransaksi != null) {
-            // adds the subtotal of every item passed in to the transaction total
             for (let i = 0; i < length; i++) {
                 //activeTransaksi.produk.push(p_produk[i]);
                 activeTransaksi.totalTransaksi += p_produk[i].subtotal;

@@ -13,7 +13,7 @@
   <div class="stickUp">
     <ion-label>Total: {{total}}</ion-label>
     <div>
-    <ion-button (click)="confirmTransaction()" color="success" >KONFIRMASI TRANSAKSI</ion-button>
+    <ion-button (click)="confirmTransaction()" color="success" routerLink="/transactionhistory/">KONFIRMASI TRANSAKSI</ion-button>
     </div>
   </div>
   <div *ngFor="let produk of listOfProducts; let i = index">

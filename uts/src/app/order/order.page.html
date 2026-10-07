@@ -7,7 +7,7 @@
   </ion-toolbar>
 
   <div class="header-action">
-    <ion-button expand="block" class="ion-margin-bottom" routerLink="/order/cart/{{activeTransactionId()}}">
+    <ion-button expand="block" class="ion-margin-bottom" routerLink="/order/cart/{{activeTransactionId()}}" [disabled]="isCartEmpty()">
       <ion-icon slot="start" name="cart"></ion-icon>
       Lihat Keranjang</ion-button>
     <ion-input (keyup)="searchProduct()" expand="block" fill="outline" labelPlacement="floating" type="text"
