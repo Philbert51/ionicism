@@ -27,9 +27,6 @@ export class ProfilePage implements OnInit {
 
   saveProfile() {
     
-    // debug alerts, remove before committing
-    alert('debug save pressed: username=' + this.username + ' url=' + this.url);
-
     if (this.username != "") {
       this.isEmptyUsername = false;
       this.accService.changeUsername(this.username);
@@ -43,15 +40,9 @@ export class ProfilePage implements OnInit {
     this.accService.changeProfilePicture(this.url);
     alert(this.accService.getProfilePicture())
     alert(this.accService.getUsername());
-
-    // debug
-    alert('debug save finished: isEmptyUsername=' + this.isEmptyUsername);
   }
 
   changePassword() { 
-    // debug alerts, remove before committing
-    alert('debug change pressed: old=' + this.oldPassword + ' new=' + this.newPassword + ' confirm=' + this.confirmPassword);
-    
     if (this.newPassword != this.confirmPassword) {
       this.isMismatch = true;
       return; // returns and set mismatch to true if password and confirm doesn't match
@@ -64,17 +55,10 @@ export class ProfilePage implements OnInit {
     if (this.accService.changePassword(0, this.oldPassword, this.newPassword)) {
 
       this.isIncorrect = false;
-
-      // debug
-      alert('debug change finished: password changed, isIncorrect=' + this.isIncorrect);
     }
     else {
 
       this.isIncorrect = true;
-
-      // debug
-      alert('debug change finished: password not changed, isIncorrect=' + this.isIncorrect);
-
     }
   }
 }
