@@ -11,92 +11,100 @@ import { CartService } from '../cart-service';
 })
 export class OrderPage implements OnInit {
 
-  constructor(private productService: ProductService, 
+  constructor(private productService: ProductService,
     private transactionService: TransactionService,
-  private cartService: CartService) { }
+    private cartService: CartService) { }
 
- 
-  products:any[] = [];
-  transactions:any[]=[];
-  cart:any[]=[];
-  searchQuery: string ='';
-  originalProductList: any[]=[];
-  
-  ngOnInit( ) {
+
+  products: any[] = [];
+  transactions: any[] = [];
+  cart: any[] = [];
+  searchQuery: string = '';
+  originalProductList: any[] = [];
+
+  ngOnInit() {
     this.products = this.productService.product;
     this.transactions = this.transactionService.transactions;
     this.originalProductList = this.productService.product;
     this.cart = this.cartService.cart;
   }
-  activeTransactionId(): number{
+  activeTransactionId(): number {
     let id = 0;
-    for(let i = 0; i < this.transactions.length; i++){
-      if(this.transactions[i].isCompleted == false){
+    for (let i = 0; i < this.transactions.length; i++) {
+      if (this.transactions[i].isCompleted == false) {
         id = this.transactions[i].id
       }
     }
     return id;
   }
-  quantity(p_productId:number): number{
+  quantity(p_productId: number): number {
     let p = this.productService.getProductById(p_productId);
     let jumlah = p!!.quantity;
     return jumlah;
   }
-  isMaxed(p_productId:number):boolean{
+  isMaxed(p_productId: number): boolean {
     let p = this.productService.getProductById(p_productId);
-    let qty =  p!!.quantity;
+    let qty = p!!.quantity;
     let produkStok = p!!.stock;
-    if(qty < produkStok ) return false;
+    if (qty < produkStok) return false;
     else return true;
   }
-  TambahKeKeranjang( p_productId: number, p_productPrice: number){
-      let p = this.productService.getProductById(p_productId);
-      let subtotal: number = p!!.sellingPrice * p!!.quantity;
-      this.transactionService.initializeTransaction();
-      this.transactionService.addToProduct(p_productId,
+
+  isQuantityZero(p_productId: number): boolean {
+    let p = this.productService.getProductById(p_productId);
+    let qty = p!!.quantity;
+    if (qty > 0) return false;
+    else return true;
+  }
+
+  TambahKeKeranjang(p_productId: number, p_productPrice: number) {
+    let p = this.productService.getProductById(p_productId);
+    let subtotal: number = p!!.sellingPrice * p!!.quantity;
+    this.transactionService.initializeTransaction();
+    this.transactionService.addToProduct(p_productId,
       p!!.purchasePrice,
       p!!.sellingPrice,
       p!!.quantity,
       subtotal
     );
-   
-    if(p!!.quantity <= p!!.stock){
-       p!!.stock -= p!!.quantity;
+
+    if (p!!.quantity <= p!!.stock) {
+      p!!.stock -= p!!.quantity;
     }
 
-    if(p!!.quantity > p!!.stock){
+    if (p!!.quantity > p!!.stock) {
       p!!.quantity = p!!.stock;
     }
   }
-  TambahQty(p_productId: number){
-     let p = this.productService.getProductById(p_productId);
+  TambahQty(p_productId: number) {
+    let p = this.productService.getProductById(p_productId);
     let qty = p!!.quantity;
 
-    if(qty < p!!.stock){
+    if (qty < p!!.stock) {
       p!!.quantity++;
     }
   }
-  KurangQty(p_productId: number){
+  KurangQty(p_productId: number) {
     let p = this.productService.getProductById(p_productId);
     let qty = p!!.quantity;
-    if(qty > 0){
+    if (qty > 0) {
       p!!.quantity--;
     }
-    else{
+    else {
       qty = qty;
     }
   }
 
-  isStockEmpty(p_productId: number): Boolean{
-      let p = this.productService.getProductById(p_productId);
-      if(p!!.stock == 0) return true;
-      else return false;
+  isStockEmpty(p_productId: number): Boolean {
+    let p = this.productService.getProductById(p_productId);
+    if (p!!.stock == 0) return true;
+    else return false;
   }
   searchProduct() {
     if (!this.searchQuery || this.searchQuery.trim() == '') {
       this.products = this.originalProductList;
     } else {
-     this.products = this.productService.searchProduct(this.searchQuery);
+      this.products = this.productService.searchProduct(this.searchQuery);
     }
   }
 }

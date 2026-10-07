@@ -52,7 +52,7 @@
 
           <div class="product-actions ion-margin-top">
             <div class="quantity-controls">
-              <ion-button (click)="KurangQty(product.id)">
+              <ion-button (click)="KurangQty(product.id)" [disabled]="isQuantityZero(product.id)">
                 <ion-icon name="remove-outline"></ion-icon>
               </ion-button>
               <ion-label>{{ quantity(product.id) }}</ion-label>

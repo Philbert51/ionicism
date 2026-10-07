@@ -30,17 +30,39 @@ export class CartPage implements OnInit {
     this.transactions = this.transactionService.transactions;
     this.products = this.productService.product;
     this.activeTransaction = this.transactions[this.id];
-    for (let i = 0; i < this.transactions.length; i++) {
-      this.listOfProducts = this.transactions[i].produk;
+    // before
+    // for (let i = 0; i < this.transactions.length; i++) {
+    //   this.listOfProducts.push(this.transactions[i].produk);
+    // }
+
+    // after
+    let t = this.transactionService.getTransactionById(this.id);
+    if (t != null) {
+      this.listOfProducts = t.produk;
     }
-    for (let i in this.listOfProducts) {
-      let id = this.listOfProducts[i].id;
-      let product = this.productService.getProductById(id);
+    // for (let i in this.listOfProducts) {
+    //   let id = this.listOfProducts[i].id;
+    //   let product = this.productService.getProductById(id);
+    //   this.detailProducts.push(product);
+    //   this.total += this.listOfProducts[i].subtotal;
+    //   console.log(this.detailProducts);
+    // }
+
+    this.refreshCart();//pengganti
+  }
+
+  // new method
+
+  refreshCart() {
+    this.detailProducts = [];
+    this.total = 0;
+    for (let i = 0; i < this.listOfProducts.length; i++) {
+      let product = this.productService.getProductById(this.listOfProducts[i].id);
       this.detailProducts.push(product);
       this.total += this.listOfProducts[i].subtotal;
-      console.log(this.detailProducts);
     }
   }
+
   quantity(p_productId: number): number {
     let produk = this.productService.getProductById(p_productId);
     let transaksi = this.transactionService.getTransactionById(this.id);
@@ -128,14 +150,32 @@ export class CartPage implements OnInit {
     }
     return produkQtyInTransaction;
   }
+  //before
+  // removeProduk(p_productId: number) {
+  //   let transaksi = this.transactionService.getTransactionById(this.id);
+  //   if (transaksi != null) {
+  //     for (let i = 0; i < transaksi.produk.length; i++) {
+  //       if (transaksi.produk[i].id == p_productId) {
+  //         this.transactionService.deleteProduk(p_productId);
+  //       }
+  //     }
+  //     console.log(this.transactions[this.id]);
+  //   }
+  // }
+
+  // after
   removeProduk(p_productId: number) {
+    let produk = this.productService.getProductById(p_productId);
     let transaksi = this.transactionService.getTransactionById(this.id);
-    if (transaksi != null) {
+    if (produk != null && transaksi != null) {
       for (let i = 0; i < transaksi.produk.length; i++) {
         if (transaksi.produk[i].id == p_productId) {
+          let qty = transaksi.produk[i].quantity;
           this.transactionService.deleteProduk(p_productId);
+          produk.stock += qty;
         }
       }
+      this.refreshCart();
       console.log(this.transactions[this.id]);
     }
   }
