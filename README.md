@@ -6,7 +6,6 @@ Aplikasi manajemen toko berbasis **Ionic** dan **Angular**. Aplikasi ini menyedi
 
 - [Ionic](https://ionicframework.com/)
 - [Angular](https://angular.dev/)
-- [Capacitor](https://capacitorjs.com/)
 - TypeScript
 - Ionicons
 
@@ -20,14 +19,24 @@ Pastikan perangkat telah memiliki:
 
 ## Instalasi
 
-1. Clone atau buka repository proyek.
-2. Masuk ke direktori aplikasi Ionic:
+1. Pastikan Node.js dan npm telah terinstal. Jika belum, unduh dan instal dari [situs resmi Node.js](https://nodejs.org/).
+2. Pastikan Ionic CLI telah terinstal secara global. Jika belum, jalankan perintah berikut:
+
+   ```bash
+   npm install -g @ionic/cli
+   ```
+3. Pastikan git/GitHub CLI telah terinstal jika ingin meng-clone repository dari GitHub. Jika belum, unduh dan instal dari [situs resmi Git](https://git-scm.com/).
+4. Clone atau buka repository proyek. 
+   ```bash
+   git clone https://github.com/Philbert51/ionicism
+   ```
+5. Masuk ke direktori aplikasi Ionic:
 
    ```bash
    cd uts
    ```
 
-3. Install seluruh dependency:
+6. Install seluruh dependency:
 
    ```bash
    npm install
@@ -51,6 +60,20 @@ Untuk membuat build production, gunakan:
 
 ```bash
 npm run build
+```
+
+## Menjalankan Aplikasi Secara Cepat
+
+Untuk menjalankan aplikasi secara cepat, gunakan perintah berikut:
+
+```bash
+ionic serve
+```
+
+Aplikasi akan secara otomatis terbuka di browser default. Jika tidak, buka alamat yang ditampilkan di terminal, biasanya:
+
+```text
+http://localhost:8100
 ```
 
 ## Akun Demo
@@ -139,6 +162,7 @@ uts/
 | `npm run watch` | Membuat build dan memantau perubahan file |
 | `npm test`      | Menjalankan unit test                     |
 | `npm run lint`  | Menjalankan pemeriksaan linting           |
+| `ionic serve`  | Menjalankan aplikasi secara cepat         |
 
 ## Catatan Pengembangan
 
