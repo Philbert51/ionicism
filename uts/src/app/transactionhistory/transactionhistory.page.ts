@@ -111,4 +111,8 @@ export class TransactionhistoryPage implements OnInit {
     }
     return total;
   }
+
+  addTransaction() {
+    this.router.navigate(['/order']);
+  }
 }
