@@ -2,7 +2,7 @@
 
 Aplikasi manajemen toko berbasis **Ionic** dan **Angular**. Aplikasi ini menyediakan dashboard penjualan, pengelolaan produk, riwayat transaksi, serta pengaturan profil pengguna.
 
-Dirancang oleh:  
+Dirancang oleh kelompok ionic serve:  
 - Abigail Evelyn Wong (160424040)  
 - Andrea Samantha Jaolis (160424049)  
 - Hans Bennett Visi Limantara (160424057)  
