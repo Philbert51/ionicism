@@ -85,6 +85,30 @@ export class TransactionhistoryPage implements OnInit {
     const hari = tanggal.getDate();
     const bulan = tanggal.getMonth();
     const tahun = tanggal.getFullYear();
-    return hari + " " + this.arrBulan[bulan] + " " + tahun;
+    const jam = tanggal.getHours();
+    let jamFormatted:string = "";
+    if (jam < 10){
+      jamFormatted = "0" + jam;
+    }
+    else{
+      jamFormatted = jam.toString();
+    }
+    const menit = tanggal.getMinutes();
+    let menitFormatted = "";
+    if (menit < 10){
+      menitFormatted = "0" + menit;
+    }
+    else{
+      menitFormatted = menit.toString();
+    }
+    return hari + " " + this.arrBulan[bulan] + " " + tahun + ", " + jamFormatted + ":" + menitFormatted;
+  }
+
+  countItemsQtyTotal(transaction:any): number {
+    let total = 0;
+    for (let i in transaction.produk) {
+      total += transaction.produk[i].quantity;
+    }
+    return total;
   }
 }

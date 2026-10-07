@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product-service';
 import { Router } from '@angular/router';
 import { AccountService } from '../account-service';
+import { AnimationController } from "@ionic/angular";
 
 @Component({
   selector: 'app-product',
@@ -12,13 +13,14 @@ import { AccountService } from '../account-service';
 export class ProductPage implements OnInit {
   products: any[] = [];
   originalProductList: any[] = [];
-
   searchQuery: string = '';
+  productsLength : number = 0;
 
   constructor(
     private productService: ProductService,
     private router: Router,
     private accountService: AccountService,
+    private animCtrl: AnimationController
   ) {}
 
   ngOnInit() {
@@ -27,6 +29,8 @@ export class ProductPage implements OnInit {
     }
     this.products = this.productService.product;
     this.originalProductList = this.productService.product;
+    this.productsLength = this.products.length;
+
   }
 
   ionViewDidEnter() {
@@ -44,10 +48,17 @@ export class ProductPage implements OnInit {
   }
 
   deleteProduct(id: number) {
+    const deletedCard = document.querySelector("#product" + id) as HTMLElement;
+    const animation = this.animCtrl.create().addElement(deletedCard).duration(400).fromTo("transform", "translateX(0%)", "translateX(80%)").easing("ease-out").fromTo("opacity", 1, -1).easing("ease-in");
+
     if (confirm('Apakah Anda Yakin Ingin Menghapus ' + this.productService.getProductById(id)?.name + "?")) {
-      this.productService.deleteProduct(id);
-      this.products = this.productService.product;
-      this.originalProductList = this.productService.product;
+      this.productsLength--;
+      animation.play().then(() => {
+        this.productService.deleteProduct(id);
+        this.products = this.productService.product;
+        this.originalProductList = this.productService.product;
+        deletedCard.remove();
+      });
     }
   }
 
