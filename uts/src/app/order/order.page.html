@@ -7,6 +7,9 @@
   </ion-toolbar>
 
   <div class="header-action">
+    <ion-button (click)="refreshData()" expand="block" class="ion-margin-bottom">
+      Refresh
+    </ion-button>
     <ion-button expand="block" class="ion-margin-bottom" routerLink="/order/cart/{{activeTransactionId()}}"
       [disabled]="isCartEmpty()">
       <ion-icon slot="start" name="cart"></ion-icon>

@@ -16,10 +16,12 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-button expand="block" (click)="refreshData()" class="ion-margin">
+  <ion-button expand="block" (click)="ngOnInit()" class="ion-margin">
     Refresh
   </ion-button>
-  <ion-text color="primary"><h1>Hello, {{username}}!</h1></ion-text>
+  <ion-text color="primary">
+    <h1>Hello, {{username}}!</h1>
+  </ion-text>
 
   <h3>Penjualan Hari Ini</h3>
   <ion-grid>
@@ -39,7 +41,7 @@
         </ion-card>
       </ion-col>
     </ion-row>
-  
+
     <ion-row>
       <ion-col>
         <ion-card class="card-style">

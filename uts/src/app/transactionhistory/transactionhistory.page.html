@@ -14,6 +14,10 @@
     </ion-toolbar>
   </ion-header>
 
+  <ion-button expand="block" class="ion-margin" (click)="refreshData()">
+    Refresh
+  </ion-button>
+
   <ion-button expand="block" color="primary" class="ion-margin btnTambah" routerLink="/transactionhistory/add"
     (click)="addTransaction()">
     <ion-icon name="add-outline" slot="start"></ion-icon>

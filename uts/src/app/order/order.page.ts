@@ -26,6 +26,10 @@ export class OrderPage implements OnInit {
   // ionic caches this page, so this runs once and not on every visit
   // these are references to the service arrays, not copies
   ngOnInit() {
+    this.refreshData();
+  }
+
+  refreshData() {
     this.products = this.productService.product;
     this.transactions = this.transactionService.transactions;
     this.originalProductList = this.productService.product;
@@ -63,11 +67,11 @@ export class OrderPage implements OnInit {
     else return true;
   }
 
-  isOne(p_productId: number):Boolean{
+  isOne(p_productId: number): Boolean {
     let p = this.productService.getProductById(p_productId);
     let is1 = false;
-    if(p != null){
-      if(p.quantity == 1){
+    if (p != null) {
+      if (p.quantity <= 1) {
         is1 = true;
       }
     }

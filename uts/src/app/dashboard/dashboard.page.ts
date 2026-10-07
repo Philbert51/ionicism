@@ -32,6 +32,10 @@ export class DashboardPage implements OnInit {
   }
 
   ngOnInit() {
+    this.refreshData();
+  }
+
+  refreshData() {
     if (!this.accountService.isLogin) {
       this.router.navigate(['/login']);
     }
@@ -61,10 +65,6 @@ export class DashboardPage implements OnInit {
       this.bestSellerProduct = this.productservice.getProductById(bestSeller.productId);
       this.bestSellerQty = bestSeller.totalQty;
     }
-  }
-
-  refreshData() {
-    return true;
   }
 
   getNotDeletedProductCount(): number {

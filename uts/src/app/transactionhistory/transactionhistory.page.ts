@@ -26,6 +26,10 @@ export class TransactionhistoryPage implements OnInit {
   constructor(private transactionservice: TransactionService, private router: Router, private accountService: AccountService) { }
 
   ngOnInit() {
+    this.refreshData();
+  }
+
+  refreshData() {
     if (!this.accountService.isLogin) {
       this.router.navigate(['/login']);
     }
@@ -34,7 +38,7 @@ export class TransactionhistoryPage implements OnInit {
     this.totalRevenue = this.transactionservice.countRevenue(true);
     this.totalProfit = this.transactionservice.countProfit(true);
     this.numOfTransactions = this.transactionservice.countNumberOfTransactions(true);
-    const tempCompleted : any[] = [];
+    const tempCompleted: any[] = [];
     for (const t of this.transactions) {
       if (t.isCompleted) {
         tempCompleted.push(t);
@@ -49,10 +53,10 @@ export class TransactionhistoryPage implements OnInit {
     }
   }
 
-  ionViewDidEnter(){
+  ionViewDidEnter() {
     this.changePeriodFilter();
   }
-  
+
   yearBefore() {
     this.filterTahun--;
     this.changePeriodFilter();
@@ -97,25 +101,25 @@ export class TransactionhistoryPage implements OnInit {
     const bulan = tanggal.getMonth();
     const tahun = tanggal.getFullYear();
     const jam = tanggal.getHours();
-    let jamFormatted:string = "";
-    if (jam < 10){
+    let jamFormatted: string = "";
+    if (jam < 10) {
       jamFormatted = "0" + jam;
     }
-    else{
+    else {
       jamFormatted = jam.toString();
     }
     const menit = tanggal.getMinutes();
     let menitFormatted = "";
-    if (menit < 10){
+    if (menit < 10) {
       menitFormatted = "0" + menit;
     }
-    else{
+    else {
       menitFormatted = menit.toString();
     }
     return hari + " " + this.arrBulan[bulan] + " " + tahun + ", " + jamFormatted + ":" + menitFormatted;
   }
 
-  countItemsQtyTotal(transaction:any): number {
+  countItemsQtyTotal(transaction: any): number {
     let total = 0;
     for (let i in transaction.produk) {
       total += transaction.produk[i].quantity;
