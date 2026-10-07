@@ -83,9 +83,9 @@ export class EditPage implements OnInit {
         this.editId,
         this.namaProduk,
         this.deskripsi,
-        this.hargaBeli,
-        this.hargaJual,
         this.stock,
+        this.hargaJual,
+        this.hargaBeli,
         this.imageUrl,
         this.selectedKategori
       );
