@@ -40,6 +40,10 @@ const routes: Routes = [
         loadChildren: () => import('../about/about.module').then(m => m.AboutPageModule)
       },
       {
+        path : "order",
+        loadChildren: () => {return import("../order/order.module").then(m => m.OrderPageModule);}
+      },
+      {
         path: '',
         redirectTo: '/tabs/dashboard',
         pathMatch: 'full'
