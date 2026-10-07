@@ -174,7 +174,6 @@ export class CartPage implements OnInit {
   // the real removal happens in the transaction service
   // warning: the service removes this product id from every transaction that contains it, not only this cart
   removeProduk(p_productId: number) {
-
     let produk = this.productService.getProductById(p_productId);
 
     let transaksi = this.transactionService.getTransactionById(this.id);
@@ -182,14 +181,8 @@ export class CartPage implements OnInit {
       for (let i = 0; i < transaksi.produk.length; i++) {
         // only call the service when the product really is in this cart
         if (transaksi.produk[i].id == p_productId) {
-          // the quantity is read before the removal, afterwards the cart line is gone
-
           let qty = transaksi.produk[i].quantity;
-
-          this.transactionService.deleteProduk(p_productId);
-
-          // gives the removed quantity back to the stock
-
+          this.transactionService.deleteProduk(p_productId, transaksi.id);
           produk.stock += qty;
 
         }
