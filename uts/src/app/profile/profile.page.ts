@@ -25,6 +25,11 @@ export class ProfilePage implements OnInit {
     this.username = this.accService.getUsername();
   }
 
+  isValid(): boolean {
+    const url = /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b/;
+    return url.test(this.url) || this.url == "";
+  }
+
   saveProfile() {
     
     if (this.username != "") {
@@ -37,9 +42,12 @@ export class ProfilePage implements OnInit {
     
 
     // does not check if profile picture is empty
-    this.accService.changeProfilePicture(this.url);
-    alert(this.accService.getProfilePicture())
-    alert(this.accService.getUsername());
+    if (this.isValid()){
+      this.accService.changeProfilePicture(this.url);
+    }
+    else {
+      this.accService.changeProfilePicture("");
+    }
   }
 
   changePassword() { 
