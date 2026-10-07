@@ -22,29 +22,26 @@
   </div>
   <div *ngFor="let produk of listOfProducts; let i = index">
     <ion-card class="card-style">
-      <ion-item>
-        <ion-img [src]="detailProducts[i].imageUrl" class="img-box"></ion-img>
-        <div>
-          <h1>{{detailProducts[i].name}}</h1>
-        </div>
-      </ion-item>
-      <ion-item>
-        <ion-label>Id Produk: {{produk.id}}</ion-label>
-      </ion-item>
-      <ion-item>
-        <div class="buttonQuantity">
-          <ion-label>Quantity:</ion-label>
-          <ion-button (click)="min(produk.id)" [disabled]="isOne(produk.id)"><ion-icon
-              name="remove-outline"></ion-icon></ion-button>
-          <ion-label>{{quantity(produk.id)}}</ion-label>
-          <ion-button (click)="plus(produk.id)" [disabled]="isMaxed(produk.id)"><ion-icon
-              name="add-outline"></ion-icon></ion-button>
-        </div>
-      </ion-item>
-      <ion-item>
-        <ion-label>{{produk.subtotal}}</ion-label>
-      </ion-item>
-      <ion-button (click)="removeProduk(produk.id)">REMOVE</ion-button>
+      <div>
+        <ion-item>
+          <ion-img [src]="detailProducts[i].imageUrl" class="img-box"></ion-img>
+          <div>
+            <h1>{{detailProducts[i].name}}</h1>
+            <ion-label>Jumlah: {{produk.quantity}}</ion-label>
+            <ion-label>Subtotal: {{produk.subtotal}}</ion-label>
+          </div>
+        </ion-item>
+        <ion-row class="buttonQuantity">
+          <ion-button (click)="min(produk.id)" [disabled]="isOne(produk.id)">
+            <ion-icon name="remove-outline"></ion-icon>
+            </ion-button>
+            <ion-button (click)="plus(produk.id)" [disabled]="isMaxed(produk.id)">
+              <ion-icon name="add-outline"></ion-icon>
+            </ion-button>
+            <ion-button (click)="removeProduk(produk.id)">REMOVE</ion-button>
+        </ion-row>
+
+      </div>
     </ion-card>
   </div>
 

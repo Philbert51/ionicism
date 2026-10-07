@@ -25,3 +25,19 @@
     background: rgb(255,254,254, 0.5);
     padding: 20px 10px; //atas bawah, kanan kiri
 }
+
+.btnTambah,
+.btnKurang {
+  padding-left: 0;
+  padding-right: 0;
+  /* Hapus padding default dari kolom */
+}
+
+/* Atur jarak internal button agar tidak terlalu menempel */
+.btnTambah {
+  padding-right: 0.1rem;
+}
+
+.btnKurang {
+  padding-left: 0.1rem;
+}
