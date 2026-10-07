@@ -34,6 +34,13 @@ export class TransactionhistoryPage implements OnInit {
     this.totalRevenue = this.transactionservice.countRevenue(true);
     this.totalProfit = this.transactionservice.countProfit(true);
     this.numOfTransactions = this.transactionservice.countNumberOfTransactions(true);
+    const tempCompleted : any[] = [];
+    for (const t of this.transactions) {
+      if (t.isCompleted) {
+        tempCompleted.push(t);
+      }
+    }
+    this.transactions = tempCompleted;
     if (this.transactions.length == 0) {
       this.adaData = false;
     }
