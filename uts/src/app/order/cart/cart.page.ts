@@ -105,11 +105,12 @@ export class CartPage implements OnInit {
 
   isMaxed(p_productId: number): Boolean {
     let produk = this.productService.getProductById(p_productId);
+    let transaksi = this.transactionService.getTransactionById(this.id);
     let isMax = false;
-    if (produk != null) {
-      if (produk.quantity == produk.stock + this.checking(p_productId)) {
-        isMax = true;
-      }
+    if (produk != null && transaksi != null) {
+      if(produk.stock == 0){
+            isMax = true;
+          }
     }
     return isMax;
   }
