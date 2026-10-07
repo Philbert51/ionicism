@@ -1,10 +1,11 @@
 import { Service } from '@angular/core';
 
+// satu instance dipakai bersama oleh semua halaman, jadi data produk sama di seluruh aplikasi
 @Service()
 export class ProductService {
   // Update: coba implementasi kategori
 
-  kategori = [
+  kategori = [ // daftar kategori produk, setiap entri berisi id dan nama kategori
     {
       id: 1,
       name: 'Makanan'
@@ -31,7 +32,7 @@ export class ProductService {
     }
 
   ];
-  product = [
+  product = [ // daftar semua produk, berisi data contoh yang hanya tersimpan di memori
     // 3 produk makanan
     {
       id: 1,
@@ -42,8 +43,8 @@ export class ProductService {
       purchasePrice: 2800,
       imageUrl: 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//93/MTA-2583228/indomie_indomie-goreng-mie-instan--85g--_full02.jpg',
       kategori: 1,
-      quantity: 1,
-      isDeleted: false,
+      quantity: 1, // jumlah yang dipilih di halaman order sebelum produk dimasukkan ke keranjang
+      isDeleted: false, // true berarti produk dianggap terhapus dan disembunyikan, tetapi datanya tetap ada
     },
     {
       id: 2,
@@ -210,13 +211,17 @@ export class ProductService {
   ];
 
 
+  // mengambil id produk terakhir, atau 0 kalau belum ada produk
   getLastProductId(): number {
     if (this.product.length === 0) {
       return 0; // Jika tidak ada produk, kembalikan 0 sebagai ID terakhir
     }
+
+    // produk terakhir punya id tertinggi karena produk hanya ditandai terhapus dan tidak dibuang dari daftar
     return this.product[this.product.length - 1].id;
   }
 
+  // menambahkan produk baru di akhir daftar dengan id berikutnya
   addProduct(
     p_name: string,
     p_description: string,
@@ -226,6 +231,7 @@ export class ProductService {
     p_imageUrl: string,
     p_kategori: number
   ) {
+    // id baru adalah id terakhir ditambah satu, produk baru belum terhapus dan jumlah pilihannya 1
     this.product.push({
       id: this.getLastProductId() + 1,
       name: p_name,
@@ -238,12 +244,16 @@ export class ProductService {
       isDeleted: false,
       quantity: 1,
     });
+
+    // pemberitahuan ke pengguna bahwa data sudah disimpan
     alert('Data Berhasil Disimpan!');
   }
 
+  // menghitung produk yang belum ditandai terhapus
   getNotDeletedProductCount(): number {
-    let count = 0;
+    let count = 0; // jumlah produk yang masih aktif, mulai dari nol
     for (let i = 0; i < this.product.length; i++) {
+      // hanya produk yang belum terhapus yang dihitung
       if (this.product[i].isDeleted === false) {
         count++;
       }
@@ -264,13 +274,17 @@ export class ProductService {
   // Andrea add method get product berdasarkan id
   getProductById(id: number) {
     for (let i in this.product) {
+      // perbandingan longgar, jadi id berupa string dari route tetap cocok dengan id berupa angka
       if (this.product[i].id == id) {
         return this.product[i];
       }
     }
+
+    // tidak ada produk dengan id ini, jadi pemanggil harus siap menerima null
     return null;
   }
 
+  // mengubah data satu produk berdasarkan id
   updateProduct(
     id: number,
     p_name: string,
@@ -281,8 +295,10 @@ export class ProductService {
     p_imageUrl: string,
     p_kategori: number
   ) {
+    // cari produk dengan id yang sama
     for (let i = 0; i < this.product.length; i++) {
       if (this.product[i].id == id) {
+        // timpa setiap field produk dengan nilai baru dari form
         this.product[i].name = p_name;
         this.product[i].description = p_description;
         this.product[i].stock = p_stock;
@@ -290,16 +306,26 @@ export class ProductService {
         this.product[i].purchasePrice = p_purchasePrice;
         this.product[i].imageUrl = p_imageUrl;
         this.product[i].kategori = p_kategori;
+
+        // berhenti setelah produk ditemukan dan diubah
         break;
       }
     }
+
+    // pemberitahuan ke pengguna bahwa data sudah diperbarui
     alert('Data Berhasil Diperbarui!');
   }
 
+  // mencari produk yang namanya cocok dengan teks pencarian, tanpa membedakan huruf besar dan kecil
   searchProduct(searchQuery: string): any[] {
-    let tempProducts: any[] = [];
+    let tempProducts: any[] = []; // hasil pencarian, diisi produk yang cocok
+
+    // peringatan: teks pencarian dibaca sebagai regex, jadi tanda khusus seperti kurung bisa menyebabkan error
     const regexCari = new RegExp(searchQuery, 'i');
+
+    // periksa semua produk, termasuk yang sudah terhapus
     for (let product of this.product) {
+      // ambil produk kalau namanya cocok
       if (regexCari.test(product.name)) {
         tempProducts.push(product);
       }
@@ -307,16 +333,21 @@ export class ProductService {
     return tempProducts;
   }
 
+  // menghapus produk dengan menandainya terhapus saja, datanya tetap ada supaya transaksi lama tetap bisa menampilkan produk ini
   deleteProduct(id: number) {
     for (let i = 0; i < this.product.length; i++) {
       if (this.product[i].id == id) {
+        // hanya diberi tanda terhapus, produk tidak dibuang dari daftar
         this.product[i].isDeleted = true;
         break;
       }
     }
+
+    // pemberitahuan ke pengguna bahwa data sudah dihapus
     alert('Data Berhasil Dihapus!');
   }
 
+  // mengambil nama kategori dari id kategori, atau teks kosong kalau tidak ketemu
   getCategoryNameById(id: number): string {
     for (let i = 0; i < this.kategori.length; i++) {
       if (this.kategori[i].id == id) {

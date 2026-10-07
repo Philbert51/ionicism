@@ -8,13 +8,17 @@ import { AboutPageRoutingModule } from './about-routing.module';
 
 import { AboutPage } from './about.page';
 
+// modul halaman tentang aplikasi, mengumpulkan semua yang dibutuhkan halaman ini
 @NgModule({
+  // commonmodule untuk ngif dan ngfor, formsmodule untuk ngmodel, ionicmodule untuk komponen ionic, lalu modul routing milik halaman ini
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     AboutPageRoutingModule
   ],
+
+  // komponen halaman yang dimiliki modul ini, harus dideklarasikan supaya bisa dipakai di template
   declarations: [AboutPage]
 })
 export class AboutPageModule {}

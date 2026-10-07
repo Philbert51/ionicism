@@ -3,6 +3,7 @@ import { Theme } from './theme';
 import { AccountService } from './account-service';
 import { Router } from '@angular/router';
 
+// komponen akar aplikasi, berisi menu samping dan router outlet utama
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -10,8 +11,9 @@ import { Router } from '@angular/router';
   standalone: false,
 })
 export class AppComponent {
+  // theme menyimpan pilihan mode gelap, account service dan router dipakai saat logout
   constructor(public theme: Theme, private accountService : AccountService, private router: Router) {}
-  lightTheme = {
+  lightTheme = { // kumpulan variabel css ionic untuk mode terang, dipasang lewat ngstyle di app.component.html
     // --- Latar Belakang & Teks Netral (Bersih & Terang) ---
     '--ion-background-color': '#f9fafb', // Abu-abu sangat muda agar tidak terlalu silau
     '--ion-text-color': '#111827', // Abu-abu sangat gelap (lebih lembut dari hitam pekat)
@@ -137,7 +139,7 @@ export class AppComponent {
     '--ion-background-color-step-950': '#1d2332',
   };
 
-  darkTheme = {
+  darkTheme = { // kumpulan variabel css ionic untuk mode gelap
     // --- Latar Belakang & Teks Netral (Elegan & Nyaman di Mata) ---
     '--ion-background-color': '#121212', // Standar Dark Mode Material Design
     '--ion-text-color': '#f9fafb', // Putih keabu-abuan agar tidak silau
@@ -255,11 +257,16 @@ export class AppComponent {
     '--ion-background-color-step-950': '#edeeef',
   };
 
+  // dijalankan sekali saat komponen dibuat, saat ini kosong
   ngOnInit(){
   }
   
+  // keluar dari akun lalu pindah ke halaman login
   logout(){
+    // ubah status login menjadi false
     this.accountService.logout();
+
+    // pindah ke halaman login
     this.router.navigate(['/login']);
   }
 }
