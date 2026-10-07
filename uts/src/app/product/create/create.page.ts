@@ -12,9 +12,9 @@ import { AccountService } from '../../account-service';
 })
 export class CreatePage implements OnInit {
   namaProduk: string = ''; // nama produk, terhubung dua arah ke input
-  hargaBeli: number = 0; // harga beli produk
-  hargaJual: number = 0; // harga jual produk
-  stock: number = 0; // stok awal produk
+  hargaBeli: number = 1; // harga beli produk
+  hargaJual: number = 1; // harga jual produk
+  stock: number = 1; // stok awal produk
   imageUrl: string = ''; // alamat gambar produk, boleh dikosongkan
   deskripsi: string = ''; // deskripsi produk
   selectedKategori: number = -1; // id kategori yang dipilih, minus satu berarti belum dipilih
@@ -24,6 +24,9 @@ export class CreatePage implements OnInit {
   isFirstNamaProduk: boolean = true; // true selama kolom nama belum pernah ditinggalkan, supaya pesan error tidak muncul sebelum pengguna mengisi
   isFirstDeskripsi: boolean = true; // true selama kolom deskripsi belum pernah ditinggalkan
   isFirstKategori: boolean = true; // true sampai pilihan kategori pernah ditutup
+  isFirstHargaBeli: boolean = true; // true sampai kolom harga beli pernah ditinggalkan
+  isFirstHargaJual: boolean = true; // true sampai kolom harga jual pernah ditinggalkan
+  isFirstStock: boolean = true; // true sampai kolom stok pernah ditinggalkan
 
   // dipanggil saat kolom nama kehilangan fokus, sejak itu pesan error boleh tampil
   setIsFirstNamaProduk() {
@@ -38,6 +41,21 @@ export class CreatePage implements OnInit {
   // dipanggil saat pilihan kategori ditutup, sejak itu pesan error boleh tampil
   setIsFirstKategori() {
     this.isFirstKategori = false;
+  }
+
+  // dipanggil saat kolom harga beli kehilangan fokus, sejak itu pesan error boleh tampil
+  setIsFirstHargaBeli() {
+    this.isFirstHargaBeli = false;
+  }
+
+  // dipanggil saat kolom harga jual kehilangan fokus, sejak itu pesan error boleh tampil
+  setIsFirstHargaJual() {
+    this.isFirstHargaJual = false;
+  }
+
+  // dipanggil saat kolom stok kehilangan fokus, sejak itu pesan error boleh tampil
+  setIsFirstStock() {
+    this.isFirstStock = false;
   }
 
   // angular memberikan service, router, route, dan account service yang dipakai bersama
@@ -67,12 +85,12 @@ export class CreatePage implements OnInit {
       alert('Nama Produk Tidak Boleh Kosong');
     } else if (this.deskripsi == '') {
       alert('Deskripsi Tidak Boleh Kosong!');
-    } else if (this.hargaBeli < 0) {
-      alert('Harga Beli Tidak Boleh Negatif');
-    } else if (this.hargaJual < 0) {
-      alert('Harga Jual Tidak Boleh Negatif');
-    } else if (this.stock < 0) {
-      alert('Stok Tidak Boleh Negatif');
+    } else if (this.hargaBeli <= 0) {
+      alert('Harga Beli Harus Lebih Besar Dari 0');
+    } else if (this.hargaJual <= 0) {
+      alert('Harga Jual Harus Lebih Besar Dari 0');
+    } else if (this.stock <= 0) {
+      alert('Stok Harus Lebih Besar Dari 0');
     } else if (this.selectedKategori == -1 || this.selectedKategori == null) {
       alert('Kategori Harus Dipilih');
     } else {

@@ -70,8 +70,8 @@ export class ProductPage implements OnInit {
 
   // menghapus produk setelah pengguna setuju
   deleteProduct(id: number) {
-    // const deletedCard = document.querySelector("#product" + id) as HTMLElement;
-    // const animation = this.animCtrl.create().addElement(deletedCard).duration(400).fromTo("transform", "translateX(0%)", "translateX(80%)").easing("ease-out").fromTo("opacity", 1, -1).easing("ease-in");
+    const deletedCard = document.querySelector("#product" + id) as HTMLElement;
+    const animation = this.animCtrl.create().addElement(deletedCard).duration(400).fromTo("transform", "translateX(0%)", "translateX(80%)").easing("ease-out").fromTo("opacity", 1, -1).easing("ease-in");
 
     // kotak konfirmasi, isi blok hanya jalan kalau pengguna memilih ok
     // isinya: jumlah dikurangi, produk ditandai terhapus di service, lalu daftar yang tampil diambil ulang dari service
@@ -79,15 +79,12 @@ export class ProductPage implements OnInit {
     if (confirm('Apakah Anda Yakin Ingin Menghapus ' + this.productService.getProductById(id)?.name + "?")) {
       // kurangi jumlah yang tampil karena produk akan ditandai terhapus
       this.productsLength--;
-      // animation.play().then(() => {
-      //   this.productService.deleteProduct(id);
-      //   this.products = this.productService.product;
-      //   this.originalProductList = this.productService.product;
-      //   deletedCard.remove();
-      // });
-      this.productService.deleteProduct(id);
-      this.products = this.productService.product;
-      this.originalProductList = this.productService.product;
+      animation.play().then(() => {
+        this.productService.deleteProduct(id);
+        this.products = this.productService.product;
+        this.originalProductList = this.productService.product;
+        deletedCard.remove();
+      });
     }
   }
 }

@@ -60,26 +60,24 @@
     <ion-item>
       <ion-label class="ion-no-margin">
         <ion-input label="Harga Beli" labelPlacement="stacked" placeholder="Masukkan harga beli..." type="number"
-          [(ngModel)]="hargaBeli" [min]="0"></ion-input>
-        <ion-label class="ion-margin-bottom" color="danger" *ngIf="hargaBeli < 0">Harga Beli tidak boleh
-          negatif!</ion-label>
+          (ionBlur)="setIsFirstHargaBeli()" [(ngModel)]="hargaBeli" [min]="1"></ion-input>
+        <ion-label class="ion-margin-bottom" color="danger" *ngIf="((!isFirstHargaBeli && hargaBeli <= 0))">Harga Beli Harus Lebih Besar Dari 0</ion-label>
       </ion-label>
     </ion-item>
 
     <ion-item>
       <ion-label class="ion-no-margin">
-        <ion-input label="Harga Jual" labelPlacement="stacked" placeholder="Masukkan harga jual..." type="number"
-          [(ngModel)]="hargaJual" [min]="0"></ion-input>
-        <ion-label class="ion-margin-bottom" color="danger" *ngIf="hargaJual < 0">Harga Jual tidak boleh
-          negatif!</ion-label>
+        <ion-input  label="Harga Jual" labelPlacement="stacked" placeholder="Masukkan harga jual..." type="number"
+          (ionBlur)="setIsFirstHargaJual()" [(ngModel)]="hargaJual" [min]="1"></ion-input>
+        <ion-label class="ion-margin-bottom" color="danger" *ngIf="((!isFirstHargaJual && hargaJual <= 0))">Harga Jual Harus Lebih Besar Dari 0</ion-label>
       </ion-label>
     </ion-item>
 
     <ion-item>
       <ion-label class="ion-no-margin">
-        <ion-input label="Stok" labelPlacement="stacked" placeholder="Masukkan stok..." type="number"
-          [(ngModel)]="stock" [min]="0"></ion-input>
-        <ion-label class="ion-margin-bottom" color="danger" *ngIf="stock < 0">Stok tidak boleh negatif!</ion-label>
+        <ion-input (ionBlur)="setIsFirstStock()" label="Stok" labelPlacement="stacked" placeholder="Masukkan stok..." type="number"
+          [(ngModel)]="stock" [min]="1"></ion-input>
+        <ion-label class="ion-margin-bottom" color="danger" *ngIf="((!isFirstStock && stock <= 0))">Stok Harus Lebih Besar Dari 0</ion-label>
       </ion-label>
     </ion-item>
 

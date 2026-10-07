@@ -24,11 +24,12 @@
     <ion-card class="card-style">
       <div>
         <ion-item>
-          <ion-img [src]="detailProducts[i].imageUrl" class="img-box"></ion-img>
+          <ion-img *ngIf="detailProducts[i].imageUrl != ''" [src]="detailProducts[i].imageUrl" class="img-box"></ion-img>
+          <ion-img *ngIf="detailProducts[i].imageUrl == ''" src="https://ubaya.cloud/no_image.jpg" class="img-box"></ion-img>
           <div>
             <h1>{{detailProducts[i].name}}</h1>
             <ion-label>Jumlah: {{produk.quantity}}</ion-label>
-            <ion-label>Subtotal: {{produk.subtotal}}</ion-label>
+            <ion-label>Subtotal: Rp.{{produk.subtotal}}</ion-label>
           </div>
         </ion-item>
         <ion-row class="buttonQuantity">

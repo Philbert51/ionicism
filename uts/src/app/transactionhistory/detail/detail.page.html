@@ -28,7 +28,9 @@
 
     <ion-card *ngFor="let item of transaction.produk; let i = index" class="card-style">
       <ion-item lines="none">
-        <ion-img [src]="productDetail[i].imageUrl" class="img-box"></ion-img>
+        <ion-img *ngIf="productDetail[i].imageUrl != ''" [src]="productDetail[i].imageUrl" class="img-box"></ion-img>
+
+        <ion-img *ngIf="productDetail[i].imageUrl == ''" src="https://ubaya.cloud/no_image.jpg" class="img-box"></ion-img>
         <div>
           <ion-label><b>{{ productDetail[i].name }}</b></ion-label>
           <ion-label>Harga Beli: Rp {{ item.purchasePrice | number }}</ion-label>

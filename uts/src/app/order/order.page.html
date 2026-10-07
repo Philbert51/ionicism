@@ -14,7 +14,7 @@
       [disabled]="isCartEmpty()">
       <ion-icon slot="start" name="cart"></ion-icon>
       Lihat Keranjang</ion-button>
-    <ion-input (keyup)="searchProduct()" expand="block" fill="outline" labelPlacement="floating" type="text"
+    <ion-input class="search-box" (keyup)="searchProduct()" expand="block" fill="outline" labelPlacement="floating" type="text"
       placeholder="Cari produk..." label="Cari produk..." [(ngModel)]="searchQuery"></ion-input>
   </div>
 </ion-header>
@@ -47,7 +47,6 @@
           <ion-col class="ion-align-self-center">
             <div routerLink="/detail-product/{{product.id - 1}}">
               <h3>{{ product.name }}</h3>
-              <h3>{{product.isDeleted}}</h3>
               <div>
                 <h5>Stok: {{ product.stock }}</h5>
               </div>

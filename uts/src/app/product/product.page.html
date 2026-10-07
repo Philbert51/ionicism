@@ -13,7 +13,7 @@
     </ion-button>
 
     <ion-input (keyup)="searchProduct()" expand="block" fill="outline" labelPlacement="floating" type="text"
-      placeholder="Cari produk..." label="Cari produk..." [(ngModel)]="searchQuery"></ion-input>
+      placeholder="Cari produk..." label="Cari produk..." [(ngModel)]="searchQuery" class="search-box"></ion-input>
   </div>
 </ion-header>
 
@@ -35,8 +35,8 @@
   </div>
 
   <div *ngIf="products != []">
-    <div *ngFor="let product of products" [id]="'product' + product.id" class="kartu-produk">
-      <ion-card *ngIf="product.isDeleted == false">
+    <div *ngFor="let product of products" [id]="'product' + product.id">
+      <ion-card *ngIf="product.isDeleted == false" class="kartu-produk">
         <ion-grid>
           <ion-row>
             <ion-col size="auto" class="ion-align-self-center">

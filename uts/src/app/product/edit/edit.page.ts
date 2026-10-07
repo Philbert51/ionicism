@@ -16,8 +16,8 @@ export class EditPage implements OnInit {
     private productService: ProductService,
     private route: ActivatedRoute,
     private router: Router,
-    private accountService: AccountService 
-  ) {}
+    private accountService: AccountService
+  ) { }
 
   editId: number = 0; // id produk yang sedang diedit, diisi dari parameter rute
 
@@ -35,6 +35,9 @@ export class EditPage implements OnInit {
   isFirstNamaProduk: boolean = true; // true selama kolom nama belum pernah ditinggalkan, supaya pesan error tidak muncul sebelum pengguna mengisi
   isFirstDeskripsi: boolean = true; // true selama kolom deskripsi belum pernah ditinggalkan
   isFirstKategori: boolean = true; // true sampai pilihan kategori pernah ditutup
+  isFirstHargaBeli: boolean = true; // true sampai kolom harga beli pernah ditinggalkan
+  isFirstHargaJual: boolean = true; // true sampai kolom harga jual pernah ditinggalkan
+  isFirstStock: boolean = true; // true sampai kolom stok pernah ditinggalkan
 
   // dipanggil saat kolom nama kehilangan fokus, sejak itu pesan error boleh tampil
   setIsFirstNamaProduk() {
@@ -49,6 +52,21 @@ export class EditPage implements OnInit {
   // dipanggil saat pilihan kategori ditutup, sejak itu pesan error boleh tampil
   setIsFirstKategori() {
     this.isFirstKategori = false;
+  }
+
+  // dipanggil saat kolom harga beli kehilangan fokus, sejak itu pesan error boleh tampil
+  setIsFirstHargaBeli() {
+    this.isFirstHargaBeli = false;
+  }
+
+  // dipanggil saat kolom harga jual kehilangan fokus, sejak itu pesan error boleh tampil
+  setIsFirstHargaJual() {
+    this.isFirstHargaJual = false;
+  }
+
+  // dipanggil saat kolom stok kehilangan fokus, sejak itu pesan error boleh tampil
+  setIsFirstStock() {
+    this.isFirstStock = false;
   }
 
   // jalan saat halaman dibuat, memeriksa login, mengambil daftar kategori, lalu mengisi form dari produk yang diedit
@@ -123,13 +141,13 @@ export class EditPage implements OnInit {
     // peringatan: hanya memeriksa format, bukan memastikan gambarnya benar benar ada
     const url =
       /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b/;
-    
-      // url kosong langsung dianggap valid
-      if (imageUrlQuery == '') {
-        return true;
-      } else {
-        // test mengembalikan true kalau teks cocok dengan pola
-        return url.test(imageUrlQuery);
-      }
+
+    // url kosong langsung dianggap valid
+    if (imageUrlQuery == '') {
+      return true;
+    } else {
+      // test mengembalikan true kalau teks cocok dengan pola
+      return url.test(imageUrlQuery);
+    }
   }
 }
