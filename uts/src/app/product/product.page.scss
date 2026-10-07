@@ -70,11 +70,17 @@ ion-header {
 }
 
 /* Atur jarak internal button agar tidak terlalu menempel */
-.btnUbah{
+.btnUbah {
   padding-right: 0.1rem;
 }
 
-.btnHapus{
+.btnHapus {
   padding-left: 0.1rem;
 }
 
+.kartu-produk {
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  padding: 10px;
+}

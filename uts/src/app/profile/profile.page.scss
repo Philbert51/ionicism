@@ -5,10 +5,22 @@
   align-items: center;
   min-height: 100%;
   padding: 20px;
+  gap: 0.3rem;
 }
+
 
 .profile-picture-container {
   margin-bottom: 30px;
+}
+
+.judul {
+  width: 100%;
+  // max-width: 90%; /* Menyertakan lebar yang sama persis dengan .profile-card */
+  text-align: left;
+  font-size: 18px; /* Opsional: Membesarkan ukuran teks agar terlihat seperti judul */
+  font-weight: bold; /* Opsional: Menebalkan teks */
+  margin-top: 20px; /* Memberikan jarak dari elemen di atasnya */
+  margin-bottom: 1px; /* Memberikan jarak sedikit dengan card di bawahnya */
 }
 
 .profile-picture {
@@ -23,7 +35,7 @@
 
 .profile-card {
   width: 100%;
-  max-width: 400px;
+  // max-width: 90%;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
@@ -60,4 +72,10 @@
 .center {
   text-align: center;
   vertical-align: middle;
+}
+
+.input-field-label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
 }

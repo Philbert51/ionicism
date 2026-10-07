@@ -1,8 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>Profile</ion-title>
   </ion-toolbar>
-  
+
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
@@ -11,12 +14,16 @@
       <ion-title size="large">Profile</ion-title>
     </ion-toolbar>
   </ion-header>
+
   <div class="profile-container">
     <!--src is from url for live update to see the profile picture change in real time -->
-    <div class="profile-picture-container"><ion-avatar class="profile-picture"><ion-img [src]="url" alt="user profile picture"></ion-img></ion-avatar></div>
+    <div class="profile-picture-container"><ion-avatar class="profile-picture"><ion-img [src]="url"
+          alt="user profile picture"></ion-img></ion-avatar></div>
 
+    <ion-label class="judul">Profile</ion-label>
     <ion-card class="profile-card">
       <ion-card-content>
+        <ion-label class="input-field-label">Image URL</ion-label>
         <div class="input-group">
           <ion-item lines="none" class="custom-input">
             <ion-icon name="image-outline" slot="start"></ion-icon>
@@ -24,6 +31,7 @@
           </ion-item>
         </div>
 
+        <ion-label class="input-field-label">Username</ion-label>
         <div class="input-group">
           <ion-item lines="none" class="custom-input">
             <ion-icon name="person-outline" slot="start"></ion-icon>
@@ -31,7 +39,8 @@
           </ion-item>
         </div>
 
-        <ion-chip *ngIf="isEmptyUsername" class="error-chip"><ion-text><ion-icon class="center" name="close"></ion-icon>Username is empty!</ion-text></ion-chip>
+        <ion-chip *ngIf="isEmptyUsername" class="error-chip"><ion-text><ion-icon class="center"
+              name="close"></ion-icon>Username is empty!</ion-text></ion-chip>
 
         <ion-button expand="block" shape="round" class="profile-btn" (click)="saveProfile()">
           Save profile
@@ -39,8 +48,10 @@
       </ion-card-content>
     </ion-card>
 
+    <ion-label class="judul">Change Password</ion-label>
     <ion-card class="profile-card">
       <ion-card-content>
+        <ion-label class="input-field-label">Current Password</ion-label>
         <div class="input-group">
           <ion-item lines="none" class="custom-input">
             <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
@@ -48,6 +59,7 @@
           </ion-item>
         </div>
 
+        <ion-label class="input-field-label">New Password</ion-label>
         <div class="input-group">
           <ion-item lines="none" class="custom-input">
             <ion-icon name="key-outline" slot="start"></ion-icon>
@@ -55,6 +67,7 @@
           </ion-item>
         </div>
 
+        <ion-label class="input-field-label">Confirm Password</ion-label>
         <div class="input-group">
           <ion-item lines="none" class="custom-input">
             <ion-icon name="shield-checkmark-outline" slot="start"></ion-icon>
@@ -62,8 +75,10 @@
           </ion-item>
         </div>
 
-        <ion-chip *ngIf="isIncorrect" class="error-chip"><ion-text><ion-icon class="center" name="close"></ion-icon>Incorrect Password</ion-text></ion-chip>
-        <ion-chip *ngIf="newPassword != confirmPassword" class="error-chip"><ion-text><ion-icon class="center" name="close"></ion-icon>Password does not match</ion-text></ion-chip>
+        <ion-chip *ngIf="isIncorrect" class="error-chip"><ion-text><ion-icon class="center"
+              name="close"></ion-icon>Incorrect Password</ion-text></ion-chip>
+        <ion-chip *ngIf="newPassword != confirmPassword" class="error-chip"><ion-text><ion-icon class="center"
+              name="close"></ion-icon>Password does not match</ion-text></ion-chip>
 
         <ion-button expand="block" shape="round" class="profile-btn" (click)="changePassword()">
           Change password

@@ -96,8 +96,8 @@
             </div>
             <ion-item lines="none" class="product-item-style" *ngIf="adaTodaysBestSeller">
               <div>
-                <ion-label color="medium"><b>{{ todaysBestSellerProduct.name }}</b></ion-label>
-                <ion-label color="medium">Jumlah terjual: {{ todaysBestSellerQty }}</ion-label>
+                <ion-label color="medium" class="prod-name"><b>{{ todaysBestSellerProduct.name }}</b></ion-label>
+                <ion-label color="medium" class="prod-name">Jumlah terjual: {{ todaysBestSellerQty }}</ion-label>
               </div>
               <ion-img slot="end" [src]="todaysBestSellerProduct.imageUrl" class="img-box"></ion-img>
             </ion-item>
@@ -138,8 +138,8 @@
             </div>
             <ion-item lines="none" class="product-item-style" *ngIf="adaAllTimeBestSeller">
               <div>
-                <ion-label color="medium"><b>{{ bestSellerProduct.name }}</b></ion-label>
-                <ion-label color="medium">Jumlah terjual: {{ bestSellerQty }}</ion-label>
+                <ion-label color="medium" class="prod-name"><b>{{ bestSellerProduct.name }}</b></ion-label>
+                <ion-label color="medium" class="prod-name">Jumlah terjual: {{ bestSellerQty }}</ion-label>
               </div>
               <ion-img slot="end" [src]="bestSellerProduct.imageUrl" class="img-box"></ion-img>
             </ion-item>
