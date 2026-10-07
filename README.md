@@ -1,4 +1,4 @@
-# Ionicism
+# SIMOBILE
 
 Aplikasi manajemen toko berbasis **Ionic** dan **Angular**. Aplikasi ini menyediakan dashboard penjualan, pengelolaan produk, riwayat transaksi, serta pengaturan profil pengguna.
 
